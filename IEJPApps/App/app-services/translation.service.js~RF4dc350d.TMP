@@ -1,0 +1,61 @@
+﻿(function () {
+    'use strict';
+
+    angular
+        .module('app')
+        .config(['$translateProvider', function ($translateProvider) {
+            $translateProvider.translations('en', getEnglishTranslations());
+            $translateProvider.translations('fr', getFrenchTranslations());
+            $translateProvider.preferredLanguage('en');
+        }]);;
+
+    function getEnglishTranslations() {
+        return {
+            ApplicationTitle: "IEJP Time management",
+            ForgotYourPassword: "Forgot your password?",
+            Login: "Log in",
+            ProjectList: "Project List",
+            RegisterAsNewUser: "Register as a new user",
+            LastUpdated: "Last updated",
+            Commands: {
+                Create: "Create New",
+                Save: "Save",
+                BackToList: "Back to List"
+            },
+            Edit: {
+                Title: "Edit"
+            },
+            Projects: {
+                Number: "#",
+                Customer: "Customer",
+                Description: "Description",
+                Search: "Search Projects..."
+            }
+        };
+    }
+
+    function getFrenchTranslations() {
+        return {
+            ApplicationTitle: "IEJP Gestion du temps",
+            ForgotYourPassword: "Mot de passe oublié?",
+            Login: "Connexion",
+            ProjectList: "Liste de projets",
+            RegisterAsNewUser: "S'enregistrer en tant que nouvel utilisateur",
+            LastUpdated: "Modifié le",
+            Commands: {
+                Create: "Ajouter",
+                Save: "Enregistrer",
+                BackToList: "Retour à la liste"
+            },
+            Edit: {
+                Title: "Modifier"
+            },
+            Projects: {
+                Number: "No.",
+                Customer: "Client",
+                Description: "Description",
+                Search: "Rechercher les projets..."
+            }
+        };
+    }
+})();
