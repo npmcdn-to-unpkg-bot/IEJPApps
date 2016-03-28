@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IEJPApps.Models
@@ -42,5 +43,11 @@ namespace IEJPApps.Models
         //[EmailAddress(ErrorMessage = "Invalid Email Address")]
         [Display(Name = "EMail", AutoGenerateFilter = false)]
         public string Email { get; set; }
+
+        [Display(Name = "TimeTransactions", AutoGenerateFilter = false)]
+        public virtual ICollection<TimeTransaction> TimeTransactions { get; set; }
+
+        [Display(Name = "ExpenditureTransactions", AutoGenerateFilter = false)]
+        public virtual ICollection<ExpenditureTransaction> ExpenditureTransactions { get; set; }
     }
 }

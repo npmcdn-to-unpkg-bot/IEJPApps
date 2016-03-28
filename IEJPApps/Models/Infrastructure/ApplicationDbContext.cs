@@ -7,6 +7,8 @@ namespace IEJPApps.Models.Infrastructure
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public static ApplicationDbContext Create()
@@ -15,7 +17,8 @@ namespace IEJPApps.Models.Infrastructure
         }
 
         public System.Data.Entity.DbSet<Project> Projects { get; set; }
-
         public System.Data.Entity.DbSet<Employee> Employees { get; set; }
+        public System.Data.Entity.DbSet<TimeTransaction> TimeTransactions { get; set; }
+        public System.Data.Entity.DbSet<ExpenditureTransaction> ExpenditureTransactions { get; set; }
     }
 }

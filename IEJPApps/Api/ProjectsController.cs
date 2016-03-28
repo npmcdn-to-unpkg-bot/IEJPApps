@@ -17,13 +17,19 @@ namespace IEJPApps.Api
         [Route("")]
         public List<Project> GetAll()
         {
-            return _db.Projects.OrderBy(x => x.ProjectNumber).ToList();
+            return _db.Projects
+                .Include(x => x.TimeTransactions)
+                .OrderBy(x => x.ProjectNumber)
+                .ToList();
         }
 
         [Route("{id}")]
         public Project GetById(Guid id)
         {
-            return _db.Projects.Find(id); ;
+            return _db.Projects
+                .Include(x => x.TimeTransactions)
+                .Include(x => x.ExpenditureTransactions)
+                .SingleOrDefault(x => x.Id == id);
         }
 
         [HttpPost]

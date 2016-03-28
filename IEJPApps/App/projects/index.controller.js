@@ -20,6 +20,22 @@
                 }
             }
         }
+        
+        vm.expenditureTotal = function () {
+            var sum = 0;
+            for (var i = 0; i < vm.projects.length; i++) {
+                sum += vm.projects[i].ExpenditureTotal;
+            }
+            return sum;
+        }
+
+        vm.timeTotal = function () {
+            var sum = 0;
+            for (var i = 0; i < vm.projects.length; i++) {
+                sum += vm.projects[i].TimeTotal;
+            }
+            return sum;
+        }
 
         initController();
 

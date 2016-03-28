@@ -96,3 +96,17 @@ a.list-group-item:before {
 .top-buffer {
      margin-top: 15px;
 }
+
+.table-totals {
+    font-weight: bold;
+}
+
+.active-check {
+    color: green;
+}
+
+.dashboard-line {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+}

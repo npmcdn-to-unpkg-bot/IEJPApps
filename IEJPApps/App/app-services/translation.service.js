@@ -36,8 +36,11 @@
                 TitleCreate: "Add a project",
                 TitleEdit: "Modify a project",
                 Number: "#",
+                Active: "Active",
                 Customer: "Customer",
                 Description: "Description",
+                Time: "Time (hr)",
+                Expenditures: "Expenditures",
                 Search: "Search Projects..."
             },
             Employees: {
@@ -84,8 +87,11 @@
                 TitleCreate: "Ajouter un projets",
                 TitleEdit: "Modifier un projets",
                 Number: "No.",
+                Active: "Actif",
                 Customer: "Client",
                 Description: "Description",
+                Time: "Temp (hr)",
+                Expenditures: "Dépenses",
                 Search: "Filtrer les projets..."
             },
             Employees: {

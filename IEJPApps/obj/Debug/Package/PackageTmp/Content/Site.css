@@ -1,0 +1,112 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*.navbar-brand {
+    background: url('Images/Logo-Jean-Provost-Electricien.jpg') center no-repeat;
+    background-size: 50%; 
+}*/
+
+/*
+.navbar-brand {
+    display: inline-block;
+    float: none;
+}
+
+.navbar-toggle {
+    float: none;
+    color: #FFF;
+    margin-left: 4px;
+}
+*/
+
+.navbar-fixed-bottom {
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+#content {
+    margin-bottom: 40px;
+}
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+.action-bar {
+    padding: 15px 0;
+}
+
+.command-bar {
+    padding: 15px 0;
+}
+
+/* Card List Widgets */
+.project-list {
+    /*background-color: lightblue;*/
+}
+
+/*links without href*/
+a {
+	cursor: pointer;
+}
+
+/* list-group-items in panels*/
+.panel-heading+.list-group .list-group-item:first-child {
+	border-top-width: 1px;
+}
+
+.bootcards-cards .list-group > div:first-child .list-group-item {
+	border-top-width: 0 !important;
+}
+
+a.list-group-item:before {
+    font-family: Glyphicons Halflings;
+    content: "\e080";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: -7px;
+    color: #ccc;
+}
+
+.top-buffer {
+     margin-top: 15px;
+}
+
+.table-totals {
+    font-weight: bold;
+}
+
+.active-check {
+    color: green;
+}
+
+.dashboard-line {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+}

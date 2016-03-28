@@ -175,11 +175,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\TimeTransactionsController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Api\EmployeesController.cs" />
     <Compile Include="Api\ProjectsController.cs" />
+    <Compile Include="Migrations\201603261452431_Initial.cs" />
+    <Compile Include="Migrations\201603261452431_Initial.Designer.cs">
+      <DependentUpon>201603261452431_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\ExpenditureTransaction.cs" />
+    <Compile Include="Models\Extensions\ProjectExtensions.cs" />
+    <Compile Include="Models\TimeTransaction.cs" />
     <Compile Include="Resources\Strings.fr.Designer.cs">
       <DependentUpon>Strings.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -210,6 +219,8 @@
     <Compile Include="Models\Repositories\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ProjectViewModel.cs" />
+    <Compile Include="ViewModels\TimeTransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app-services\employees.service.js" />
@@ -322,14 +333,15 @@
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603261452431_Initial.resx">
+      <DependentUpon>201603261452431_Initial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.fr.Designer.cs</LastGenOutput>

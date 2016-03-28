@@ -17,13 +17,19 @@ namespace IEJPApps.Api
         [Route("")]
         public List<Employee> GetAll()
         {
-            return _db.Employees.OrderBy(x => x.Number).ToList();
+            return _db.Employees
+                .Include(x => x.TimeTransactions)
+                .OrderBy(x => x.Number)
+                .ToList();
         }
 
         [Route("{id}")]
         public Employee GetById(Guid id)
         {
-            return _db.Employees.Find(id); ;
+            return _db.Employees
+                .Include(x => x.TimeTransactions)
+                .Include(x => x.ExpenditureTransactions)
+                .SingleOrDefault(x => x.Id == id);
         }
 
         [HttpPost]

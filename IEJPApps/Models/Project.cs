@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace IEJPApps.Models
 {
-    public class Project
+    public partial class Project
     {
         [Key]
         public Guid Id { get; set; }
@@ -21,6 +22,12 @@ namespace IEJPApps.Models
 
         [Display(Name = "Description", AutoGenerateFilter = false)]
         public string Description { get; set; }
+        
+        [Display(Name = "TimeTransactions", AutoGenerateFilter = false)]
+        public virtual ICollection<TimeTransaction> TimeTransactions { get; set; }
+
+        [Display(Name = "ExpenditureTransactions", AutoGenerateFilter = false)]
+        public virtual ICollection<ExpenditureTransaction> ExpenditureTransactions { get; set; }
 
         [Display(Name = "Created", AutoGenerateFilter = false)]
         public DateTime? Created { get; set; }
