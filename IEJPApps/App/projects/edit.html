@@ -9,73 +9,73 @@
 
 <div id="content" class="container-fluid">
     <!--<div class="row">-->
-        <form>
-            <div class="form-horizontal">
-                <div class="row">
-                    <div class="form-group" ng-if="false">
-                        <div class="col-xs-12 col-md-10">
-                            <span><small>{{vm.project.Id}}</small></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group dashboard-line">
-                        <div class="col-xs-6 col-sm-3 col-sm-offset-3">{{'Projects.Time'|translate}}: <strong>{{vm.project.TimeTotal}}</strong></div>
-                        <div class="col-xs-6 col-sm-3">{{'Projects.Expenditures'|translate}}: <strong>{{vm.project.ExpenditureTotal|currency}}</strong></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Active">{{'Projects.Active'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <input class="check-box" data-val="true" data-val-required="The Active field is required." id="Active" name="Active" type="checkbox" ng-model="vm.project.Active">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="ProjectNumber">{{'Projects.Number'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <input class="form-control text-box single-line" id="ProjectNumber" name="ProjectNumber" type="text" ng-model="vm.project.ProjectNumber">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="ProjectNumber" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Customer">{{'Projects.Customer'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <input class="form-control text-box single-line" id="Customer" name="Customer" type="text" ng-model="vm.project.Customer">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="Customer" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Description">{{'Projects.Description'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <input class="form-control text-box single-line" id="Description" name="Description" type="text" ng-model="vm.project.Description">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-10">
-                            <p class="card-text" ng-if="vm.project.Updated">
-                                <small class="text-muted">{{'LastUpdated'|translate}} {{vm.project.Updated}}</small>
-                            </p>
-                        </div>
+    <form>
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="form-group" ng-if="false">
+                    <div class="col-xs-12 col-md-10">
+                        <span><small>{{vm.project.Id}}</small></span>
                     </div>
                 </div>
             </div>
-        </form>
+
+            <div class="row">
+                <div class="form-group dashboard-line">
+                    <div class="col-xs-6 col-sm-3 col-sm-offset-3">{{'Projects.Time'|translate}}: <strong>{{vm.project.TimeTotal}}</strong></div>
+                    <div class="col-xs-6 col-sm-3">{{'Projects.Expenditures'|translate}}: <strong>{{vm.project.ExpenditureTotal|currency}}</strong></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Active">{{'Projects.Active'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input class="check-box" data-val="true" data-val-required="The Active field is required." id="Active" name="Active" type="checkbox" ng-model="vm.project.Active">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="ProjectNumber">{{'Projects.Number'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input class="form-control text-box single-line" id="ProjectNumber" name="ProjectNumber" type="text" ng-model="vm.project.ProjectNumber">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="ProjectNumber" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Customer">{{'Projects.Customer'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input class="form-control text-box single-line" id="Customer" name="Customer" type="text" ng-model="vm.project.Customer">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Customer" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Description">{{'Projects.Description'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input class="form-control text-box single-line" id="Description" name="Description" type="text" ng-model="vm.project.Description">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-10">
+                        <p class="card-text" ng-if="vm.project.Updated">
+                            <small class="text-muted">{{'LastUpdated'|translate}} {{vm.project.Updated}}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <!--</div>-->
 </div>
 
@@ -97,8 +97,10 @@
 
 <div class="container-fluid hidden-xs">
     <div class="row top-buffer">
-        <button class="btn btn-primary" ng-click="vm.save()">{{'Commands.Save'|translate}}</button>
-        <button class="btn btn-danger pull-right" ng-disabled="vm.project.Id === undefined" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <button class="btn btn-primary" ng-click="vm.save()">{{'Commands.Save'|translate}}</button>
+            <button class="btn btn-danger" ng-disabled="vm.project.Id === undefined" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
+        </div>
     </div>
 
     <div class="row top-buffer">

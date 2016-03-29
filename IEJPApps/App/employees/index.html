@@ -28,7 +28,7 @@
             <table class="table">
                 <tr>
                     <th>{{'Employees.Number'|translate}}</th>
-                    <th>{{'Employees.Active'|translate}}</th>
+                    <th class="text-center">{{'Employees.Active'|translate}}</th>
                     <th>{{'Employees.FirstName'|translate}}</th>
                     <th>{{'Employees.LastName'|translate}}</th>
                     <th>{{'Employees.Rate'|translate}}</th>
@@ -38,11 +38,7 @@
                 </tr>
                 <tr ng-repeat="item in vm.employees | filter: vm.filter | orderBy: 'Number'">
                     <td>{{item.Number}}</td>
-                    <td>
-                        <!--<i class="glyphicon glyphicon-ok active-check" nf-if="item.Active === true"></i>-->
-                        <i class="glyphicon glyphicon-ok-circle text-success" ng-if="item.Active"></i>
-                        <i class="glyphicon glyphicon-ban-circle text-danger" ng-if="!item.Active"></i>
-                    </td>
+                    <td class="text-center small"><i class="glyphicon glyphicon-ok active-check text-success" ng-if="item.Active"></i></td>
                     <td>{{item.FirstName}}</td>
                     <td>{{item.LastName}}</td>
                     <td>{{item.Rate}}</td>

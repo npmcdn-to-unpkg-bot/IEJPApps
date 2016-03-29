@@ -35,6 +35,7 @@ namespace IEJPApps
                       "~/App/app.js",
                       "~/App/app-services/*.js",
                       "~/App/account/*.js",
+                      "~/App/pages/*.js",
                       "~/App/home/*.js",
                       "~/App/projects/*.js",
                       "~/App/employees/*.js"));

@@ -9,15 +9,15 @@ using System.Data.Entity;
 namespace IEJPApps.Api
 {
     [Authorize]
-    [RoutePrefix("api/time")]
-    public class TimeTransactionsController : ApiController
+    [RoutePrefix("api/expenditures")]
+    public class ExpendituresController : ApiController
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         [Route("")]
-        public List<TimeTransaction> GetAll()
+        public List<ExpenditureTransaction> GetAll()
         {
-            return _db.TimeTransactions
+            return _db.ExpenditureTransactions
                 .OrderByDescending(x => x.TransactionDate)
                 .Include(x => x.Project)
                 .Include(x => x.Employee)
@@ -25,32 +25,32 @@ namespace IEJPApps.Api
         }
 
         [Route("{id}")]
-        public TimeTransaction GetById(Guid id)
+        public ExpenditureTransaction GetById(Guid id)
         {
-            return _db.TimeTransactions.Find(id);
+            return _db.ExpenditureTransactions.Find(id);
         }
 
         [HttpPost]
         [Route("")]
-        public TimeTransaction Create([FromBody] TimeTransaction transaction)
+        public ExpenditureTransaction Create([FromBody] ExpenditureTransaction transaction)
         {
             if (ModelState.IsValid)
             {
                 transaction.Id = Guid.NewGuid();
                 transaction.Created = DateTime.Now;
 
-                _db.TimeTransactions.Add(transaction);
+                _db.ExpenditureTransactions.Add(transaction);
                 _db.SaveChanges();
 
                 return transaction;
             }
 
-            throw new Exception("Invalid Time Transaction Model");
+            throw new Exception("Invalid Expenditure Transaction Model");
         }
 
         [HttpPut]
         [Route("")]
-        public TimeTransaction Update([FromBody] TimeTransaction transaction)
+        public ExpenditureTransaction Update([FromBody] ExpenditureTransaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -60,19 +60,19 @@ namespace IEJPApps.Api
                 return transaction;
             }
 
-            throw new Exception("Invalid Time Transaction Model");
+            throw new Exception("Invalid Expenditure Transaction Model");
         }
 
         [HttpDelete]
         [Route("{id}")]
         public void Delete(Guid id)
         {
-            var transaction = _db.TimeTransactions.Find(id);
+            var transaction = _db.ExpenditureTransactions.Find(id);
 
             if (transaction == null)
-                throw new Exception("Time Transaction Not Found");
+                throw new Exception("Expenditure Transaction Not Found");
 
-            _db.TimeTransactions.Remove(transaction);
+            _db.ExpenditureTransactions.Remove(transaction);
             _db.SaveChanges();
         }
     }

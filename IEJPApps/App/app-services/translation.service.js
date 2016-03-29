@@ -20,7 +20,9 @@
             Navigation: {
                 Home: "Home",
                 Projects: "Projects",
-                Employees: "Employees"
+                Employees: "Employees",
+                TimeSheet: "Time Sheet",
+                Expenditures: "Expenditures"
             },
             Commands: {
                 Create: "Create New",
@@ -56,6 +58,16 @@
                 Mobile: "Mobile",
                 Email: "Email",
                 Search: "Search Employees..."
+            },
+            TimeSheet: {
+                TitleList: "Time sheet",
+                TitleCreate: "Add a transaction",
+                TitleEdit: "Modify a transaction",
+            },
+            Expenditures: {
+                TitleList: "Expenditure sheet",
+                TitleCreate: "Add a transaction",
+                TitleEdit: "Modify a transaction",
             }
         };
     }
@@ -70,8 +82,10 @@
             ConfirmDelete: "Voulez-vous supprimer cet item ?",
             Navigation: {
                 Home: "Home",
-                Projects: "Projects",
-                Employees: "Employees"
+                Projects: "Projets",
+                Employees: "Employés",
+                TimeSheet: "Feuille de temps",
+                Expenditures: "Dépenses"
             },
             Commands: {
                 Create: "Ajouter",
@@ -107,6 +121,16 @@
                 Mobile: "Mobile",
                 Email: "Courriel",
                 Search: "Filtrer les employés..."
+            },
+            TimeSheet: {
+                TitleList: "Feuille de temps",
+                TitleCreate: "Ajouter une transaction",
+                TitleEdit: "Modifier une transaction",
+            },
+            Expenditures: {
+                TitleList: "Compte de dépense",
+                TitleCreate: "Ajouter une transaction",
+                TitleEdit: "Modifier une transaction",
             }
         };
     }

@@ -175,7 +175,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\TimeTransactionsController.cs" />
+    <Compile Include="Api\ExpendituresController.cs" />
+    <Compile Include="Api\TimeSheetController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Api\EmployeesController.cs" />
@@ -224,14 +225,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app-services\employees.service.js" />
+    <Content Include="App\app-services\expenditures.service.js" />
+    <Content Include="App\app-services\timesheet.service.js" />
     <Content Include="App\app-services\translation.service.js" />
     <Content Include="App\app-services\projects.service.js" />
     <Content Include="App\employees\edit.controller.js" />
     <Content Include="App\employees\index.controller.js" />
+    <Content Include="App\pages\expenditures-edit.js" />
+    <Content Include="App\pages\expenditures-edit.html" />
+    <Content Include="App\pages\expenditures-index.js" />
+    <Content Include="App\pages\expenditures-index.html" />
     <Content Include="App\projects\edit.html" />
     <Content Include="App\projects\edit.controller.js" />
     <Content Include="App\projects\index.controller.js" />
     <Content Include="App\projects\index.html" />
+    <Content Include="App\pages\timesheet-edit.js" />
+    <Content Include="App\pages\timesheet-edit.html" />
+    <Content Include="App\pages\timesheet-index.js" />
+    <Content Include="App\pages\timesheet-index.html" />
     <Content Include="App_Data\IEJP.mdf" />
     <Content Include="App_Data\IEJP_log.ldf">
       <DependentUpon>IEJP.mdf</DependentUpon>
