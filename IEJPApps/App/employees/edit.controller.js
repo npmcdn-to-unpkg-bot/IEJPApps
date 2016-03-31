@@ -3,12 +3,41 @@
 
     angular
         .module("app")
-        .controller("Employees.EditController", ["$state", "$stateParams", "$translate", "UserService", "EmployeesService", employeesEditController]);
+        .controller("Employees.EditController", ["$state", "$stateParams", "$translate", "UserService", "EmployeesService", "employee", controller])
+        .config(config);
 
-    function employeesEditController($state, $stateParams, $translate, userService, employeesService) {
+    function config($stateProvider) {
+        $stateProvider
+            .state("employees-create", {
+                url: "/employees/edit",
+                templateUrl: "/app/employees/edit.html",
+                controller: "Employees.EditController",
+                controllerAs: "vm",
+                resolve: {
+                    employee: function ($stateParams, EmployeesService) {
+                        return EmployeesService.New();
+                    }
+                },
+                data: { activeTab: "employees" }
+            })
+            .state("employees-edit", {
+                url: "/employees/edit/:id",
+                templateUrl: "/app/employees/edit.html",
+                controller: "Employees.EditController",
+                controllerAs: "vm",
+                resolve: {
+                    employee: function ($stateParams, EmployeesService) {
+                        return EmployeesService.GetById($stateParams.id);
+                    }
+                },
+                data: { activeTab: "employees" }
+            });
+    }
+
+    function controller($state, $stateParams, $translate, userService, employeesService, employee) {
         var vm = this;
 
-        vm.employee = {};
+        vm.employee = employee || {};
 
         vm.save = function () {
             if (vm.employee.Id) {
@@ -28,17 +57,6 @@
                         $state.go("employees");
                     });
                 }
-            }
-        }
-
-        initController();
-
-        function initController() {
-            var id = $stateParams.id;
-            if (id) {
-                employeesService.GetById(id).then(function (employee) {
-                    vm.employee = employee;
-                });
             }
         }
     }

@@ -6,15 +6,18 @@
         .factory('TimeSheetService', Service);
 
     function Service($http, $q) {
-        var service = {};
+        return {
+            New: New,
+            GetAll: GetAll,
+            GetById: GetById,
+            Create: Create,
+            Update: Update,
+            Delete: Delete        
+        };
 
-        service.GetAll = GetAll;
-        service.GetById = GetById;
-        service.Create = Create;
-        service.Update = Update;
-        service.Delete = Delete;
-
-        return service;
+        function New() {
+            return {};
+        }
 
         function GetAll() {
             return $http.get('/api/timesheet').then(handleSuccess, handleError);

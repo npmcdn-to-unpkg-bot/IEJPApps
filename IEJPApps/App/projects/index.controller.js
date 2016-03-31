@@ -3,18 +3,34 @@
 
     angular
         .module("app")
-        .controller("Projects.IndexController", ["$state", "$translate", "UserService", "ProjectsService", projectsIndexController]);
+        .controller("Projects.IndexController", ["$state", "$translate", "UserService", "ProjectsService", "projects", controller])
+        .config(config);
 
-    function projectsIndexController($state, $translate, userService, projectsService) {
+    function config($stateProvider) {
+        $stateProvider
+            .state("projects", {
+                url: "/projects",
+                templateUrl: "/app/projects/index.html",
+                controller: "Projects.IndexController",
+                controllerAs: "vm",
+                resolve: {
+                    projects: function ($stateParams, ProjectsService) {
+                        return ProjectsService.GetAll();
+                    }
+                },
+                data: { activeTab: "projects" }
+            });
+    }
+
+    function controller($state, $translate, userService, projectsService, projects) {
         var vm = this;
 
-        vm.projects = [];
+        vm.projects = projects || [];
 
-        vm.delete = function (projectId) {
-            console.log('projectId', projectId);
-            if (projectId) {
+        vm.delete = function (id) {
+            if (id) {
                 if (confirm($translate("ConfirmDelete"))) {
-                    projectsService.Delete(projectId).then(function () {
+                    projectsService.Delete(id).then(function () {
                         $state.reload();
                     });
                 }
@@ -35,14 +51,6 @@
                 sum += vm.projects[i].TimeTotal;
             }
             return sum;
-        }
-
-        initController();
-
-        function initController() {
-            projectsService.GetAll().then(function (projects) {
-                vm.projects = projects;
-            });
         }
     }
 })();

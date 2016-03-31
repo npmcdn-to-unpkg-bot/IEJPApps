@@ -3,12 +3,41 @@
 
     angular
         .module("app")
-        .controller("Projects.EditController", ["$state", "$stateParams", "$translate" ,"UserService", "ProjectsService", projectsEditController]);
+        .controller("Projects.EditController", ["$state", "$stateParams", "$translate", "UserService", "ProjectsService", "project", controller])
+        .config(config);
 
-    function projectsEditController($state, $stateParams, $translate, userService, projectsService) {
+    function config($stateProvider) {
+        $stateProvider
+            .state("projects-create", {
+                url: "/projects/edit",
+                templateUrl: "/app/projects/edit.html",
+                controller: "Projects.EditController",
+                controllerAs: "vm",
+                resolve: {
+                    project: function ($stateParams, ProjectsService) {
+                        return ProjectsService.New();
+                    }
+                },
+                data: { activeTab: "projects" }
+            })
+            .state("projects-edit", {
+                url: "/projects/edit/:id",
+                templateUrl: "/app/projects/edit.html",
+                controller: "Projects.EditController",
+                controllerAs: "vm",
+                resolve: {
+                    project: function ($stateParams, ProjectsService) {
+                        return ProjectsService.GetById($stateParams.id);
+                    }
+                },
+                data: { activeTab: "projects" }
+            });
+    }
+
+    function controller($state, $stateParams, $translate, userService, projectsService, project) {
         var vm = this;
 
-        vm.project = {};
+        vm.project = project || {};
 
         vm.save = function () {
             if (vm.project.Id) {
@@ -28,17 +57,6 @@
                         $state.go("projects");
                     });
                 }
-            }
-        }
-
-        initController();
-
-        function initController() {
-            var id = $stateParams.id;
-            if (id) {
-                projectsService.GetById(id).then(function (project) {
-                    vm.project = project;
-                });
             }
         }
     }

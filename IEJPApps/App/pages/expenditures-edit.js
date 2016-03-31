@@ -12,7 +12,7 @@
                 url: "/expenditures/edit",
                 templateUrl: "/app/pages/expenditures-edit.html",
                 controller: "Expenditures.EditController",
-                controllerAs: "vm",
+                controllerAs: "vm",                
                 data: { activeTab: "expenditures" }
             })
 
@@ -21,14 +21,19 @@
                 templateUrl: "/app/pages/expenditures-edit.html",
                 controller: "Expenditures.EditController",
                 controllerAs: "vm",
+                resolve: {
+                    transaction: function ($stateParams, ExpendituresService) {
+                        return ExpendituresService.GetById($stateParams.id);
+                    }
+                },
                 data: { activeTab: "expenditures" }
             });
     }
 
-    function controller($state, $stateParams, $translate, userService, expendituresService) {
+    function controller($state, $stateParams, $translate, userService, expendituresService, transaction) {
         var vm = this;
 
-        vm.transaction = {};
+        vm.transaction = transaction;
 
         vm.save = function () {
             if (vm.transaction.Id) {
@@ -51,15 +56,15 @@
             }
         }
 
-        initController();
+        //initController();
 
-        function initController() {
-            var id = $stateParams.id;
-            if (id) {
-                expendituresService.GetById(id).then(function (transaction) {
-                    vm.transaction = transaction;
-                });
-            }
-        }
+        //function initController() {
+        //    var id = $stateParams.id;
+        //    if (id) {
+        //        expendituresService.GetById(id).then(function (transaction) {
+        //            vm.transaction = transaction;
+        //        });
+        //    }
+        //}
     }
 })();

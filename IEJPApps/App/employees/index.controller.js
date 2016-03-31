@@ -3,29 +3,38 @@
 
     angular
         .module("app")
-        .controller("Employees.IndexController", ["$state", "$translate", "UserService", "EmployeesService", employeesIndexController]);
+        .controller("Employees.IndexController", ["$state", "$translate", "UserService", "EmployeesService", "employees", controller])
+        .config(config);
 
-    function employeesIndexController($state, $translate, userService, employeesService) {
+    function config($stateProvider) {
+        $stateProvider
+            .state("employees", {
+                url: "/employees",
+                templateUrl: "/app/employees/index.html",
+                controller: "Employees.IndexController",
+                controllerAs: "vm",
+                resolve: {
+                    employees: function ($stateParams, EmployeesService) {
+                        return EmployeesService.GetAll();
+                    }
+                },
+                data: { activeTab: "employees" }
+            });
+    }
+
+    function controller($state, $translate, userService, employeesService, employees) {
         var vm = this;
 
-        vm.employees = [];
+        vm.employees = employees || [];
 
-        vm.delete = function (employeeId) {
-            if (employeeId) {
+        vm.delete = function (id) {
+            if (id) {
                 if (confirm($translate("ConfirmDelete"))) {
-                    employeesService.Delete(employeeId).then(function () {
+                    employeesService.Delete(id).then(function () {
                         $state.reload();
                     });
                 }
             }
-        }
-
-        initController();
-
-        function initController() {
-            employeesService.GetAll().then(function (employees) {
-                vm.employees = employees;
-            });
         }
     }
 })();
