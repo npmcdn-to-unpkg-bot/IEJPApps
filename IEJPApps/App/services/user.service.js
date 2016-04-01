@@ -6,17 +6,15 @@
         .factory('UserService', Service);
 
     function Service($http, $q) {
-        var service = {};
-
-        service.GetCurrent = GetCurrent;
-        service.GetAll = GetAll;
-        service.GetById = GetById;
-        service.GetByUsername = GetByUsername;
-        service.Create = Create;
-        service.Update = Update;
-        service.Delete = Delete;
-
-        return service;
+        return {
+            GetCurrent: GetCurrent,
+            GetAll: GetAll,
+            GetById: GetById,
+            GetByUsername: GetByUsername,
+            Create: Create,
+            Update: Update,
+            Delete: Delete   
+        };
 
         function GetCurrent() {
             return $http.get('/api/users/current').then(handleSuccess, handleError);

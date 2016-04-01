@@ -10,7 +10,7 @@
         $stateProvider
             .state("expenditures", {
                 url: "/expenditures",
-                templateUrl: "/app/pages/expenditures-index.html",
+                templateUrl: "/app/views/expenditures/expenditures-index.html",
                 controller: "Expenditures.IndexController",
                 controllerAs: "vm",
                 data: { activeTab: "expenditures" }

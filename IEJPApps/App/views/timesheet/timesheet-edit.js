@@ -10,7 +10,7 @@
         $stateProvider
             .state("timesheet-create", {
                 url: "/timesheet/edit",
-                templateUrl: "/app/pages/timesheet-edit.html",
+                templateUrl: "/app/views/timesheet/timesheet-edit.html",
                 controller: "TimeSheet.EditController",
                 controllerAs: "vm",
                 data: { activeTab: "timesheet" }
@@ -18,7 +18,7 @@
 
             .state("timesheet-edit", {
                 url: "/timesheet/edit/:id",
-                templateUrl: "/app/pages/timesheet-edit.html",
+                templateUrl: "/app/views/timesheet/timesheet-edit.html",
                 controller: "TimeSheet.EditController",
                 controllerAs: "vm",
                 data: { activeTab: "timesheet" }

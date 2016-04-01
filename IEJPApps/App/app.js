@@ -10,24 +10,12 @@
         .run(run);
 
     function config($stateProvider, $urlRouterProvider) {
-        configStateProvider($stateProvider, $urlRouterProvider);
-    }
-
-    function configStateProvider($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
-            .state("home", {
-                url: "/",
-                templateUrl: "/app/home/index.html",
-                controller: "Home.IndexController",
-                controllerAs: "vm",
-                data: { activeTab: "home" }
-            })
-
             .state("account", {
                 url: "/account",
-                templateUrl: "/app/account/index.html",
+                templateUrl: "/app/views/account/index.html",
                 controller: "Account.IndexController",
                 controllerAs: "vm",
                 data: { activeTab: "account" }

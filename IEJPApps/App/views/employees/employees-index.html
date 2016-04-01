@@ -1,0 +1,85 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="page-title">
+            <h3>{{'Employees.TitleList'|translate}}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid command-bar">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.filter" placeholder="{{'Commands.Filter'|translate}}">
+            </div>
+        </div>
+
+        <div class="col-xs-4 col-sm-6">
+            <div class="form-group text-right">
+                <button class="btn btn-success" ui-sref="employees-create">{{'Commands.Create'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row hidden-xs">
+        <div class="employee-list">
+            <table class="table">
+                <tr>
+                    <th>{{'Employees.Number'|translate}}</th>
+                    <th class="text-center">{{'Employees.Active'|translate}}</th>
+                    <th>{{'Employees.FirstName'|translate}}</th>
+                    <th>{{'Employees.LastName'|translate}}</th>
+                    <th>{{'Employees.Rate'|translate}}</th>
+                    <th>{{'Employees.Mobile'|translate}}</th>
+                    <th>{{'Employees.Email'|translate}}</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in vm.employees | filter: vm.filter | orderBy: 'Number'">
+                    <td>{{item.Number}}</td>
+                    <td class="text-center small"><i class="glyphicon glyphicon-ok active-check text-success" ng-if="item.Active"></i></td>
+                    <td>{{item.FirstName}}</td>
+                    <td>{{item.LastName}}</td>
+                    <td>{{item.Rate}}</td>
+                    <td>{{item.Mobile}}</td>
+                    <td>{{item.Email}}</td>
+                    <td class="text-right">
+                        <a ui-sref="employees-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row visible-xs">
+        <div class="employee-list">
+            <div class="list-group">
+                <a class="list-group-item" ui-sref="employees-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.employees | filter: vm.filter | orderBy: ['FirstName','LastName']">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <strong>{{item.FullName}}</strong>
+                                <small class="text-muted pull-right">
+                                    {{'Employees.Number'|translate}} {{item.Number}}
+                                    <i class="glyphicon glyphicon-ok-circle text-success" ng-if="item.Active"></i>
+                                    <i class="glyphicon glyphicon-ban-circle text-danger" ng-if="!item.Active"></i>
+                                </small>
+                            </div>
+                            <div class="card-text">
+                                <small>{{'Employees.Rate'|translate}}: {{item.Rate}}</small>
+                            </div>
+                            <div class="card-text" ng-if="item.Mobile">
+                                <div href="tel:{{item.Mobile}}"><small class="text-muted">{{'Employees.Mobile'|translate}} : {{item.Mobile}}</small></div>
+                            </div>
+                            <div class="card-text" ng-if="item.Email">
+                                <div href="mailto:{{item.Email}}"><small class="text-muted">{{'Employees.Email'|translate}} : {{item.Email}}</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

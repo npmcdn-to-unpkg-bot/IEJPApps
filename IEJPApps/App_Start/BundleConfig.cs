@@ -31,14 +31,10 @@ namespace IEJPApps
                       "~/Scripts/ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js",
                       "~/Scripts/angular-translate/angular-translate.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/App/app.js",
-                      "~/App/app-services/*.js",
-                      "~/App/account/*.js",
-                      "~/App/pages/*.js",
-                      "~/App/home/*.js",
-                      "~/App/projects/*.js",
-                      "~/App/employees/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/app")
+                .Include("~/App/app.js")
+                .IncludeDirectory("~/App/services", "*.js", true)
+                .IncludeDirectory("~/App/views", "*.js", true));
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

@@ -9,6 +9,11 @@
     padding-right: 15px;
 }
 
+.copyright {
+    font-size: smaller;
+    color: lightgray;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -109,4 +114,30 @@ a.list-group-item:before {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin: 10px 0;
+}
+
+.wide-column {
+    max-width: 150px; 
+    word-wrap: break-word;
+}
+
+/* TimeSheet List Styles */
+.timesheet-list .time {
+    font-weight: bold;
+    font-size: large;
+    border-bottom: 1px solid lightblue;
+}
+.timesheet-list .employee {
+    font-weight: normal;
+    font-size: small;
+}
+.timesheet-list .project {
+    font-weight: normal;
+    font-size: small;
+}
+.timesheet-list .comment {
+    font-weight: normal;
+    font-size: small;
+    font-style: italic;
+    color: gray;
 }

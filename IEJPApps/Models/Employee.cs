@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IEJPApps.Models
 {
-    public class Employee
+    public partial class Employee
     {
         [Key]
         public Guid Id { get; set; }
