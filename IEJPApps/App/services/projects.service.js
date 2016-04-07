@@ -32,7 +32,7 @@
         }
 
         function Update(project) {
-            return $http.put('/api/projects/' /*+ project._id*/, project).then(handleSuccess, handleError);
+            return $http.put('/api/projects', project).then(handleSuccess, handleError);
         }
 
         function Delete(_id) {

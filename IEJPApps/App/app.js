@@ -7,7 +7,13 @@
             "ui.bootstrap", 
             "pascalprecht.translate"])
         .config(config)
-        .run(run);
+        .run(run)
+
+        .filter('padzero', function () {
+            return function(a,b){
+                return(1e4+""+a).slice(-b);
+            };
+        });
 
     function config($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
