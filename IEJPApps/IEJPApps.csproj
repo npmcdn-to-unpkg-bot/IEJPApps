@@ -240,8 +240,8 @@
     <Content Include="App\views\projects\projects-index.html" />
     <Content Include="App\views\timesheet\timesheet-edit.js" />
     <Content Include="App\views\timesheet\timesheet-edit.html" />
-    <Content Include="App\views\timesheet\timesheet-index.js" />
     <Content Include="App\views\timesheet\timesheet-index.html" />
+    <Content Include="App\views\timesheet\timesheet-index.js" />
     <Content Include="App_Data\IEJP.mdf" />
     <Content Include="App_Data\IEJP_log.ldf">
       <DependentUpon>IEJP.mdf</DependentUpon>
