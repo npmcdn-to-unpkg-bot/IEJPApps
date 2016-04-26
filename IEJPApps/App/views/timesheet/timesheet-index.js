@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.IndexController", ["$state", "TimeSheetService", "LookupService", "transactions", "periods", controller])
+        .controller("TimeSheet.IndexController", ["$state", "TimeSheetService", "LookupService", "transactions", "periods", "current", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -19,20 +19,23 @@
                         return TimeSheetService.GetAll();
                     },
                     periods: function ($stateParams, LookupService) {
-                        return LookupService.GetPeriodsList(12, 12);
+                        return LookupService.GetPeriodsList(15, 15);
+                    },
+                    current: function ($stateParams, LookupService) {
+                        return LookupService.GetCurrentPeriod();
                     }
                 }
             });
     }
 
-    function controller($state, timeSheetService, lookupService, transactions, periods) {
+    function controller($state, timeSheetService, lookupService, transactions, periods, current) {
         var vm = this;
 
         vm.transactions = transactions || [];
         vm.periods = periods || [];
-        vm.currentPeriod = {};
+        vm.currentPeriod = current || {};
         
-        vm.delete = function (id) {
+        vm.delete = function(id) {
             if (id) {
                 if (confirm($translate("ConfirmDelete"))) {
                     timeSheetService.Delete(id).then(function () {
@@ -42,7 +45,13 @@
             }
         }
 
-        vm.timeTotal = function (transactions) {
+        vm.add = function () {
+            vm.transactions.push({
+
+            });
+        }
+
+        vm.timeTotal = function(transactions) {
             var sum = 0;
             for (var i = 0; i < transactions.length; i++) {
                 sum += transactions[i].Time;

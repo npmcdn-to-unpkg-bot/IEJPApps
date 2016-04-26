@@ -8,14 +8,14 @@
     function Service($http, $q) {
         return {
             GetPeriodsList: GetPeriodsList,
-            GetPeriodsNow: GetPeriodsNow
+            GetCurrentPeriod: GetCurrentPeriod
         }
 
         function GetPeriodsList(before, after) {
             return $http.get('/api/lookup/periods/list/' + before + '/' + after).then(handleSuccess, handleError);
         }
         
-        function GetPeriodsNow() {
+        function GetCurrentPeriod() {
             return $http.get('/api/lookup/periods/current').then(handleSuccess, handleError);
         }
 
