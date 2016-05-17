@@ -1,22 +1,22 @@
 ﻿(function () {
-    'use strict';
+    "use strict";
 
     angular
-        .module('app')
-        .factory('LookupService', Service);
+        .module("app")
+        .factory("LookupService", service);
 
-    function Service($http, $q) {
+    function service($http, $q) {
         return {
-            GetPeriodsList: GetPeriodsList,
-            GetCurrentPeriod: GetCurrentPeriod
+            getPeriodsList: getPeriodsList,
+            getCurrentPeriod: getCurrentPeriod
         }
 
-        function GetPeriodsList(before, after) {
-            return $http.get('/api/lookup/periods/list/' + before + '/' + after).then(handleSuccess, handleError);
+        function getPeriodsList(before, after) {
+            return $http.get("/api/lookup/periods/list/" + before + "/" + after).then(handleSuccess, handleError);
         }
         
-        function GetCurrentPeriod() {
-            return $http.get('/api/lookup/periods/current').then(handleSuccess, handleError);
+        function getCurrentPeriod() {
+            return $http.get("/api/lookup/periods/current").then(handleSuccess, handleError);
         }
 
         function handleSuccess(res) {

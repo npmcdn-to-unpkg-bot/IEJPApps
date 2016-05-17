@@ -181,6 +181,7 @@
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Api\EmployeesController.cs" />
     <Compile Include="Api\ProjectsController.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExpenditureTransaction.cs" />
     <Compile Include="Models\Extensions\EmployeeExtensions.cs" />

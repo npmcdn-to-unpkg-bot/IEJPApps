@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.IndexController", ["$state", "TimeSheetService", "LookupService", "transactions", "periods", "current", controller])
+        .controller("TimeSheet.IndexController", ["$state", "$translate", "TimeSheetService", "LookupService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -13,27 +13,30 @@
                 templateUrl: "/app/views/timesheet/timesheet-index.html",
                 controller: "TimeSheet.IndexController",
                 controllerAs: "vm",
-                data: { activeTab: "timesheet" },
-                resolve: {
-                    transactions: function ($stateParams, TimeSheetService) {
-                        return TimeSheetService.GetAll();
-                    },
-                    periods: function ($stateParams, LookupService) {
-                        return LookupService.GetPeriodsList(15, 15);
-                    },
-                    current: function ($stateParams, LookupService) {
-                        return LookupService.GetCurrentPeriod();
-                    }
-                }
+                data: { activeTab: "timesheet" }
             });
     }
 
-    function controller($state, timeSheetService, lookupService, transactions, periods, current) {
+    function init(vm, timeSheetService, lookupService) {
+        timeSheetService.GetAll().then(function (transactions) {
+            vm.transactions = transactions || [];
+        });
+
+        lookupService.getPeriodsList(15, 15).then(function (periods) {
+            vm.periods = periods || [];
+        });
+
+        lookupService.getCurrentPeriod().then(function (currentPeriod) {
+            vm.currentPeriod = currentPeriod || {};
+        });
+    }
+
+    function controller($state, $translate, timeSheetService, lookupService) {
         var vm = this;
 
-        vm.transactions = transactions || [];
-        vm.periods = periods || [];
-        vm.currentPeriod = current || {};
+        vm.transactions = [];
+        vm.periods = [];
+        vm.currentPeriod = {};
         
         vm.delete = function(id) {
             if (id) {
@@ -58,5 +61,7 @@
             }
             return sum;
         }
+
+        init(vm, timeSheetService, lookupService);
     }
 })();

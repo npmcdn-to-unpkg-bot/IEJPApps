@@ -10,7 +10,7 @@
         $stateProvider
             .state("employees", {
                 url: "/employees",
-                templateUrl: "/app/views/employees/index.html",
+                templateUrl: "/app/views/employees/employees-index.html",
                 controller: "Employees.IndexController",
                 controllerAs: "vm",
                 resolve: {
