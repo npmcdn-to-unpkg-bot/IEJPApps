@@ -8,6 +8,20 @@
 
 <div class="container-fluid command-bar">
     <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <select class="form-control" ng-model="vm.currentPeriod.StartDate">
+                    <option ng-repeat="option in vm.periods"
+                            ng-class="{ 'current-period': option.IsCurrent === true }"
+                            value="{{option.StartDate}}">
+                        [{{option.WeekNumber|padzero:2}}] {{option.StartDate|date:'yyyy-MM-dd'}} - {{option.EndDate|date:'yyyy-MM-dd'}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xs-8 col-sm-6">
             <div class="form-group">
                 <input type="text" class="form-control" ng-model="vm.filter" placeholder="{{'Commands.Filter'|translate}}">
@@ -16,21 +30,7 @@
 
         <div class="col-xs-4 col-sm-6">
             <div class="form-group text-right">
-                <button class="btn btn-success" Xui-sref="timesheet-create" ng-click="vm.add()">{{'Commands.Create'|translate}}</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <div class="form-group">
-                <span>Current: {{vm.currentPeriod}}</span>
-                <select class="form-control" ng-model="vm.currentPeriod">
-                    <option ng-repeat="option in vm.periods" ng-class="{ 'current-period': option.IsCurrent === true }"
-                            value="{{option.StartDate|date:'yyyy-MM-dd'}}">
-                        [{{option.WeekNumber|padzero:2}}] {{option.StartDate|date:'yyyy-MM-dd'}} - {{option.EndDate|date:'yyyy-MM-dd'}}
-                    </option>
-                </select>
+                <button class="btn btn-success" ui-sref="timesheet-create">{{'Commands.Create'|translate}}</button>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                     <th class="text-right"></th>
                 </tr>
                 <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate' as filteredTransactions">
-                    <td>{{item.TransactionDate|date: "EEEE, dd"}}</td>
+                    <td>{{item.TransactionDate|date: "EEEE, dd"}}</td>                    
                     <td class="wide-column">{{item.Project.Customer}} - {{item.Project.Description}}</td>
                     <td>{{item.Time}}</td>
                     <td class="wide-column">{{item.Comment}}</td>
@@ -77,16 +77,17 @@
                         <div class="card-block">                            
                             <p class="card-title time">
                                 <span>{{item.TransactionDate|date: "EEEE, dd"}}</span>
+                                <span class="pull-right"><!--<strong>{{'TimeSheet.Time'|translate}}:</strong>--> {{item.Time}} h</span>
                             </p>
                             <div class="card-text employee">
                                 <span><strong>{{'TimeSheet.Employee'|translate}}:</strong> {{item.Employee.FullName}}</span>
                             </div>
                             <div class="card-text project">
-                                <span><strong>{{'TimeSheet.Time'|translate}}:</strong> {{item.Time}} h</span>
+                                <span><strong>{{'TimeSheet.Customer'|translate}}:</strong> {{item.Project.Customer}}</span>
                             </div>
                             <div class="card-text project">
-                                <span><strong>{{'TimeSheet.Project'|translate}}:</strong> {{item.Project.Customer}} - {{item.Project.Description}}</span>
-                            </div>
+                                <span><strong>{{'TimeSheet.Project'|translate}}:</strong> {{item.Project.Description}}</span>
+                            </div>                            
                             <div class="card-text comment" ng-if="item.Comment">
                                 <p>{{item.Comment}}</p>
                             </div>

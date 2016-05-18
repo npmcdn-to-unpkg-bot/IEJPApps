@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.EditController", ["$state", "$stateParams", "$translate", "UserService", "TimeSheetService", controller])
+        .controller("TimeSheet.EditController", ["$state", "$stateParams", "$translate", "UserService", "TimeSheetService", "ProjectsService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -15,7 +15,6 @@
                 controllerAs: "vm",
                 data: { activeTab: "timesheet" }
             })
-
             .state("timesheet-edit", {
                 url: "/timesheet/edit/:id",
                 templateUrl: "/app/views/timesheet/timesheet-edit.html",
@@ -25,10 +24,11 @@
             });
     }
 
-    function controller($state, $stateParams, $translate, userService, timeSheetService) {
+    function controller($state, $stateParams, $translate, userService, timeSheetService, projectsService) {
         var vm = this;
 
         vm.transaction = {};
+        vm.projects = [];
 
         vm.save = function () {
             if (vm.transaction.Id) {
@@ -51,15 +51,18 @@
             }
         }
         
-        initController();
-
-        function initController() {
-            var id = $stateParams.id;
-            if (id) {
-                timeSheetService.GetById(id).then(function (transaction) {
+        function init() {
+            if ($stateParams.id) {
+                timeSheetService.GetById($stateParams.id).then(function (transaction) {
                     vm.transaction = transaction;
                 });
             }
+            
+            projectsService.GetAll().then(function (projects) {
+                vm.projects = projects || [];
+            });
         }
+
+        init();
     }
 })();

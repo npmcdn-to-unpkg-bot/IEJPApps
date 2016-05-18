@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.IndexController", ["$state", "$translate", "TimeSheetService", "LookupService", controller])
+        .controller("TimeSheet.IndexController", ["$state", "$translate", "TimeSheetService", "LookupService", "ProjectsService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -17,26 +17,13 @@
             });
     }
 
-    function init(vm, timeSheetService, lookupService) {
-        timeSheetService.GetAll().then(function (transactions) {
-            vm.transactions = transactions || [];
-        });
-
-        lookupService.getPeriodsList(15, 15).then(function (periods) {
-            vm.periods = periods || [];
-        });
-
-        lookupService.getCurrentPeriod().then(function (currentPeriod) {
-            vm.currentPeriod = currentPeriod || {};
-        });
-    }
-
-    function controller($state, $translate, timeSheetService, lookupService) {
+    function controller($state, $translate, timeSheetService, lookupService, projectsService) {
         var vm = this;
 
         vm.transactions = [];
         vm.periods = [];
         vm.currentPeriod = {};
+        vm.projects = [];
         
         vm.delete = function(id) {
             if (id) {
@@ -50,7 +37,7 @@
 
         vm.add = function () {
             vm.transactions.push({
-
+                TransactionDate: new Date()
             });
         }
 
@@ -62,6 +49,20 @@
             return sum;
         }
 
-        init(vm, timeSheetService, lookupService);
+        function init() {
+            timeSheetService.GetAll().then(function (transactions) {
+                vm.transactions = transactions || [];
+            });
+
+            lookupService.getPeriodsList(5, 2).then(function (periods) {
+                vm.periods = periods || [];
+            });
+
+            lookupService.getCurrentPeriod().then(function (currentPeriod) {
+                vm.currentPeriod = currentPeriod || {};
+            });
+        }
+
+        init();
     }
 })();
