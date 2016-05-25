@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.EditController", ["$state", "$stateParams", "$translate", "UserService", "TimeSheetService", "ProjectsService", controller])
+        .controller("TimeSheet.EditController", ["$state", "$stateParams", "$translate", "UserService", "TimeSheetService", "ProjectsService", "LookupService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -24,9 +24,11 @@
             });
     }
 
-    function controller($state, $stateParams, $translate, userService, timeSheetService, projectsService) {
+    function controller($state, $stateParams, $translate, userService, timeSheetService, projectsService, lookupService) {
         var vm = this;
 
+        vm.currentPeriod = {};
+        vm.days = [];
         vm.transaction = {};
         vm.projects = [];
 
@@ -52,10 +54,15 @@
         }
         
         function init() {
+            lookupService.getCurrentPeriod().then(function (currentPeriod) {
+                vm.currentPeriod = currentPeriod || {};
+            });
+
             if ($stateParams.id) {
-                timeSheetService.GetById($stateParams.id).then(function (transaction) {
+                timeSheetService.GetById($stateParams.id).then(function(transaction) {
                     vm.transaction = transaction;
                 });
+            } else {
             }
             
             projectsService.GetAll().then(function (projects) {

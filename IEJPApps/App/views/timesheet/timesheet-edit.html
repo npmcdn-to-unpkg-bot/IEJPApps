@@ -13,12 +13,22 @@
             <div class="form-horizontal">
                 <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Active">{{'Projects.Active'|translate}}</label>
+                        <label class="control-label col-sm-2" for="TransactionDate">{{'TimeSheet.Day'|translate}}</label>
                         <div class="col-xs-12 col-sm-10">
-                            <input class="check-box" data-val="true" data-val-required="The Active field is required." id="Active" name="Active" type="checkbox" ng-model="vm.project.Active">
+                            <input id="TransactionDate" name="TransactionDate" type="datetime" ng-model="vm.transaction.TransactionDate" class="check-box" data-val="true" data-val-required="Transaction date is required.">
+                            {{vm.transaction.TransactionDate | date: "EEEE, dd"}}
                         </div>
                     </div>
                 </div>
+
+                <!--
+                <td>{{item.Time}}</td>
+                <td class="wide-column">{{item.Comment}}</td>
+                <td class="text-right">
+                    <a ui-sref="timesheet-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+                -->
 
                 <!--<select class="form-control" ng-model="item.projectId">
                         <option ng-repeat="option in vm.projects" value="{{option.Id}}">
@@ -28,40 +38,21 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="ProjectNumber">{{'Projects.Number'|translate}}</label>
+                        <label class="control-label col-sm-2" for="Project">{{'TimeSheet.Project'|translate}}</label>
                         <div class="col-xs-12 col-sm-10">
-                            <input class="form-control text-box single-line" id="ProjectNumber" name="ProjectNumber" type="text" ng-model="vm.project.ProjectNumber">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="ProjectNumber" data-valmsg-replace="true"></span>
+                            <select id="Project" name="Project" class="form-control" ng-model="vm.transaction.Project">
+                                <option ng-repeat="option in vm.projects" value="{{option}}">{{option.Customer}} - {{option.Description}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Customer">{{'Projects.Customer'|translate}}</label>
+                        <label class="control-label col-sm-2" for="Comment">{{'TimeSheet.Comment'|translate}}</label>
                         <div class="col-xs-12 col-sm-10">
-                            <input class="form-control text-box single-line" id="Customer" name="Customer" type="text" ng-model="vm.project.Customer">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="Customer" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Description">{{'Projects.Description'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <input class="form-control text-box single-line" id="Description" name="Description" type="text" ng-model="vm.project.Description">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-xs-12 col-sm-10">
-                            <p class="card-text" ng-if="vm.project.Updated">
-                                <small class="text-muted">{{'LastUpdated'|translate}} {{vm.project.Updated}}</small>
-                            </p>
+                            <!--<input id="Comment" name="Comment" type="text" class="form-control text-box" ng-model="vm.transaction.Comment">-->
+                            <textarea id="Comment" name="Comment" class="form-control" rows="3" ng-model="vm.transaction.Comment" placeholder="{{'TimeSheet.Comment'|translate}}"></textarea>
                         </div>
                     </div>
                 </div>
