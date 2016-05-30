@@ -32,12 +32,20 @@
             }
         }
         
-        initController();
+        vm.total = function(transactions) {
+            var sum = 0;
+            for (var i = 0; i < transactions.length; i++) {
+                sum += (transactions[i].Amount || 0);
+            }
+            return sum;
+        }
 
-        function initController() {
+        function init() {
             expendituresService.GetAll().then(function (transactions) {
                 vm.transactions = transactions;
             });
         }
+        
+        init();
     }
 })();

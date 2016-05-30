@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace IEJPApps.Models
@@ -9,8 +10,13 @@ namespace IEJPApps.Models
         [Key]
         public Guid Id { get; set; }
 
+        [DefaultValue(true)]
         [Display(Name = "Active", AutoGenerateFilter = false)]
         public bool Active { get; set; }
+
+        [DefaultValue(true)]
+        [Display(Name = "Visible", AutoGenerateFilter = false)]
+        public bool Visible { get; set; }
 
         [Required]
         [StringLength(50)]

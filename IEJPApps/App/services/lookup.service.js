@@ -5,7 +5,7 @@
         .module("app")
         .factory("LookupService", service);
 
-    function service($http, $q) {
+    function service($http, $q, ErrorService) {
         return {
             getPeriodsList: getPeriodsList,
             getCurrentPeriod: getCurrentPeriod
@@ -24,6 +24,8 @@
         }
 
         function handleError(res) {
+            ErrorService.error('Errors.ErrorOccuredCancelled');
+
             return $q.reject(res.data);
         }
     }

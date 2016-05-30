@@ -3,7 +3,8 @@
 
     angular
         .module("app", [
-            "ui.router",             
+            "toastr",
+            "ui.router",
             "ui.bootstrap", 
             "pascalprecht.translate"])
         .config(config)

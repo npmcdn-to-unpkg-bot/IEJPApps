@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('ExpendituresService', Service);
+        .factory('ExpenditureTypesService', Service);
 
     function Service($http, $q, ErrorService) {
         return {
@@ -20,23 +20,23 @@
         }
 
         function GetAll() {
-            return $http.get('/api/expenditures').then(handleSuccess, handleError);
+            return $http.get('/api/expenditures-types').then(handleSuccess, handleError);
         }
 
         function GetById(_id) {
-            return $http.get('/api/expenditures/' + _id).then(handleSuccess, handleError);
+            return $http.get('/api/expenditures-types/' + _id).then(handleSuccess, handleError);
         }
 
         function Create(project) {
-            return $http.post('/api/expenditures', project).then(handleSuccess, handleError);
+            return $http.post('/api/expenditures-types', project).then(handleSuccess, handleError);
         }
 
         function Update(project) {
-            return $http.put('/api/expenditures/', project).then(handleSuccess, handleError);
+            return $http.put('/api/expenditures-types/', project).then(handleSuccess, handleError);
         }
 
         function Delete(_id) {
-            return $http.delete('/api/expenditures/' + _id).then(handleSuccess, handleError);
+            return $http.delete('/api/expenditures-types/' + _id).then(handleSuccess, handleError);
         }
 
         // private functions

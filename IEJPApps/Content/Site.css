@@ -67,6 +67,19 @@ textarea {
     padding: 15px 0;
 }
 
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-state-icons {
+    margin-left: 10px;
+}
+
+.form-title {
+    margin-bottom: 20px;
+    border-bottom: 1px dotted #eee;
+}
+
 /* Card List Widgets */
 .project-list {
     /*background-color: lightblue;*/
@@ -139,6 +152,29 @@ a.list-group-item:before {
         font-size: small;
     }
     .timesheet-list .comment {
+        font-weight: normal;
+        font-size: small;
+        font-style: italic;
+        color: gray;
+    }
+
+.expenditure-list {
+    font-size: small;
+}
+    .expenditure-list .time {
+        font-weight: bold;
+        font-size: medium;
+        border-bottom: 1px solid lightblue;
+    }
+    .expenditure-list .employee {
+        font-weight: normal;
+        font-size: small;
+    }
+    .expenditure-list .project {
+        font-weight: normal;
+        font-size: small;
+    }
+    .expenditure-list .comment {
         font-weight: normal;
         font-size: small;
         font-style: italic;

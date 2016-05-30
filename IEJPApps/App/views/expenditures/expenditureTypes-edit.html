@@ -1,0 +1,70 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="form-title" ng-switch="vm.expenditureType.Id">
+            <h4 ng-switch-when="undefined">{{'ExpenditureTypes.TitleCreate'|translate}}</h4>
+            <h4 ng-switch-default>{{'ExpenditureTypes.TitleEdit'|translate}}</h4>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="container-fluid">
+    <form>
+        <div class="form-horizontal">            
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Visible">{{'States.Label'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <label class="btn btn-default" ng-model="vm.expenditureType.Active" uib-btn-checkbox>{{'States.Active'|translate}} <i class="glyphicon glyphicon-ok"></i></label>
+                        <label class="btn btn-default" ng-model="vm.expenditureType.Visible" uib-btn-checkbox>{{'States.Visible'|translate}} <i class="glyphicon glyphicon-eye-open"></i></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Name">{{'ExpenditureTypes.Name'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input class="form-control text-box single-line" id="Name" name="Name" type="text" ng-model="vm.expenditureType.Name">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Description">{{'ExpenditureTypes.Description'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <textarea id="Description" name="Description" class="form-control" rows="3" ng-model="vm.expenditureType.Description" placeholder="{{'ExpenditureTypes.Description'|translate}}"></textarea>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </form>
+</div>
+
+<div id="footer" class="visible-xs">
+    <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+        <div class="row" id="bottomNav">
+            <div class="col-xs-4 text-center">
+                <button class="btn btn-primary" ng-click="vm.save()"><i class="glyphicon glyphicon-save"></i></button>
+            </div>
+            <div class="col-xs-4 text-center">
+                <button class="btn btn-default" ui-sref="expenditure-types"><i class="glyphicon glyphicon-list"></i></button>
+            </div>
+            <div class="col-xs-4 text-center">
+                <button class="btn btn-danger" ng-if="vm.expenditureType.Id" ng-click="vm.delete()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid hidden-xs">
+    <div class="row top-buffer">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <button class="btn btn-primary" ng-click="vm.save()">{{'Commands.Save'|translate}}</button>
+            <button class="btn btn-danger" ng-disabled="vm.expenditureType.Id === undefined" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <a ui-sref="expenditure-types">{{'Commands.BackToList'|translate}}</a>
+    </div>
+</div>

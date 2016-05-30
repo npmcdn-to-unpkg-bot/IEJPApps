@@ -5,7 +5,7 @@
         .module('app')
         .factory('TimeSheetService', Service);
 
-    function Service($http, $q) {
+    function Service($http, $q, ErrorService) {
         return {
             New: New,
             GetAll: GetAll,
@@ -46,6 +46,8 @@
         }
 
         function handleError(res) {
+            ErrorService.error('Errors.ErrorOccuredCancelled');
+
             return $q.reject(res.data);
         }
     }

@@ -1,7 +1,7 @@
 ﻿<div class="container-fluid">
     <div class="row">
         <div class="page-title">
-            <h3>{{'Employees.TitleList'|translate}}</h3>
+            <h3>{{'ExpenditureTypes.TitleList'|translate}}</h3>
         </div>
     </div>
 </div>
@@ -16,7 +16,7 @@
 
         <div class="col-xs-4 col-sm-6">
             <div class="form-group text-right">
-                <button class="btn btn-success" ui-sref="employees-create">{{'Commands.Create'|translate}}</button>
+                <button class="btn btn-success" ui-sref="expenditure-types-create">{{'Commands.Create'|translate}}</button>
             </div>
         </div>
     </div>
@@ -24,30 +24,22 @@
 
 <div class="container-fluid">
     <div class="row hidden-xs">
-        <div class="employee-list">
+        <div class="expenditure-types-list">
             <table class="table">
                 <tr>
-                    <th>{{'Employees.Number'|translate}}</th>
                     <th class="text-center">{{'States.Active'|translate}}</th>
                     <th class="text-center">{{'States.Visible'|translate}}</th>
-                    <th>{{'Employees.FirstName'|translate}}</th>
-                    <th>{{'Employees.LastName'|translate}}</th>
-                    <th>{{'Employees.Rate'|translate}}</th>
-                    <th>{{'Employees.Mobile'|translate}}</th>
-                    <th>{{'Employees.Email'|translate}}</th>
-                    <th></th>
+                    <th>{{'ExpenditureTypes.Name'|translate}}</th>
+                    <th>{{'ExpenditureTypes.Description'|translate}}</th>
+                    <th class="text-right"></th>
                 </tr>
-                <tr ng-repeat="item in vm.employees | filter: vm.filter | orderBy: 'Number'">
-                    <td>{{item.Number}}</td>
+                <tr ng-repeat="item in vm.expenditureTypes | filter: vm.filter | orderBy: 'Name'">
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.Active"></i></td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i></td>
-                    <td>{{item.FirstName}}</td>
-                    <td>{{item.LastName}}</td>
-                    <td>{{item.Rate | currency}}</td>
-                    <td>{{item.Mobile}}</td>
-                    <td>{{item.Email}}</td>
+                    <td>{{item.Name}}</td>
+                    <td>{{item.Description}}</td>
                     <td class="text-right">
-                        <a ui-sref="employees-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a ui-sref="expenditure-types-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
@@ -56,26 +48,20 @@
     </div>
 
     <div class="row visible-xs">
-        <div class="employee-list">
+        <div class="expenditure-types-list">
             <div class="list-group">
-                <a class="list-group-item" ui-sref="employees-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.employees | filter: vm.filter | orderBy: ['FirstName','LastName']">
+                <a class="list-group-item" ui-sref="expenditure-types-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.expenditureTypes | filter: vm.filter | orderBy: 'Name'">
                     <div class="card">
                         <div class="card-block">
                             <div class="card-title">
-                                <strong>({{item.Number}}) {{item.FullName}}</strong>
+                                <strong>{{item.Name}}</strong>
                                 <small class="text-muted card-state-icons">
                                     <i class="glyphicon glyphicon-ok" ng-if="item.Active"></i>
                                     <i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i>
                                 </small>
                             </div>
                             <div class="card-text">
-                                <small>{{'Employees.Rate'|translate}}: {{item.Rate | currency}}</small>
-                            </div>
-                            <div class="card-text" ng-if="item.Mobile">
-                                <div href="tel:{{item.Mobile}}"><small class="text-muted">{{'Employees.Mobile'|translate}} : {{item.Mobile}}</small></div>
-                            </div>
-                            <div class="card-text" ng-if="item.Email">
-                                <div href="mailto:{{item.Email}}"><small class="text-muted">{{'Employees.Email'|translate}} : {{item.Email}}</small></div>
+                                <small>{{item.Description}}</small>
                             </div>
                         </div>
                     </div>

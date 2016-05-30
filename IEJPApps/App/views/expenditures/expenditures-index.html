@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<div class="container-fluid command-bar" style="visibility: hidden">
+<div class="container-fluid command-bar">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
             <div class="form-group">
@@ -16,43 +16,42 @@
 
         <div class="col-xs-4 col-sm-6">
             <div class="form-group text-right">
-                <button class="btn btn-success" ui-sref="projects-create">{{'Commands.Create'|translate}}</button>
+                <button class="btn btn-success" ui-sref="expenditures-create">{{'Commands.Create'|translate}}</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid" style="visibility: hidden">
+<div class="container-fluid">
     <div class="row hidden-xs">
-        <div class="-project-list">
+        <div class="expenditure-list">
             <table class="table">
                 <tr>
-                    <th>{{'Projects.Number'|translate}}</th>
-                    <th class="text-center">{{'Projects.Active'|translate}}</th>
-                    <th>{{'Projects.Customer'|translate}}</th>
-                    <th>{{'Projects.Description'|translate}}</th>
-                    <th class="text-right">{{'Projects.Time'|translate}}</th>
-                    <th class="text-right">{{'Projects.Expenditures'|translate}}</th>
+                    <th>{{'Expenditures.Date'|translate}}</th>
+                    <th>{{'Expenditures.Employee'|translate}}</th>
+                    <th>{{'Expenditures.Project'|translate}}</th>
+                    <th>{{'Expenditures.ExpenditureType'|translate}}</th>
+                    <th class="text-right">{{'Expenditures.Amount'|translate}}</th>
+                    <th>{{'Expenditures.Comment'|translate}}</th>
                     <th class="text-right"></th>
                 </tr>
-                <tr ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber'">
-                    <td>{{item.ProjectNumber}}</td>
-                    <td class="text-center small"><i class="glyphicon glyphicon-ok active-check text-success" ng-if="item.Active"></i></td>
-                    <td>{{item.Customer}}</td>
-                    <td>{{item.Description}}</td>
-                    <td class="text-right">{{item.TimeTotal}}</td>
-                    <td class="text-right">{{item.ExpenditureTotal|currency}}</td>
+                <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate'">
+                    <td>{{item.TransactionDate | date: "yyyy-MM-dd"}}</td>
+                    <td>{{item.Employee.FullName}}</td>
+                    <td class="wide-column">{{item.Project.Customer}} - {{item.Project.Description}}</td>
+                    <td>{{item.ExpenditureType}}</td>
+                    <td class="text-right">{{item.Amount | currency}}</td>
+                    <td>{{item.Comment}}</td>
                     <td class="text-right">
-                        <a ui-sref="projects-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a ui-sref="expenditures-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
                     </td>
                 </tr>
                 <tfoot class="table-totals">
                     <tr>
-                        <td>{{vm.projects.length}} items</td>
+                        <td>{{vm.transactions.length}} items</td>
                         <td colspan="3"></td>
-                        <td class="text-right">{{vm.timeTotal()}}</td>
-                        <td class="text-right">{{vm.expenditureTotal()|currency}}</td>
+                        <td class="text-right">{{vm.total(vm.transactions) | currency}}</td>
                         <td></td>
                     </tr>
                 </tfoot>
@@ -61,32 +60,23 @@
     </div>
 
     <div class="row visible-xs">
-        <div class="project-list">
+        <div class="expenditure-list">
             <div class="list-group">
-                <a class="list-group-item" ui-sref="projects-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber'">
+                <a class="list-group-item" ui-sref="expenditures-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate'">
                     <div class="card">
                         <div class="card-block">
-                            <div class="card-title text-right">
-                                <small class="text-muted">
-                                    {{'Projects.Number'|translate}} {{item.ProjectNumber}}
-                                    <i class="glyphicon glyphicon-ok-circle text-success" ng-if="item.Active"></i>
-                                    <i class="glyphicon glyphicon-ban-circle text-danger" ng-if="!item.Active"></i>
-                                </small>
+                            <p class="card-title time">
+                                <span><strong>{{item.TransactionDate | date: "yyyy-MM-dd"}}</strong></span>
+                                <span class="pull-right">{{item.Amount | currency}}</span>
+                            </p>
+                            <div class="card-text employee">
+                                <span><strong>{{'Expenditures.Employee'|translate}}:</strong> {{item.Employee.FullName}}</span>
                             </div>
-                            <div class="card-text">
-                                <strong>{{'Projects.Customer'|translate}}: </strong>{{item.Customer}}
+                            <div class="card-text project">
+                                <span><strong>{{'Expenditures.Project'|translate}}:</strong> {{item.Project.FullDescription}}</span>
                             </div>
-                            <div class="card-text">
-                                <small>{{item.Description}}</small>
-                            </div>
-                            <div class="card-text">
-                                <small>{{'Projects.Time'|translate}}: <strong>{{item.TimeTotal}}</strong></small>
-                            </div>
-                            <div class="card-text">
-                                <small>{{'Projects.Expenditures'|translate}}: <strong>{{item.ExpenditureTotal|currency}}</strong></small>
-                            </div>
-                            <div class="card-text" ng-if="item.Updated">
-                                <small class="text-muted">{{'LastUpdated'|translate}} {{item.Updated}}</small>
+                            <div class="card-text comment" ng-if="item.Comment">
+                                <small class="text-muted">{{item.Comment}}</small>
                             </div>
                         </div>
                     </div>

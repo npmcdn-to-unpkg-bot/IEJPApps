@@ -16,7 +16,7 @@
             Login: "Log in",
             RegisterAsNewUser: "Register as a new user",
             LastUpdated: "Last updated",
-            ConfirmDelete: "Are you sure you want to delete this item ?",
+            ConfirmDelete: "Are you sure you want to delete this item ?",            
             Totals: {
                 Transaction: "transaction(s)",
                 Items: "item(s)",
@@ -27,7 +27,8 @@
                 Projects: "Projects",
                 Employees: "Employees",
                 TimeSheet: "Time Sheet",
-                Expenditures: "Expenditures"
+                Expenditures: "Expenditures",
+                ExpenditureTypes: "Expenditure Types"
             },
             Commands: {
                 Create: "Create New",
@@ -35,6 +36,15 @@
                 Delete: "Delete",
                 BackToList: "Back to List",
                 Filter: "Filter..."
+            },
+            Errors: {
+                Error: 'Error',
+                ErrorOccuredCancelled: "An error as occured. Operation was cancelled."
+            },
+            States: {
+                Label: "States",
+                Active: "Active",
+                Visible: "Visible"
             },
             Edit: {
                 Title: "Edit"
@@ -76,13 +86,22 @@
             },
             Expenditures: {
                 TitleList: "Expenditure sheet",
-                TitleCreate: "Add a transaction",
-                TitleEdit: "Modify a transaction",
+                TitleCreate: "Add expenditure",
+                TitleEdit: "Modify expenditure",
+                Date: "Date",
                 Project: "Project",
+                Customer: "Customer",
                 Employee: "Employee",
-                Type: "Type",
+                ExpenditureType: "Type",
                 Amount: "Amount",
                 Comment: "Comment"
+            },
+            ExpenditureTypes: {
+                TitleList: "Expenditure Types",
+                TitleCreate: "Add",
+                TitleEdit: "Modify",
+                Name: "Name",
+                Description: "Description"                
             }
         };
     }
@@ -105,7 +124,8 @@
                 Projects: "Projets",
                 Employees: "Employés",
                 TimeSheet: "Feuille de temps",
-                Expenditures: "Dépenses"
+                Expenditures: "Dépenses",
+                ExpenditureTypes: "Types de dépense"
             },
             Commands: {
                 Create: "Ajouter",
@@ -113,6 +133,15 @@
                 Delete: "Suprimer",
                 BackToList: "Retour à la liste",
                 Filter: "Filtrer..."
+            },
+            Errors: {
+                Error: 'Erreur',
+                ErrorOccuredCancelled: "Une erreur est survenue. L'opération a été annullée."
+            },
+            States: {
+                Label: "États",
+                Active: "Actif",
+                Visible: "Visible"
             },
             Edit: {
                 Title: "Modifier"
@@ -154,13 +183,22 @@
             },
             Expenditures: {
                 TitleList: "Compte de dépense",
-                TitleCreate: "Ajouter une transaction",
-                TitleEdit: "Modifier une transaction",
-                Project: "Project",
+                TitleCreate: "Ajouter une dépense",
+                TitleEdit: "Modifier une dépense",
+                Date: "Date",
+                Project: "Projet",
+                Customer: "Client",
                 Employee: "Employé",
-                Type: "Type",
-                Amount: "Amount",
-                Comment: "Comment"
+                ExpenditureType: "Type",
+                Amount: "Montant",
+                Comment: "Commentaire"
+            },
+            ExpenditureTypes: {
+                TitleList: "Types de dépense",
+                TitleCreate: "Ajouter un type de dépense",
+                TitleEdit: "Modifier un type de dépense",
+                Name: "Nom",
+                Description: "Description"
             }
         };
     }

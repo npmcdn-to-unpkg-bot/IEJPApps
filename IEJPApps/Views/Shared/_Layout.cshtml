@@ -16,6 +16,7 @@
         }
     </style>
     @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body ng-app="app" ng-cloak>
@@ -38,6 +39,8 @@
                         <ul class="nav navbar-nav">
                             <li><a ui-sref="projects">{{'Navigation.Projects'|translate}}</a></li>
                             <li><a ui-sref="employees">{{'Navigation.Employees'|translate}}</a></li>
+                            <li><a ui-sref="timesheet">{{'Navigation.TimeSheet'|translate}}</a></li>
+                            <li><a ui-sref="expenditures">{{'Navigation.Expenditures'|translate}}</a></li>
                         </ul>
                     }
 
@@ -62,6 +65,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angularjs")
     @Scripts.Render("~/bundles/angularui")
+    <script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
     @Scripts.Render("~/bundles/app")
 
     <script>

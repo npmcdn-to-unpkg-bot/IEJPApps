@@ -1,64 +1,60 @@
 ﻿<div class="container-fluid">
     <div class="row">
-        <div ng-switch="vm.transaction.Id">
-            <h3 ng-switch-when="undefined">{{'TimeSheet.TitleCreate'|translate}}</h3>
-            <h3 ng-switch-default>{{'TimeSheet.TitleEdit'|translate}}</h3>
+        <div class="form-title" ng-switch="vm.transaction.Id">
+            <h4 ng-switch-when="undefined">{{'TimeSheet.TitleCreate'|translate}}</h4>
+            <h4 ng-switch-default>{{'TimeSheet.TitleEdit'|translate}}</h4>
         </div>
     </div>
 </div>
 
 <div id="content" class="container-fluid">
-    <div class="Xrow">
-        <form role="form">
-            <div class="form-horizontal">
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="TransactionDate">{{'TimeSheet.Day'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <input id="TransactionDate" name="TransactionDate" type="datetime" ng-model="vm.transaction.TransactionDate" class="check-box" data-val="true" data-val-required="Transaction date is required.">
-                            {{vm.transaction.TransactionDate | date: "EEEE, dd"}}
-                        </div>
-                    </div>
-                </div>
-
-                <!--
-                <td>{{item.Time}}</td>
-                <td class="wide-column">{{item.Comment}}</td>
-                <td class="text-right">
-                    <a ui-sref="timesheet-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                    <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
-                </td>
-                -->
-
-                <!--<select class="form-control" ng-model="item.projectId">
-                        <option ng-repeat="option in vm.projects" value="{{option.Id}}">
-                            {{option.Customer}} - {{option.Description}}
-                        </option>
-                    </select>-->
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Project">{{'TimeSheet.Project'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <select id="Project" name="Project" class="form-control" ng-model="vm.transaction.Project">
-                                <option ng-repeat="option in vm.projects" value="{{option}}">{{option.Customer}} - {{option.Description}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Comment">{{'TimeSheet.Comment'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <!--<input id="Comment" name="Comment" type="text" class="form-control text-box" ng-model="vm.transaction.Comment">-->
-                            <textarea id="Comment" name="Comment" class="form-control" rows="3" ng-model="vm.transaction.Comment" placeholder="{{'TimeSheet.Comment'|translate}}"></textarea>
-                        </div>
+    <form role="form">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="TransactionDate">{{'TimeSheet.Day'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="TransactionDate" name="TransactionDate" type="datetime" ng-model="vm.transaction.TransactionDate" class="check-box" data-val="true" data-val-required="Transaction date is required.">
+                        {{vm.transaction.TransactionDate | date: "EEEE, dd"}}
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+
+            <!--
+            <td>{{item.Time}}</td>
+            <td class="wide-column">{{item.Comment}}</td>
+            <td class="text-right">
+                <a ui-sref="timesheet-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+            </td>
+            -->
+            <!--<select class="form-control" ng-model="item.projectId">
+                    <option ng-repeat="option in vm.projects" value="{{option.Id}}">
+                        {{option.Customer}} - {{option.Description}}
+                    </option>
+                </select>-->
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Project">{{'TimeSheet.Project'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <select id="Project" name="Project" class="form-control" ng-model="vm.transaction.Project">
+                            <option ng-repeat="option in vm.projects" value="{{option}}">{{option.Customer}} - {{option.Description}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Comment">{{'TimeSheet.Comment'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <textarea id="Comment" name="Comment" class="form-control" rows="3" ng-model="vm.transaction.Comment" placeholder="{{'TimeSheet.Comment'|translate}}"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 <div id="footer" class="visible-xs">

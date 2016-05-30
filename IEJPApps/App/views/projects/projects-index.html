@@ -28,7 +28,8 @@
             <table class="table">
                 <tr>
                     <th>{{'Projects.Number'|translate}}</th>
-                    <th class="text-center">{{'Projects.Active'|translate}}</th>
+                    <th class="text-center">{{'States.Active'|translate}}</th>
+                    <th class="text-center">{{'States.Visible'|translate}}</th>
                     <th>{{'Projects.Customer'|translate}}</th>
                     <th>{{'Projects.Description'|translate}}</th>
                     <th class="text-right">{{'Projects.Time'|translate}}</th>
@@ -37,7 +38,8 @@
                 </tr>
                 <tr ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber'">
                     <td>{{item.ProjectNumber}}</td>
-                    <td class="text-center small"><i class="glyphicon glyphicon-ok active-check text-success" ng-if="item.Active"></i></td>
+                    <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.Active"></i></td>
+                    <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i></td>
                     <td>{{item.Customer}}</td>
                     <td>{{item.Description}}</td>
                     <td class="text-right">{{item.TimeTotal}}</td>
@@ -50,7 +52,7 @@
                 <tfoot class="table-totals">
                     <tr>
                         <td>{{vm.projects.length}} items</td>
-                        <td colspan="3"></td>
+                        <td colspan="4"></td>
                         <td class="text-right">{{vm.timeTotal()}}</td>
                         <td class="text-right">{{vm.expenditureTotal()|currency}}</td>
                         <td></td>
@@ -66,27 +68,21 @@
                 <a class="list-group-item" ui-sref="projects-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber'">
                     <div class="card">
                         <div class="card-block">
-                            <div class="card-title text-right">
-                                <small class="text-muted">
-                                    {{'Projects.Number'|translate}} {{item.ProjectNumber}}
-                                    <i class="glyphicon glyphicon-ok-circle text-success" ng-if="item.Active"></i>
-                                    <i class="glyphicon glyphicon-ban-circle text-danger" ng-if="!item.Active"></i>
+                            <div class="card-title">
+                                <strong>({{item.ProjectNumber}}) {{item.Description}}</strong>
+                                <small class="text-muted card-state-icons">
+                                    <i class="glyphicon glyphicon-ok" ng-if="item.Active"></i>
+                                    <i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i>
                                 </small>
                             </div>
                             <div class="card-text">
-                                <strong>{{'Projects.Customer'|translate}}: </strong>{{item.Customer}}
-                            </div>
-                            <div class="card-text">
-                                <small>{{item.Description}}</small>
+                                <small>{{'Projects.Customer'|translate}}: {{item.Customer}}</small>
                             </div>
                             <div class="card-text">
                                 <small>{{'Projects.Time'|translate}}: <strong>{{item.TimeTotal}}</strong></small>
                             </div>
                             <div class="card-text">
                                 <small>{{'Projects.Expenditures'|translate}}: <strong>{{item.ExpenditureTotal|currency}}</strong></small>
-                            </div>
-                            <div class="card-text" ng-if="item.Updated">
-                                <small class="text-muted">{{'LastUpdated'|translate}} {{item.Updated}}</small>
                             </div>
                         </div>
                     </div>

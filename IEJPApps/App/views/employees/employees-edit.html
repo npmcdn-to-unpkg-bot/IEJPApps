@@ -1,32 +1,24 @@
 ﻿<div class="container-fluid">
     <div class="row">
-        <div ng-switch="vm.employee.Id" class="page-title">
-            <h3 ng-switch-when="undefined">{{'Employees.TitleCreate'|translate}}</h3>
-            <h3 ng-switch-default>{{'Employees.TitleEdit'|translate}}</h3>
+        <div class="form-title" ng-switch="vm.employee.Id">
+            <h4 ng-switch-when="undefined">{{'Employees.TitleCreate'|translate}}</h4>
+            <h4 ng-switch-default>{{'Employees.TitleEdit'|translate}}</h4>
         </div>
     </div>
 </div>
 
 <div id="content" class="container-fluid">
     <form>
-        <div class="form-horizontal">
-            <div class="row">
-                <div class="form-group" ng-if="false">
-                    <div class="col-xs-12 col-md-12">
-                        <span><small>{{vm.employee.Id}}</small></span>
-                    </div>
-                </div>
-            </div>
-
+        <div class="form-horizontal">            
             <div class="row">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="Active">{{'Employees.Active'|translate}}</label>
+                    <label class="control-label col-sm-2" for="Visible">{{'States.Label'|translate}}</label>
                     <div class="col-xs-12 col-sm-10">
-                        <input class="check-box" data-val="true" data-val-required="The Active field is required." id="Active" name="Active" type="checkbox" ng-model="vm.employee.Active">
+                        <label class="btn btn-default" ng-model="vm.employee.Active" uib-btn-checkbox>{{'States.Active'|translate}} <i class="glyphicon glyphicon-ok"></i></label>
+                        <label class="btn btn-default" ng-model="vm.employee.Visible" uib-btn-checkbox>{{'States.Visible'|translate}} <i class="glyphicon glyphicon-eye-open"></i></label>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Number">{{'Employees.Number'|translate}}</label>
@@ -35,7 +27,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="FirstName">{{'Employees.FirstName'|translate}}</label>
@@ -44,7 +35,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="LastName">{{'Employees.LastName'|translate}}</label>
@@ -53,7 +43,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Rate">{{'Employees.Rate'|translate}}</label>
@@ -62,7 +51,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Mobile">{{'Employees.Mobile'|translate}}</label>
@@ -71,7 +59,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Email">{{'Employees.Email'|translate}}</label>

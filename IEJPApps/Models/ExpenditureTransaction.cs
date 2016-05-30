@@ -24,7 +24,7 @@ namespace IEJPApps.Models
         public virtual Employee Employee { get; set; }
 
         [Display(Name = "ExpenditureType", AutoGenerateFilter = false)]
-        public int ExpenditureType { get; set; }
+        public Guid ExpenditureType { get; set; }
 
         [Display(Name = "Amount", AutoGenerateFilter = false)]
         public decimal Amount { get; set; }

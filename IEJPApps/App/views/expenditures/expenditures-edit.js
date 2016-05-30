@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("Expenditures.EditController", ["$state", "$stateParams", "$translate" ,"UserService", "ExpendituresService", controller])
+        .controller("Expenditures.EditController", ["$state", "$stateParams", "$translate", "UserService", "ProjectsService", "EmployeesService", "ExpenditureTypesService", "ExpendituresService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -15,33 +15,36 @@
                 controllerAs: "vm",                
                 data: { activeTab: "expenditures" }
             })
-
             .state("expenditures-edit", {
                 url: "/expenditures/edit/:id",
                 templateUrl: "/app/views/expenditures/expenditures-edit.html",
                 controller: "Expenditures.EditController",
                 controllerAs: "vm",
-                resolve: {
-                    transaction: function ($stateParams, ExpendituresService) {
-                        return ExpendituresService.GetById($stateParams.id);
-                    }
-                },
                 data: { activeTab: "expenditures" }
             });
     }
 
-    function controller($state, $stateParams, $translate, userService, expendituresService, transaction) {
+    function controller($state, $stateParams, $translate, userService, projectsService, employeesService, expenditureTypesService, expendituresService) {
         var vm = this;
 
-        vm.transaction = transaction;
+        vm.employees = [];
+        vm.projects = [];
+        vm.expenditureTypes = [];
+
+        vm.transaction = {
+            TransactionDate: new Date()
+        };
+
+        vm.dateFormat = "yyyy-MM-dd";
 
         vm.save = function () {
             if (vm.transaction.Id) {
                 expendituresService.Update(vm.transaction);
             }
             else {
-                expendituresService.Create(vm.transaction).then(function (transaction) {
-                    vm.transaction = transaction; // set new values
+                console.log('create', vm.transaction);
+                expendituresService.Create(vm.transaction).then(function (data) {
+                    vm.transaction = data; // set new values
                 });
             }
         }
@@ -56,15 +59,26 @@
             }
         }
 
-        //initController();
+        function init() {
+            employeesService.GetAll().then(function (data) {
+                vm.employees = data || [];
+            });
 
-        //function initController() {
-        //    var id = $stateParams.id;
-        //    if (id) {
-        //        expendituresService.GetById(id).then(function (transaction) {
-        //            vm.transaction = transaction;
-        //        });
-        //    }
-        //}
+            projectsService.GetAll().then(function (data) {
+                vm.projects = data || [];
+            });
+
+            expenditureTypesService.GetAll().then(function (data) {
+                vm.expenditureTypes = data || [];
+            });
+            
+            if ($stateParams.id) {
+                expendituresService.GetById($stateParams.id).then(function (data) {
+                    vm.transaction = data;
+                });
+            }
+        }
+
+        init();
     }
 })();

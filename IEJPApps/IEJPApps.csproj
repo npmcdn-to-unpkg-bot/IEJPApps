@@ -175,6 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ExpenditureTypesController.cs" />
     <Compile Include="Api\ExpendituresController.cs" />
     <Compile Include="Api\LookupController.cs" />
     <Compile Include="Api\TimeSheetController.cs" />
@@ -182,6 +183,8 @@
     <Compile Include="Api\EmployeesController.cs" />
     <Compile Include="Api\ProjectsController.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Models\ExpenditureType.cs" />
+    <Compile Include="Models\Period.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ExpenditureTransaction.cs" />
     <Compile Include="Models\Extensions\EmployeeExtensions.cs" />
@@ -223,7 +226,9 @@
     <Compile Include="ViewModels\TimeTransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\services\errors.service.js" />
     <Content Include="App\services\employees.service.js" />
+    <Content Include="App\services\expenditureTypes.service.js" />
     <Content Include="App\services\expenditures.service.js" />
     <Content Include="App\services\lookup.service.js" />
     <Content Include="App\services\timesheet.service.js" />
@@ -231,6 +236,10 @@
     <Content Include="App\services\projects.service.js" />
     <Content Include="App\views\employees\employees-edit.js" />
     <Content Include="App\views\employees\employees-index.js" />
+    <Content Include="App\views\expenditures\expenditureTypes-index.html" />
+    <Content Include="App\views\expenditures\expenditureTypes-index.js" />
+    <Content Include="App\views\expenditures\expenditureTypes-edit.html" />
+    <Content Include="App\views\expenditures\expenditureTypes-edit.js" />
     <Content Include="App\views\expenditures\expenditures-edit.js" />
     <Content Include="App\views\expenditures\expenditures-edit.html" />
     <Content Include="App\views\expenditures\expenditures-index.js" />

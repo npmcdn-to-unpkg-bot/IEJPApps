@@ -5,7 +5,7 @@
         .module('app')
         .factory('UserService', Service);
 
-    function Service($http, $q) {
+    function Service($http, $q, ErrorService) {
         return {
             GetCurrent: GetCurrent,
             GetAll: GetAll,
@@ -51,8 +51,9 @@
         }
 
         function handleError(res) {
+            ErrorService.error('Errors.ErrorOccuredCancelled');
+
             return $q.reject(res.data);
         }
     }
-
 })();

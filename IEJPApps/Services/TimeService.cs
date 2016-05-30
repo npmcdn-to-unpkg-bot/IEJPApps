@@ -25,13 +25,14 @@ namespace IEJPApps.Services
             var firstDateOfWeek = dateTime.StartOfWeek(GetWeekStartDay());
             var weekNumber = dateTime.GetISOWeekOfYear(GetWeekStartDay());
             var lastDayOfWeek = firstDateOfWeek.AddDays(6);
+            var current = DateTime.Now.Date;
 
             return new PayPeriodViewModel
             {
                 StartDate = firstDateOfWeek,
                 EndDate = lastDayOfWeek,
                 WeekNumber = weekNumber,
-                IsCurrent = DateTime.Now >= firstDateOfWeek && DateTime.Now <= lastDayOfWeek
+                IsCurrent = current >= firstDateOfWeek.Date && current <= lastDayOfWeek.Date
             };
         }
 

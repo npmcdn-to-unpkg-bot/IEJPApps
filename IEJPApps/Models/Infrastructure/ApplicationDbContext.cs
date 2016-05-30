@@ -20,5 +20,7 @@ namespace IEJPApps.Models.Infrastructure
         public System.Data.Entity.DbSet<Employee> Employees { get; set; }
         public System.Data.Entity.DbSet<TimeTransaction> TimeTransactions { get; set; }
         public System.Data.Entity.DbSet<ExpenditureTransaction> ExpenditureTransactions { get; set; }
+        public System.Data.Entity.DbSet<ExpenditureType> ExpenditureTypes { get; set; }
+        public System.Data.Entity.DbSet<Period> Periods { get; set; }
     }
 }

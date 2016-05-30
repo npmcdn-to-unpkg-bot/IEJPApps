@@ -20,6 +20,14 @@ namespace IEJPApps.Models
                 if (ExpenditureTransactions == null) return 0;
                 return ExpenditureTransactions.Sum(x => x.Amount);
             }
-        }        
+        }
+
+        public string FullDescription
+        {
+            get
+            {
+                return string.Format("{0} - {1}", Customer, Description);
+            }
+        }
     }
 }

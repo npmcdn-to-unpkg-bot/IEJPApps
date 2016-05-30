@@ -14,6 +14,10 @@ namespace IEJPApps.Models
         [Display(Name = "Active", AutoGenerateFilter = false)]
         public bool Active { get; set; }
 
+        [DefaultValue(true)]
+        [Display(Name = "Visible", AutoGenerateFilter = false)]
+        public bool Visible { get; set; }
+
         [Display(Name = "Number", AutoGenerateFilter = false)]
         public string ProjectNumber { get; set; }
 

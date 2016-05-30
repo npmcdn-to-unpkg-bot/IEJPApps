@@ -1,40 +1,30 @@
 ﻿<div class="container-fluid">
     <div class="row">
-        <div ng-switch="vm.project.Id">
-            <h3 ng-switch-when="undefined">{{'Projects.TitleCreate'|translate}}</h3>
-            <h3 ng-switch-default>{{'Projects.TitleEdit'|translate}}</h3>
+        <div class="form-title" ng-switch="vm.project.Id">
+            <h4 ng-switch-when="undefined">{{'Projects.TitleCreate'|translate}}</h4>
+            <h4 ng-switch-default>{{'Projects.TitleEdit'|translate}}</h4>
         </div>
     </div>
 </div>
 
 <div id="content" class="container-fluid">
-    <!--<div class="row">-->
     <form>
-        <div class="form-horizontal">
-            <div class="row">
-                <div class="form-group" ng-if="false">
-                    <div class="col-xs-12 col-md-10">
-                        <span><small>{{vm.project.Id}}</small></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
+        <div class="form-horizontal">            
+            <div class="row" ng-if="vm.project.Id !== undefined">
                 <div class="form-group dashboard-line">
                     <div class="col-xs-6 col-sm-3 col-sm-offset-3">{{'Projects.Time'|translate}}: <strong>{{vm.project.TimeTotal}}</strong></div>
                     <div class="col-xs-6 col-sm-3">{{'Projects.Expenditures'|translate}}: <strong>{{vm.project.ExpenditureTotal|currency}}</strong></div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="Active">{{'Projects.Active'|translate}}</label>
+                    <label class="control-label col-sm-2" for="Visible">{{'States.Label'|translate}}</label>
                     <div class="col-xs-12 col-sm-10">
-                        <input class="check-box" data-val="true" data-val-required="The Active field is required." id="Active" name="Active" type="checkbox" ng-model="vm.project.Active">
+                        <label class="btn btn-default" ng-model="vm.project.Active" uib-btn-checkbox>{{'States.Active'|translate}} <i class="glyphicon glyphicon-ok"></i></label>
+                        <label class="btn btn-default" ng-model="vm.project.Visible" uib-btn-checkbox>{{'States.Visible'|translate}} <i class="glyphicon glyphicon-eye-open"></i></label>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="ProjectNumber">{{'Projects.Number'|translate}}</label>
@@ -44,7 +34,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Customer">{{'Projects.Customer'|translate}}</label>
@@ -54,18 +43,15 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Description">{{'Projects.Description'|translate}}</label>
                     <div class="col-xs-12 col-sm-10">
-                        <input class="form-control text-box single-line" id="Description" name="Description" type="text" ng-model="vm.project.Description">
-                        <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                        <textarea id="Description" name="Description" class="form-control" rows="3" ng-model="vm.project.Description" Xplaceholder="{{'Projects.Description'|translate}}"></textarea>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
+            <!--<div class="row">
                 <div class="form-group">
                     <div class="col-xs-12 col-sm-10">
                         <p class="card-text" ng-if="vm.project.Updated">
@@ -73,10 +59,9 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </form>
-    <!--</div>-->
 </div>
 
 <div id="footer" class="visible-xs">
