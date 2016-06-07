@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.EditController", ["$state", "$stateParams", "$translate", "UserService", "TimeSheetService", "ProjectsService", "LookupService", controller])
+        .controller("TimeSheet.EditController", ["$state", "$stateParams", "$translate", "UserService", "TimeSheetService", "EmployeesService", "ProjectsService", "LookupService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -24,13 +24,14 @@
             });
     }
 
-    function controller($state, $stateParams, $translate, userService, timeSheetService, projectsService, lookupService) {
+    function controller($state, $stateParams, $translate, userService, timeSheetService, employeesService, projectsService, lookupService) {
         var vm = this;
 
         vm.currentPeriod = {};
+        vm.employees = [];
         vm.days = [];
-        vm.transaction = {};
         vm.projects = [];
+        vm.transaction = {};
 
         vm.save = function () {
             if (vm.transaction.Id) {
@@ -47,27 +48,33 @@
             if (vm.transaction.Id) {
                 if (confirm($translate("ConfirmDelete"))) {
                     timeSheetService.Delete(vm.transaction.Id).then(function () {
-                        $state.go("timesheets");
+                        $state.go("timesheet");
                     });
                 }
             }
         }
         
         function init() {
+            employeesService.GetAll().then(function (data) {
+                vm.employees = data || [];
+            });
+
             lookupService.getCurrentPeriod().then(function (currentPeriod) {
                 vm.currentPeriod = currentPeriod || {};
+            });
+
+            projectsService.GetAll().then(function (projects) {
+                vm.projects = projects || [];
             });
 
             if ($stateParams.id) {
                 timeSheetService.GetById($stateParams.id).then(function(transaction) {
                     vm.transaction = transaction;
+                    vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate);
                 });
             } else {
-            }
-            
-            projectsService.GetAll().then(function (projects) {
-                vm.projects = projects || [];
-            });
+                vm.transaction.TransactionDate = new Date();
+            }            
         }
 
         init();

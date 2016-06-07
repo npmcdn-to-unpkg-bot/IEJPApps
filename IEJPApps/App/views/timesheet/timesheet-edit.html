@@ -14,33 +14,40 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="TransactionDate">{{'TimeSheet.Day'|translate}}</label>
                     <div class="col-xs-12 col-sm-10">
-                        <input id="TransactionDate" name="TransactionDate" type="datetime" ng-model="vm.transaction.TransactionDate" class="check-box" data-val="true" data-val-required="Transaction date is required.">
-                        {{vm.transaction.TransactionDate | date: "EEEE, dd"}}
+                        <input type="date" class="form-control text-box single-line" id="TransactionDate"
+                               name="TransactionDate" ng-model="vm.transaction.TransactionDate"
+                               placeholder="yyyy-MM-dd" xmin="2016-06-01" xmax="2016-06-31" required />
                     </div>
                 </div>
             </div>
-
-            <!--
-            <td>{{item.Time}}</td>
-            <td class="wide-column">{{item.Comment}}</td>
-            <td class="text-right">
-                <a ui-sref="timesheet-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
-            </td>
-            -->
-            <!--<select class="form-control" ng-model="item.projectId">
-                    <option ng-repeat="option in vm.projects" value="{{option.Id}}">
-                        {{option.Customer}} - {{option.Description}}
-                    </option>
-                </select>-->
+            
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Employee">{{'TimeSheet.Employee'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <select id="Employee" name="Employee" class="form-control" ng-model="vm.transaction.EmployeeId">
+                            <option ng-repeat="option in vm.employees" value="{{option.Id}}">{{option.FullName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Project">{{'TimeSheet.Project'|translate}}</label>
                     <div class="col-xs-12 col-sm-10">
-                        <select id="Project" name="Project" class="form-control" ng-model="vm.transaction.Project">
-                            <option ng-repeat="option in vm.projects" value="{{option}}">{{option.Customer}} - {{option.Description}}</option>
+                        <select id="Project" name="Project" class="form-control" ng-model="vm.transaction.ProjectId">
+                            <option ng-repeat="option in vm.projects" value="{{option.Id}}">{{option.Customer}} - {{option.Description}}</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Time">{{'TimeSheet.Time'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="Time" name="Time" class="form-control" ng-model="vm.transaction.Time" />
                     </div>
                 </div>
             </div>

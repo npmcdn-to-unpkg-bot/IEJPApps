@@ -35,7 +35,7 @@
             TransactionDate: new Date()
         };
 
-        vm.dateFormat = "yyyy-MM-dd";
+        //vm.dateFormat = "yyyy-MM-dd";
 
         vm.save = function () {
             if (vm.transaction.Id) {
@@ -75,6 +75,7 @@
             if ($stateParams.id) {
                 expendituresService.GetById($stateParams.id).then(function (data) {
                     vm.transaction = data;
+                    vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate);
                 });
             }
         }
