@@ -248,6 +248,7 @@
     <Content Include="App\views\projects\projects-edit.js" />
     <Content Include="App\views\projects\projects-index.js" />
     <Content Include="App\views\projects\projects-index.html" />
+    <Content Include="App\views\timesheet\timesheet-edit - Copy.html" />
     <Content Include="App\views\timesheet\timesheet-edit.js" />
     <Content Include="App\views\timesheet\timesheet-edit.html" />
     <Content Include="App\views\timesheet\timesheet-index.html" />
@@ -349,10 +350,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Account\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

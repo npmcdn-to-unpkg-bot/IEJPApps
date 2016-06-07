@@ -5,7 +5,8 @@
         .module("app", [
             "toastr",
             "ui.router",
-            "ui.bootstrap", 
+            "ui.bootstrap",
+            "ngCookies",
             "pascalprecht.translate"])
         .config(config)
         .run(run)

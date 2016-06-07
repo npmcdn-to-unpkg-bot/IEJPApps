@@ -1,0 +1,94 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="form-title" ng-switch="vm.transaction.Id">
+            <h4 ng-switch-when="undefined">{{'TimeSheet.TitleCreate'|translate}}</h4>
+            <h4 ng-switch-default>{{'TimeSheet.TitleEdit'|translate}}</h4>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="container-fluid">
+    <form role="form">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="TransactionDate">{{'TimeSheet.Day'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input type="date" class="form-control text-box single-line" id="TransactionDate"
+                               name="TransactionDate" ng-model="vm.transaction.TransactionDate"
+                               placeholder="yyyy-MM-dd" xmin="2016-06-01" xmax="2016-06-31" required />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Employee">{{'TimeSheet.Employee'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <select id="Employee" name="Employee" class="form-control" ng-model="vm.transaction.EmployeeId">
+                            <option ng-repeat="option in vm.employees" value="{{option.Id}}">{{option.FullName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Project">{{'TimeSheet.Project'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <select id="Project" name="Project" class="form-control" ng-model="vm.transaction.ProjectId">
+                            <option ng-repeat="option in vm.projects" value="{{option.Id}}">{{option.Customer}} - {{option.Description}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Time">{{'TimeSheet.Time'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <input id="Time" name="Time" class="form-control" ng-model="vm.transaction.Time" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Comment">{{'TimeSheet.Comment'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <textarea id="Comment" name="Comment" class="form-control" rows="3" ng-model="vm.transaction.Comment" placeholder="{{'TimeSheet.Comment'|translate}}"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="footer" class="visible-xs">
+    <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+        <div class="row" id="bottomNav">
+            <div class="col-xs-4 text-center">
+                <button class="btn btn-primary" ng-click="vm.save()"><i class="glyphicon glyphicon-save"></i></button>
+            </div>
+            <div class="col-xs-4 text-center">
+                <button class="btn btn-default" ui-sref="timesheet"><i class="glyphicon glyphicon-list"></i></button>
+            </div>
+            <div class="col-xs-4 text-center">
+                <button class="btn btn-danger" ng-if="vm.transaction.Id" ng-click="vm.delete()"><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid hidden-xs">
+    <div class="row top-buffer">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <button class="btn btn-primary" ng-click="vm.save()">{{'Commands.Save'|translate}}</button>
+            <button class="btn btn-danger" ng-disabled="vm.transaction.Id === undefined" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <a ui-sref="timesheet">{{'Commands.BackToList'|translate}}</a>
+    </div>
+</div>
