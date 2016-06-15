@@ -24,6 +24,8 @@
             },
             Navigation: {
                 Home: "Home",
+                Manage: "Manage",
+                Administration: "Administration",
                 Projects: "Projects",
                 Employees: "Employees",
                 TimeSheet: "Time Sheet",
@@ -121,6 +123,8 @@
             },
             Navigation: {
                 Home: "Home",
+                Manage: "Gestion",
+                Administration: "Administration",
                 Projects: "Projets",
                 Employees: "Employés",
                 TimeSheet: "Feuille de temps",

@@ -37,10 +37,22 @@
                     @if (Request.IsAuthenticated)
                     {
                         <ul class="nav navbar-nav">
-                            <li><a ui-sref="projects">{{'Navigation.Projects'|translate}}</a></li>
-                            <li><a ui-sref="employees">{{'Navigation.Employees'|translate}}</a></li>
-                            <li><a ui-sref="timesheet">{{'Navigation.TimeSheet'|translate}}</a></li>
-                            <li><a ui-sref="expenditures">{{'Navigation.Expenditures'|translate}}</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{'Navigation.Manage'|translate}}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-sref="projects">{{'Navigation.Projects'|translate}}</a></li>
+                                    <li><a ui-sref="employees">{{'Navigation.Employees'|translate}}</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a ui-sref="timesheet">{{'Navigation.TimeSheet'|translate}}</a></li>
+                                    <li><a ui-sref="expenditures">{{'Navigation.Expenditures'|translate}}</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{'Navigation.Administration'|translate}}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a ui-sref="expenditure-types">{{'Navigation.ExpenditureTypes'|translate}}</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     }
 
