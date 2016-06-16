@@ -97,6 +97,42 @@ namespace IEJPApps.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Period_Active {
+            get {
+                return ResourceManager.GetString("Period_Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Date.
+        /// </summary>
+        public static string Period_EndDate {
+            get {
+                return ResourceManager.GetString("Period_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string Period_StartDate {
+            get {
+                return ResourceManager.GetString("Period_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visible.
+        /// </summary>
+        public static string Period_Visible {
+            get {
+                return ResourceManager.GetString("Period_Visible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project List.
         /// </summary>
         public static string ProjectList {
@@ -111,6 +147,24 @@ namespace IEJPApps.Resources {
         public static string RegisterAsNewUser {
             get {
                 return ResourceManager.GetString("RegisterAsNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string VerifyPhoneNumberViewModel_Code {
+            get {
+                return ResourceManager.GetString("VerifyPhoneNumberViewModel_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string VerifyPhoneNumberViewModel_PhoneNumber {
+            get {
+                return ResourceManager.GetString("VerifyPhoneNumberViewModel_PhoneNumber", resourceCulture);
             }
         }
     }

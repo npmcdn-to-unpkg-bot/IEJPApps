@@ -135,4 +135,22 @@
   <data name="RegisterAsNewUser" xml:space="preserve">
     <value>Register as a new user</value>
   </data>
+  <data name="Period_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Period_EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Period_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Period_Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="VerifyPhoneNumberViewModel_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="VerifyPhoneNumberViewModel_PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
 </root>

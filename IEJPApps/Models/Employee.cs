@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using IEJPApps.Models.Interfaces;
 
 namespace IEJPApps.Models
 {
-    public partial class Employee
+    public partial class Employee : IEntityVisibility
     {
         [Key]
         public Guid Id { get; set; }
