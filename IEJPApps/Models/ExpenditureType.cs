@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using IEJPApps.Models.Interfaces;
 
 namespace IEJPApps.Models
 {
-    public partial class ExpenditureType
+    public partial class ExpenditureType : IEntityVisibility
     {
         [Key]
         public Guid Id { get; set; }

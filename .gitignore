@@ -131,7 +131,7 @@ publish/
 
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line
-#packages/
+packages/
 
 # Windows Azure Build Output
 csx
@@ -217,3 +217,7 @@ pip-log.txt
 *.suo
 *.suo
 *.suo
+IEJPApps/App_Data/IEJP.mdf
+IEJPApps/App_Data/IEJP.mdf
+.vs/IEJPApps/v14/.suo
+IEJPApps/App/views/timesheet/timesheet-edit - Copy.html

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using IEJPApps.Resources;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -62,19 +63,19 @@ namespace IEJPApps.Models
     {
         [Required]
         [Phone]
-        [Display(Name = "Phone Number")]
+        [Display(ResourceType = typeof (Strings), Name = "VerifyPhoneNumberViewModel_PhoneNumber")]
         public string Number { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel
     {
         [Required]
-        [Display(Name = "Code")]
+        [Display(ResourceType = typeof (Strings), Name = "VerifyPhoneNumberViewModel_Code")]
         public string Code { get; set; }
 
         [Required]
         [Phone]
-        [Display(Name = "Phone Number")]
+        [Display(ResourceType = typeof (Strings), Name = "VerifyPhoneNumberViewModel_PhoneNumber")]
         public string PhoneNumber { get; set; }
     }
 
