@@ -13,10 +13,8 @@
             *@
             <li>@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})</li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            @*
             <li>@Html.ActionLink("EN", "ChangeCulture", "Account", new {lang = "en", returnUrl = Request.RawUrl}, null)</li>
             <li>@Html.ActionLink("FR", "ChangeCulture", "Account", new {lang = "fr", returnUrl = Request.RawUrl}, null)</li>
-            *@
         </ul>
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.EnterpriseServices;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Security;
-using IEJPApps.Models;
+﻿using IEJPApps.Models;
 using IEJPApps.Models.Infrastructure;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,6 +12,7 @@ namespace IEJPApps
     {
         public void Configuration(IAppBuilder app)
         {
+            System.Diagnostics.Trace.WriteLine("MVC Version: {0}", typeof(System.Web.Mvc.Controller).Assembly.GetName().Version.ToString());
             ConfigureAuth(app);
             CreateRolesAndUsers();
         }

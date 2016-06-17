@@ -62,12 +62,9 @@
         </div>
     </header>
 
-<div class="container body-content">
-    <span>Roles = @String.Join(";", Roles.GetRolesForUser())</span>
-    <span>Roles = @String.Join(";", Roles.GetRolesForUser("abc@def.com"))</span>
-    
-    @RenderBody()
-</div>
+    <div class="container body-content">    
+        @RenderBody()
+    </div>
 
     <footer class="hidden-xs">
         <div class="container body-content">

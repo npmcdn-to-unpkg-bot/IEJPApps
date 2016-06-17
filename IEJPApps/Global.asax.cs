@@ -4,7 +4,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using IEJPApps.Services;
 using IEJPApps.Services.Interfaces;
 
 namespace IEJPApps
@@ -18,10 +17,7 @@ namespace IEJPApps
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //ServiceConfig.RegisterServices(new StandardKernel());
-            //ServiceLocator.Initialize();
-
+            
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = 
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
@@ -31,8 +27,8 @@ namespace IEJPApps
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
-            //var cookieService = ServiceLocator.Get<ICookieService>();
-            ICookieService cookieService = new CookieService();
+            var cookieService = DependencyResolver.Current.GetService<ICookieService>();
+
             cookieService.Load();
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cookieService.Language);
