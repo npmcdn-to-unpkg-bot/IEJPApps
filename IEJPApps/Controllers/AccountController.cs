@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -11,23 +8,20 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IEJPApps.Models;
 using IEJPApps.Services;
-using IEJPApps.Services.Interfaces;
 
 namespace IEJPApps.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private readonly ICookieService _cookieService;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
-
-        public AccountController()
+        
+        public AccountController(ICookieService cookieService , ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
-        {
+            _cookieService = cookieService;
             UserManager = userManager;
             SignInManager = signInManager;
             _roleManager = roleManager;
@@ -35,34 +29,19 @@ namespace IEJPApps.Controllers
 
         public ApplicationSignInManager SignInManager
         {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
+            get { return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
+            private set { _signInManager = value; }
         }
 
         public ApplicationUserManager UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { _userManager = value; }
         }
 
         public ApplicationRoleManager RoleManager
         {
-            get
-            {
-                return this._roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
+            get { return this._roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>(); }
             private set { this._roleManager = value; }
         }
 
@@ -97,9 +76,7 @@ namespace IEJPApps.Controllers
 
                     //RoleManager.AddToRole(user.Id, UserRoles.Admin);
 
-                    ICookieService cookieService = new CookieService();
-                    cookieService.Role = /*UserRoles.Admin*/ string.Join(",", Roles.GetRolesForUser(model.Email)); // TODO : est-ce qu'on accepte des enregistrements d'employees ou on fonctionne par invitation ?
-                    cookieService.Save();
+                    _cookieService.Role = /*UserRoles.Admin*/ string.Join(",", Roles.GetRolesForUser(model.Email)); // TODO : est-ce qu'on accepte des enregistrements d'employees ou on fonctionne par invitation ?
 
                     return RedirectToLocal(returnUrl);
 
@@ -369,10 +346,13 @@ namespace IEJPApps.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
+
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
@@ -427,6 +407,9 @@ namespace IEJPApps.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            _cookieService.Clear(); // ca ne clear pas dans le browser...
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -440,11 +423,7 @@ namespace IEJPApps.Controllers
 
         public ActionResult ChangeCulture(string lang, string returnUrl)
         {
-            //Session["Culture"] = new CultureInfo(lang);
-
-            ICookieService cookieService = new CookieService();
-            cookieService.Language = lang;
-            cookieService.Save();
+            _cookieService.Language = lang;
 
             return Redirect(returnUrl);
         }

@@ -33,7 +33,7 @@
                     <th>{{'ExpenditureTypes.Description'|translate}}</th>
                     <th class="text-right"></th>
                 </tr>
-                <tr ng-repeat="item in vm.expenditureTypes | filter: vm.filter | orderBy: 'Name'">
+                <tr ng-repeat="item in vm.expenditureTypes | filter: vm.filter | orderBy: 'Name' as filteredItems">
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.Active"></i></td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i></td>
                     <td>{{item.Name}}</td>
@@ -50,7 +50,7 @@
     <div class="row visible-xs">
         <div class="expenditure-types-list">
             <div class="list-group">
-                <a class="list-group-item" ui-sref="expenditure-types-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.expenditureTypes | filter: vm.filter | orderBy: 'Name'">
+                <a class="list-group-item" ui-sref="expenditure-types-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.expenditureTypes | filter: vm.filter | orderBy: 'Name' as filteredItems">
                     <div class="card">
                         <div class="card-block">
                             <div class="card-title">

@@ -6,7 +6,10 @@
 <div class="row" style="margin-bottom: 30px; margin-top: 20px">
     <div class="col-md-6">
         <section>
-            <img src="~/Content/Images/iejp-logo.jpg" style="width: 30%; height: 30%" />
+            @if (!Environment.MachineName.Contains("CIRX"))
+            {
+                <img src="~/Content/Images/iejp-logo.jpg" style="width: 30%; height: 30%" />
+            }
         </section>
     </div>
 </div>

@@ -35,7 +35,7 @@
                     <th>{{'Expenditures.Comment'|translate}}</th>
                     <th class="text-right"></th>
                 </tr>
-                <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate'">
+                <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate' as filteredTransactions">
                     <td>{{item.TransactionDate | date: "yyyy-MM-dd"}}</td>
                     <td>{{item.Employee.FullName}}</td>
                     <td class="wide-column">{{item.Project.Customer}} - {{item.Project.Description}}</td>
@@ -48,12 +48,12 @@
                     </td>
                 </tr>
                 <tfoot class="table-totals">
-                    <tr>
-                        <td>{{vm.transactions.length}} items</td>
-                        <td colspan="3"></td>
-                        <td class="text-right">{{vm.total(vm.transactions) | currency}}</td>
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td colspan="2">{{filteredTransactions.length}} {{'Totals.Of'|translate}} {{vm.transactions.length}} {{'Totals.Transaction'|translate}}</td>
+                    <td colspan="2"></td>
+                    <td class="text-right">{{vm.total(filteredTransactions) | currency}}</td>
+                    <td></td>
+                </tr>
                 </tfoot>
             </table>
         </div>
@@ -62,7 +62,7 @@
     <div class="row visible-xs">
         <div class="expenditure-list">
             <div class="list-group">
-                <a class="list-group-item" ui-sref="expenditures-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate'">
+                <a class="list-group-item" ui-sref="expenditures-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate' as filteredTransactions">
                     <div class="card">
                         <div class="card-block">
                             <p class="card-title time">

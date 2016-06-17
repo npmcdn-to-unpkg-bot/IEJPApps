@@ -9,16 +9,23 @@ namespace IEJPApps.Api
     [RoutePrefix("api/lookup")]
     public class LookupController : ApiController
     {
+        private readonly ITimeService _timeService;
+
+        public LookupController(ITimeService timeService)
+        {
+            _timeService = timeService;
+        }
+
         [Route("periods/list/{before}/{after}")]
         public List<PayPeriodViewModel> GetPeriodsList(int before, int after)
         {
-            return TimeService.GetPeriodsFromCurrentPayPeriod(before, after);
+            return _timeService.GetPeriodsFromCurrentPayPeriod(before, after);
         }
 
         [Route("periods/current")]
         public PayPeriodViewModel GetPeriodsCurrent()
         {
-            return TimeService.GetCurrentPayPeriod();
+            return _timeService.GetCurrentPayPeriod();
         }
     }
 }

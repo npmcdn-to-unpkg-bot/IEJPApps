@@ -1,32 +1,66 @@
 ﻿using System.Web;
 using IEJPApps.Models;
-using IEJPApps.Services.Interfaces;
 
 namespace IEJPApps.Services
 {
     public class CookieService : ICookieService
     {
-        private const string CookieName = "_user";
+        private const string UserCookieName = "IEJP_User";
+        private const string SessionCookieName = "ASP.NET_SessionId";
 
-        public string Language { get; set; }
-        public string Role { get; set; }
-
-        public void Save()
+        /// <summary>
+        /// Doit etre 'live' et non pas loader dans le constructeur...
+        /// </summary>
+        private HttpCookie UserCookie
         {
-            var cookie = HttpContext.Current.Request.Cookies[CookieName] ?? new HttpCookie(CookieName);
-
-            cookie.Values["Language"] = Language;
-            cookie.Values["Role"] = Role;
-
-            HttpContext.Current.Response.AppendCookie(cookie);
+            get
+            {
+                return HttpContext.Current.Request.Cookies[UserCookieName] ?? new HttpCookie(UserCookieName);
+            }
         }
 
-        public void Load()
+        private HttpCookie SessionCookie
         {
-            var cookie = HttpContext.Current.Request.Cookies[CookieName] ?? new HttpCookie(CookieName);
+            get
+            {
+                return HttpContext.Current.Request.Cookies[SessionCookieName] ?? new HttpCookie(SessionCookieName);
+            }
+        }
 
-            Language = cookie.Values["Language"] ?? "fr";
-            Role = cookie.Values["Role"] ?? UserRoles.Employee;
+        public string Language
+        {
+            get { return UserCookie.Values["Language"] ?? "fr"; }
+            set
+            {
+                UserCookie.Values["Language"] = value;
+                Save(UserCookie);
+            }
+        }
+
+        public string Role
+        {
+            get { return UserCookie.Values["Role"] ?? UserRoles.Employee; }
+            set
+            {
+                UserCookie.Values["Role"] = value;
+                Save(UserCookie);
+            }
+        }
+
+        public string SessionId
+        {
+            get { return SessionCookie.Value; }
+        }
+        
+        protected void Save(HttpCookie cookie)
+        {
+            if (cookie != null)
+                HttpContext.Current.Response.AppendCookie(cookie);
+        }
+        
+        public void Clear()
+        {
+            HttpContext.Current.Response.Cookies.Remove(UserCookieName);
         }
     }
 }

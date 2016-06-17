@@ -4,7 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using IEJPApps.Services.Interfaces;
+using IEJPApps.Services;
 
 namespace IEJPApps
 {
@@ -13,6 +13,7 @@ namespace IEJPApps
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -29,15 +30,20 @@ namespace IEJPApps
         {
             var cookieService = DependencyResolver.Current.GetService<ICookieService>();
 
-            cookieService.Load();
-
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cookieService.Language);
             System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cookieService.Language);
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            //CookieService.Save();
+        }
+
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
         }
     }
 }

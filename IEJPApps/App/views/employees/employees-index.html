@@ -37,7 +37,7 @@
                     <th>{{'Employees.Email'|translate}}</th>
                     <th></th>
                 </tr>
-                <tr ng-repeat="item in vm.employees | filter: vm.filter | orderBy: 'Number'">
+                <tr ng-repeat="item in vm.employees | filter: vm.filter | orderBy: 'Number' as filteredItems">
                     <td>{{item.Number}}</td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.Active"></i></td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i></td>
@@ -58,7 +58,7 @@
     <div class="row visible-xs">
         <div class="employee-list">
             <div class="list-group">
-                <a class="list-group-item" ui-sref="employees-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.employees | filter: vm.filter | orderBy: ['FirstName','LastName']">
+                <a class="list-group-item" ui-sref="employees-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.employees | filter: vm.filter | orderBy: ['FirstName','LastName'] as filteredItems">
                     <div class="card">
                         <div class="card-block">
                             <div class="card-title">

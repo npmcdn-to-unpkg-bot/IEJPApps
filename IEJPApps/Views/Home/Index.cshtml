@@ -1,7 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@*
+    <div>Language: @ViewBag.Language</div>
+    <div>SessionId: @ViewBag.SessionId</div>
+*@
 <div class="flash-message" ng-if="flash">
     <div class="alert {{'alert-' + flash.type}}" ng-bind="flash.message"></div>
 </div>

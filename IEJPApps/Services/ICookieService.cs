@@ -1,10 +1,10 @@
-﻿namespace IEJPApps.Services.Interfaces
+﻿namespace IEJPApps.Services
 {
     public interface ICookieService
     {
         string Language { get; set; }
         string Role { get; set; }
-        void Save();
-        void Load();
+        string SessionId { get; }
+        void Clear();
     }
 }

@@ -37,18 +37,18 @@
             }
         }
         
-        vm.expenditureTotal = function () {
+        vm.expenditureTotal = function (projects) {
             var sum = 0;
-            for (var i = 0; i < vm.projects.length; i++) {
-                sum += vm.projects[i].ExpenditureTotal;
+            for (var i = 0; i < projects.length; i++) {
+                sum += projects[i].ExpenditureTotal;
             }
             return sum;
         }
 
-        vm.timeTotal = function () {
+        vm.timeTotal = function (projects) {
             var sum = 0;
-            for (var i = 0; i < vm.projects.length; i++) {
-                sum += vm.projects[i].TimeTotal;
+            for (var i = 0; i < projects.length; i++) {
+                sum += projects[i].TimeTotal;
             }
             return sum;
         }

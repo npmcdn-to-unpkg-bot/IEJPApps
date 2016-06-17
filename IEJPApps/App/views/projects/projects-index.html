@@ -36,7 +36,7 @@
                     <th class="text-right">{{'Projects.Expenditures'|translate}}</th>
                     <th class="text-right"></th>
                 </tr>
-                <tr ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber'">
+                <tr ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber' as filteredItems">
                     <td>{{item.ProjectNumber}}</td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.Active"></i></td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i></td>
@@ -51,10 +51,10 @@
                 </tr>
                 <tfoot class="table-totals">
                     <tr>
-                        <td>{{vm.projects.length}} items</td>
-                        <td colspan="4"></td>
-                        <td class="text-right">{{vm.timeTotal()}}</td>
-                        <td class="text-right">{{vm.expenditureTotal()|currency}}</td>
+                        <td colspan="2">{{filteredItems.length}} {{'Totals.Of'|translate}} {{vm.projects.length}} {{'Totals.Items'|translate}}</td>
+                        <td colspan="3"></td>
+                        <td class="text-right">{{vm.timeTotal(filteredItems)}}</td>
+                        <td class="text-right">{{vm.expenditureTotal(filteredItems)|currency}}</td>
                         <td></td>
                     </tr>
                 </tfoot>
@@ -65,7 +65,7 @@
     <div class="row visible-xs">
         <div class="project-list">
             <div class="list-group">
-                <a class="list-group-item" ui-sref="projects-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber'">
+                <a class="list-group-item" ui-sref="projects-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.projects | filter: vm.filter | orderBy: 'ProjectNumber' as filteredItems">
                     <div class="card">
                         <div class="card-block">
                             <div class="card-title">

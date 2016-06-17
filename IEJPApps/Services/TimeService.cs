@@ -6,21 +6,20 @@ using IEJPApps.ViewModels;
 
 namespace IEJPApps.Services
 {
-    public class TimeService
+    public class TimeService : ITimeService
     {
-        public static DayOfWeek GetWeekStartDay()
+        public DayOfWeek GetWeekStartDay()
         {
             // TODO : Devrait etre configurable
-            return DayOfWeek.Monday;
-            //return DayOfWeek.Sunday;
+            return DayOfWeek.Monday; //DayOfWeek.Sunday;
         }
 
-        public static PayPeriodViewModel GetCurrentPayPeriod()
+        public PayPeriodViewModel GetCurrentPayPeriod()
         {
             return GetPayPeriod(DateTime.Now);
         }
 
-        public static PayPeriodViewModel GetPayPeriod(DateTime dateTime)
+        public PayPeriodViewModel GetPayPeriod(DateTime dateTime)
         {
             var firstDateOfWeek = dateTime.StartOfWeek(GetWeekStartDay());
             var weekNumber = dateTime.GetISOWeekOfYear(GetWeekStartDay());
@@ -36,7 +35,7 @@ namespace IEJPApps.Services
             };
         }
 
-        public static DateTime FirstDateOfWeek(int year, int weekOfYear)
+        public DateTime FirstDateOfWeek(int year, int weekOfYear)
         {
             var ci = CultureInfo.InvariantCulture;
             var jan1 = new DateTime(year, 1, 1);
@@ -51,7 +50,7 @@ namespace IEJPApps.Services
             return firstWeekDay.AddDays(weekOfYear * 7);
         }
 
-        public static List<PayPeriodViewModel> GetPeriodsFromCurrentPayPeriod(int before, int after)
+        public List<PayPeriodViewModel> GetPeriodsFromCurrentPayPeriod(int before, int after)
         {
             var periods = new List<PayPeriodViewModel>();
             var currentPeriod = GetCurrentPayPeriod();
