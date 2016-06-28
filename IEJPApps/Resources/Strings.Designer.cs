@@ -97,6 +97,15 @@ namespace IEJPApps.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Menu_Account_Settings {
+            get {
+                return ResourceManager.GetString("Menu_Account_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string Period_Active {

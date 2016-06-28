@@ -42,21 +42,20 @@ namespace IEJPApps
 
         private static void CreateSuperUser(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            const string superUserName = "admin";
+            const string superUserName = "admin@iejp.com";
+            const string superUserPaswd = "Admin1!";
 
             var userExists = userManager.FindByName(superUserName);
-
-            if (!roleManager.RoleExists(UserRoles.Admin) && userExists == null)
+            if (userExists == null)
             {
                 // Here we create a Admin super user who will maintain the website
                 var user = new ApplicationUser
                 {
                     UserName = superUserName,
-                    Email = "admin@iejp.com"
+                    Email = superUserName
                 };
 
-                string userPWD = "Admin1!";
-                if (userManager.Create(user, userPWD).Succeeded)
+                if (userManager.Create(user, superUserPaswd).Succeeded)
                 {
                     userManager.AddToRole(user.Id, UserRoles.Admin);
                 }

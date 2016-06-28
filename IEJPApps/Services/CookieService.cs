@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using IEJPApps.Models;
 
 namespace IEJPApps.Services
@@ -6,6 +7,7 @@ namespace IEJPApps.Services
     public class CookieService : ICookieService
     {
         private const string UserCookieName = "IEJP_User";
+        private const string CultureCookieName = "IEJP_UserCulture";
         private const string SessionCookieName = "ASP.NET_SessionId";
 
         /// <summary>
@@ -19,6 +21,14 @@ namespace IEJPApps.Services
             }
         }
 
+        private HttpCookie CultureCookie
+        {
+            get
+            {
+                return HttpContext.Current.Request.Cookies[CultureCookieName] ?? new HttpCookie(CultureCookieName);
+            }
+        }
+
         private HttpCookie SessionCookie
         {
             get
@@ -29,11 +39,11 @@ namespace IEJPApps.Services
 
         public string Language
         {
-            get { return UserCookie.Values["Language"] ?? "fr"; }
+            get { return CultureCookie.Values["Language"] ?? "fr"; }
             set
             {
-                UserCookie.Values["Language"] = value;
-                Save(UserCookie);
+                CultureCookie.Values["Language"] = value;
+                Save(CultureCookie);
             }
         }
 
@@ -43,6 +53,16 @@ namespace IEJPApps.Services
             set
             {
                 UserCookie.Values["Role"] = value;
+                Save(UserCookie);
+            }
+        }
+
+        public Guid EmployeeId
+        {
+            get { return new Guid(UserCookie.Values["EmployeeId"]); }
+            set
+            {
+                UserCookie.Values["EmployeeId"] = value.ToString();
                 Save(UserCookie);
             }
         }

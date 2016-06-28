@@ -129,6 +129,9 @@
   <data name="Login" xml:space="preserve">
     <value>Connexion</value>
   </data>
+  <data name="Menu_Account_Settings" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
   <data name="ProjectList" xml:space="preserve">
     <value>Liste de projets</value>
   </data>

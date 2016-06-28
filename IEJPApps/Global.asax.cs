@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Globalization;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using IEJPApps.Extensions;
 using IEJPApps.Services;
 
 namespace IEJPApps
@@ -30,8 +30,7 @@ namespace IEJPApps
         {
             var cookieService = DependencyResolver.Current.GetService<ICookieService>();
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cookieService.Language);
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cookieService.Language);
+            User.SetCurrentCulture(cookieService.Language);
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)

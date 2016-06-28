@@ -19,6 +19,12 @@ namespace IEJPApps.Models
         [Display(Name = "Visible", AutoGenerateFilter = false)]
         public bool Visible { get; set; }
 
+        /// <summary>
+        /// Link to AspNetUsers table
+        /// </summary>
+        [Display(Name = "AspNetUserId", AutoGenerateFilter = false)]
+        public Guid? AspNetUserId { get; set; }
+
         [Required]
         [StringLength(50)]
         [Display(Name = "Number", AutoGenerateFilter = false)]

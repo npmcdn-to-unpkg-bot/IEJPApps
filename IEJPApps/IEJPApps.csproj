@@ -208,6 +208,8 @@
     <Compile Include="Api\ProjectsController.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Infrastructure\UnityPerSessionLifetimeManager.cs" />
     <Compile Include="Models\ExpenditureType.cs" />
     <Compile Include="Models\Interfaces\IEntityVisibility.cs" />
@@ -249,6 +251,7 @@
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Infrastructure\ApplicationDbContext.cs" />
+    <Compile Include="ViewModels\EnvironmentViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Repositories\Repository.cs" />

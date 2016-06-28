@@ -1,10 +1,15 @@
-﻿@{
+﻿@using IEJPApps.Models
+@{
     ViewBag.Title = "Home Page";
 }
-@*
-    <div>Language: @ViewBag.Language</div>
-    <div>SessionId: @ViewBag.SessionId</div>
-*@
+
+<pre class="code">
+    Language: @ViewBag.Language
+    SessionId: @ViewBag.SessionId
+    IsAdmin: @User.IsInRole(UserRoles.Admin)
+    IsEmployee: @User.IsInRole(UserRoles.Employee)
+</pre>
+
 <div class="flash-message" ng-if="flash">
     <div class="alert {{'alert-' + flash.type}}" ng-bind="flash.message"></div>
 </div>

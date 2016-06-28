@@ -4,10 +4,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
 using IEJPApps.Models;
-using IEJPApps.Models.Infrastructure;
 
 namespace IEJPApps
 {
@@ -16,12 +14,6 @@ namespace IEJPApps
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the db context, user manager and signin manager to use a single instance per request
-            //app.CreatePerOwinContext(ApplicationDbContext.Create);
-            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            //app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-            //app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationUserManager>());
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationSignInManager>());
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationRoleManager>());
@@ -53,6 +45,8 @@ namespace IEJPApps
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
+            #region Other Authentication Methods
+
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
@@ -71,6 +65,8 @@ namespace IEJPApps
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            #endregion
         }
     }
 }

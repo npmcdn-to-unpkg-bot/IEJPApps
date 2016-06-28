@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -72,11 +73,8 @@ namespace IEJPApps.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    //Roles.AddUserToRole(model.Email, UserRoles.Employee);
-
-                    //RoleManager.AddToRole(user.Id, UserRoles.Admin);
-
-                    _cookieService.Role = /*UserRoles.Admin*/ string.Join(",", Roles.GetRolesForUser(model.Email)); // TODO : est-ce qu'on accepte des enregistrements d'employees ou on fonctionne par invitation ?
+                    //_cookieService.EmployeeId = UserManager.GetEmployeeId(new Guid(User.Identity.GetUserId())) ?? Guid.Empty;
+                    //_cookieService.Role = string.Join(",", Roles.GetRolesForUser(model.Email)); // TODO : est-ce qu'on accepte des enregistrements d'employees ou on fonctionne par invitation ?
 
                     return RedirectToLocal(returnUrl);
 
@@ -88,7 +86,7 @@ namespace IEJPApps.Controllers
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Invalid login attempt");
                     return View(model);
             }
         }
@@ -127,8 +125,10 @@ namespace IEJPApps.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
+
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid code.");
@@ -160,14 +160,12 @@ namespace IEJPApps.Controllers
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
-
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, UserRoles.Employee); // TODO : Manage employee registration
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    //Roles.AddUserToRole(model.Email, UserRoles.Admin); // TODO : Manage employee registration
-                    await this.UserManager.AddToRoleAsync(user.Id, UserRoles.Admin);
-
+                    
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

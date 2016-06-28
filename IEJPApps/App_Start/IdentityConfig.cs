@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,6 +17,8 @@ namespace IEJPApps
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
+
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
@@ -71,6 +75,19 @@ namespace IEJPApps
 
             return manager;
         }
+
+        public Employee GetEmployee(Guid userId)
+        {
+            return _db.Employees.FirstOrDefault(x => x.AspNetUserId == userId);
+        }
+
+        public Guid? GetEmployeeId(Guid userId)
+        {
+            var employee = GetEmployee(userId);
+            if (employee != null)
+                return employee.Id;
+            return null;
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.
@@ -102,6 +119,7 @@ namespace IEJPApps
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
             var roleStore = new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>());
+
             return new ApplicationRoleManager(roleStore);
         }
     }

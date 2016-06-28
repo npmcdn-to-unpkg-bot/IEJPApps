@@ -25,6 +25,7 @@
             Navigation: {
                 Home: "Home",
                 Manage: "Manage",
+                Culture: "Language",
                 Administration: "Administration",
                 Projects: "Projects",
                 Employees: "Employees",
@@ -124,6 +125,7 @@
             Navigation: {
                 Home: "Home",
                 Manage: "Gestion",
+                Culture: "Langue",
                 Administration: "Administration",
                 Projects: "Projets",
                 Employees: "Employés",

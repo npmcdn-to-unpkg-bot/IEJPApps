@@ -153,4 +153,7 @@
   <data name="VerifyPhoneNumberViewModel_PhoneNumber" xml:space="preserve">
     <value>Phone Number</value>
   </data>
+  <data name="Menu_Account_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

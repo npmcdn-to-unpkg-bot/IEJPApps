@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    angular
+    var app = angular
         .module("app", [
             "toastr",
             "ui.router",
@@ -30,7 +30,14 @@
             });
     }
 
-    function run($http, $rootScope, $window) {
+    function run($http, $rootScope, $window, environment) {
+        $rootScope.environment = environment;
+        console.log('environment', environment);
+
+        $rootScope.toJson = function(o) {
+            return angular.toJson(o, true);
+        }
+
         // Add JWT token as default auth header
         $http.defaults.headers.common["Authorization"] = "Bearer " + $window.jwtToken;
 
