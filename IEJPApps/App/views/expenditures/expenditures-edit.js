@@ -10,14 +10,14 @@
         $stateProvider
             .state("expenditures-create", {
                 url: "/expenditures/edit",
-                templateUrl: "/app/views/expenditures/expenditures-edit.html",
+                templateUrl: "/Expenditures/Edit",
                 controller: "Expenditures.EditController",
                 controllerAs: "vm",                
                 data: { activeTab: "expenditures" }
             })
             .state("expenditures-edit", {
                 url: "/expenditures/edit/:id",
-                templateUrl: "/app/views/expenditures/expenditures-edit.html",
+                templateUrl: "/Expenditures/Edit",
                 controller: "Expenditures.EditController",
                 controllerAs: "vm",
                 data: { activeTab: "expenditures" }

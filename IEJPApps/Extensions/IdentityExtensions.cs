@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
+using System.Security.Claims;
 using System.Security.Principal;
+using System.Threading;
 using IEJPApps.Models;
 
 namespace IEJPApps.Extensions
@@ -8,13 +10,13 @@ namespace IEJPApps.Extensions
     {
         public static CultureInfo GetCurrentCulture(this IPrincipal principal)
         {
-            return System.Threading.Thread.CurrentThread.CurrentUICulture;
+            return Thread.CurrentThread.CurrentUICulture;
         }
 
         public static void SetCurrentCulture(this IPrincipal principal, string language)
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
         }
 
         public static bool IsCultureEnglish(this IPrincipal principal)
@@ -25,6 +27,18 @@ namespace IEJPApps.Extensions
         public static bool IsCultureFrench(this IPrincipal principal)
         {
             return GetCurrentCulture(principal).TwoLetterISOLanguageName.ToLower() == "fr";
+        }
+
+        public static string GetEmployeeId(this IPrincipal user)
+        {
+            var claim = ((ClaimsIdentity)user.Identity).FindFirst("EmployeeId");
+            return claim == null ? null : claim.Value;
+        }
+
+        public static string GetEmployeeName(this IPrincipal user)
+        {
+            var claim = ((ClaimsIdentity)user.Identity).FindFirst("EmployeeName");
+            return claim == null ? null : claim.Value;
         }
 
         public static bool IsAdmin(this IPrincipal principal)

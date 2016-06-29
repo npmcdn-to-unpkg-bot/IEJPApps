@@ -30,7 +30,7 @@
             });
     }
 
-    function run($http, $rootScope, $window, environment) {
+    function run($http, $rootScope, $window, environment, $cookies) {
         $rootScope.environment = environment;
         console.log('environment', environment);
 
@@ -45,6 +45,8 @@
         $rootScope.$on("$stateChangeSuccess", function (event, toState/*, toParams, fromState, fromParams*/) {
             $rootScope.activeTab = toState.data.activeTab || "";
         });
+
+        //console.log($cookies.get('IEJP_UserCulture'));
     }
 
     // manually bootstrap angular after the JWT token is retrieved from the server
@@ -54,6 +56,13 @@
             window.jwtToken = token;
 
             angular.bootstrap(document, ['app']);
+        });
+
+        // Quick fix for when we click a link in menu... was not closing menu bar
+        $(document).on('click', '.navbar-collapse.in', function (e) {
+            if ($(e.target).is('a') && $(e.target).attr('class') !== 'dropdown-toggle') {
+                $(this).collapse('hide');
+            }
         });
     });
 })();

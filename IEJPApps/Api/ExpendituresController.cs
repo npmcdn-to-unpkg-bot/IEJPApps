@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using IEJPApps.Extensions;
 
 namespace IEJPApps.Api
 {
@@ -12,16 +13,30 @@ namespace IEJPApps.Api
     [RoutePrefix("api/expenditures")]
     public class ExpendituresController : ApiController
     {
+        private readonly ApplicationUserManager _applicationUserManager;
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
+
+        public ExpendituresController(ApplicationUserManager applicationUserManager)
+        {
+            _applicationUserManager = applicationUserManager;
+        }
 
         [Route("")]
         public List<ExpenditureTransaction> GetAll()
         {
-            return _db.ExpenditureTransactions
+            var query = _db.ExpenditureTransactions
                 .OrderByDescending(x => x.TransactionDate)
                 .Include(x => x.Project)
-                .Include(x => x.Employee)
-                .ToList();
+                .Include(x => x.Employee);
+
+            //var employeeId = _applicationUserManager.GetEmployeeId();
+            var employeeId = new Guid(User.GetEmployeeId());
+            if (!User.IsAdmin())
+            {
+                query = query.Where(x => x.EmployeeId == employeeId);
+            }
+
+            return query.ToList();
         }
 
         [Route("{id}")]

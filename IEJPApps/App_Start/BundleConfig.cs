@@ -27,6 +27,7 @@ namespace IEJPApps
                       "~/Scripts/angular.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularui").Include(
+                      "~/Scripts/angular-cookies.js",
                       "~/Scripts/angular-ui-router.js",
                       "~/Scripts/ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js",
                       "~/Scripts/angular-translate/angular-translate.min.js"));

@@ -88,6 +88,14 @@ namespace IEJPApps
                 return employee.Id;
             return null;
         }
+
+        public Guid? GetEmployeeId()
+        {
+            var employee = GetEmployee(new Guid(HttpContext.Current.User.Identity.GetUserId()));
+            if (employee != null)
+                return employee.Id;
+            return null;
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.

@@ -1,0 +1,15 @@
+﻿@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/angularjs")
+@Scripts.Render("~/bundles/angularui")
+<script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+@Scripts.Render("~/bundles/app")
+
+<script>
+    angular.module('app').value('environment', @Html.GetEnvironment().ToJson());
+</script>
+
+@if (ViewBag.DebugRoles != null)
+{
+    <pre>{{toJson(environment)}}</pre>
+}

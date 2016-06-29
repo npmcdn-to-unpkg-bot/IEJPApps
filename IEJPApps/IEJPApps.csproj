@@ -207,6 +207,7 @@
     <Compile Include="Api\EmployeesController.cs" />
     <Compile Include="Api\ProjectsController.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\ExpendituresController.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Models\ExpenditureTransaction.cs" />
     <Compile Include="Models\Extensions\EmployeeExtensions.cs" />
     <Compile Include="Models\Extensions\ProjectExtensions.cs" />
+    <Compile Include="Models\Repositories\EmployeeRepository.cs" />
     <Compile Include="Models\TimeTransaction.cs" />
     <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Resources\Strings.fr.Designer.cs">
@@ -277,14 +279,11 @@
     <Content Include="App\views\expenditures\expenditureTypes-edit.html" />
     <Content Include="App\views\expenditures\expenditureTypes-edit.js" />
     <Content Include="App\views\expenditures\expenditures-edit.js" />
-    <Content Include="App\views\expenditures\expenditures-edit.html" />
     <Content Include="App\views\expenditures\expenditures-index.js" />
-    <Content Include="App\views\expenditures\expenditures-index.html" />
     <Content Include="App\views\projects\projects-edit.html" />
     <Content Include="App\views\projects\projects-edit.js" />
     <Content Include="App\views\projects\projects-index.js" />
     <Content Include="App\views\projects\projects-index.html" />
-    <Content Include="App\views\timesheet\timesheet-edit - Copy.html" />
     <Content Include="App\views\timesheet\timesheet-edit.js" />
     <Content Include="App\views\timesheet\timesheet-edit.html" />
     <Content Include="App\views\timesheet\timesheet-index.html" />
@@ -302,6 +301,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-translate\angular-translate.js" />
     <Content Include="Scripts\angular-translate\angular-translate.min.js" />
@@ -316,7 +317,6 @@
     <Content Include="App\app.js" />
     <Content Include="App\views\home\home-index.js" />
     <Content Include="App\views\home\home-index.html" />
-    <Content Include="App\index.html" />
     <Content Include="Scripts\api\controllers\api\users.controller.js" />
     <Content Include="Scripts\api\controllers\app.controller.js" />
     <Content Include="Scripts\api\controllers\login.controller.js" />
@@ -336,6 +336,7 @@
     <Content Include="App\views\employees\employees-edit.html" />
     <None Include="Properties\PublishProfiles\iejp.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -386,6 +387,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Account\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Expenditures\IndexPartial.cshtml" />
+    <Content Include="Views\Expenditures\EditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

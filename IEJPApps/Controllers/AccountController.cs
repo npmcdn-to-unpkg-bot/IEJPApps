@@ -73,9 +73,6 @@ namespace IEJPApps.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    //_cookieService.EmployeeId = UserManager.GetEmployeeId(new Guid(User.Identity.GetUserId())) ?? Guid.Empty;
-                    //_cookieService.Role = string.Join(",", Roles.GetRolesForUser(model.Email)); // TODO : est-ce qu'on accepte des enregistrements d'employees ou on fonctionne par invitation ?
-
                     return RedirectToLocal(returnUrl);
 
                 case SignInStatus.LockedOut:
