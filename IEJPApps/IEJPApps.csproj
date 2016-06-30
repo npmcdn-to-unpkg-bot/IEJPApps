@@ -207,7 +207,6 @@
     <Compile Include="Api\EmployeesController.cs" />
     <Compile Include="Api\ProjectsController.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="Controllers\ExpendituresController.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
@@ -274,6 +273,8 @@
     <Content Include="App\services\projects.service.js" />
     <Content Include="App\views\employees\employees-edit.js" />
     <Content Include="App\views\employees\employees-index.js" />
+    <Content Include="App\views\expenditures\expenditures-index.html" />
+    <Content Include="App\views\expenditures\expenditures-edit.html" />
     <Content Include="App\views\expenditures\expenditureTypes-index.html" />
     <Content Include="App\views\expenditures\expenditureTypes-index.js" />
     <Content Include="App\views\expenditures\expenditureTypes-edit.html" />
@@ -390,8 +391,6 @@
     <Content Include="Views\Shared\_Scripts.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
-    <Content Include="Views\Expenditures\IndexPartial.cshtml" />
-    <Content Include="Views\Expenditures\EditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

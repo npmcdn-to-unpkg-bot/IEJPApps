@@ -1,6 +1,4 @@
-﻿@*@model null*@
-
-<div class="container-fluid">
+﻿<div class="container-fluid">
     <div class="row">
         <div class="form-title" ng-switch="vm.transaction.Id">
             <h4 ng-switch-when="undefined">{{'Expenditures.TitleCreate'|translate}}</h4>
@@ -18,25 +16,20 @@
                     <div class="col-xs-12 col-sm-10">
                         <input type="date" class="form-control text-box single-line" id="TransactionDate"
                                name="TransactionDate" ng-model="vm.transaction.TransactionDate"
-                               placeholder="yyyy-MM-dd" xmin="2016-06-01" xmax="2016-06-31" required/>
+                               placeholder="yyyy-MM-dd" xmin="2016-06-01" xmax="2016-06-31" required />
                     </div>
                 </div>
             </div>
-
-            @if (User.IsAdmin())
-            {
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="Employee">{{'Expenditures.Employee'|translate}}</label>
-                        <div class="col-xs-12 col-sm-10">
-                            <select id="Employee" name="Employee" class="form-control" ng-model="vm.transaction.EmployeeId">
-                                <option ng-repeat="option in vm.employees" value="{{option.Id}}">{{option.FullName}}</option>
-                            </select>
-                        </div>
+            <div class="row" ng-if="environment.isAdmin">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="Employee">{{'Expenditures.Employee'|translate}}</label>
+                    <div class="col-xs-12 col-sm-10">
+                        <select id="Employee" name="Employee" class="form-control" ng-model="vm.transaction.EmployeeId">
+                            <option ng-repeat="option in vm.employees" value="{{option.Id}}">{{option.FullName}}</option>
+                        </select>
                     </div>
                 </div>
-            }
-
+            </div>
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Project">{{'Expenditures.Project'|translate}}</label>
@@ -47,7 +40,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="ExpenditureType">{{'Expenditures.ExpenditureType'|translate}}</label>
@@ -58,7 +50,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Amount">{{'Expenditures.Amount'|translate}}</label>
@@ -67,7 +58,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Comment">{{'Expenditures.Comment'|translate}}</label>
@@ -103,7 +93,6 @@
             <button class="btn btn-danger" ng-disabled="vm.transaction.Id === undefined" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
         </div>
     </div>
-
     <div class="row top-buffer">
         <a ui-sref="expenditures">{{'Commands.BackToList'|translate}}</a>
     </div>
