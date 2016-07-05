@@ -41,6 +41,18 @@ namespace IEJPApps.Extensions
             return claim == null ? null : claim.Value;
         }
 
+        public static bool IsActive(this IPrincipal user)
+        {
+            var claim = ((ClaimsIdentity)user.Identity).FindFirst("Active");
+            return claim == null ? false : bool.Parse(claim.Value);
+        }
+
+        public static bool IsVisible(this IPrincipal user)
+        {
+            var claim = ((ClaimsIdentity)user.Identity).FindFirst("Visible");
+            return claim == null ? false : bool.Parse(claim.Value);
+        }
+
         public static bool IsAdmin(this IPrincipal principal)
         {
             return principal.IsInRole(UserRoles.Admin);

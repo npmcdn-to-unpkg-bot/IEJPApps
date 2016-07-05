@@ -17,25 +17,18 @@ namespace IEJPApps.Extensions
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 var currentUser = HttpContext.Current.User;
-                var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var currentUswerId = currentUser.Identity.GetUserId();
-                var currentEmployee = userManager.GetEmployee(new Guid(currentUswerId));
 
                 var environment = new EnvironmentViewModel
                 {
                     UserId = currentUser.Identity.GetUserId() ?? string.Empty,
+                    EmployeeId = currentUser.GetEmployeeId(),
+                    EmployeeName = currentUser.GetEmployeeName(),
+                    IsActive = currentUser.IsActive(),
+                    IsVisible = currentUser.IsVisible(),
                     IsAdmin = currentUser.IsInRole(UserRoles.Admin),
                     IsEmployee = currentUser.IsInRole(UserRoles.Employee),
                 };
-
-                if (currentEmployee != null)
-                {
-                    environment.EmployeeId = currentEmployee.Id.ToString();
-                    environment.EmployeeName = currentEmployee.FullName;
-                    environment.IsActive = currentEmployee.Active;
-                    environment.IsVisible = currentEmployee.Visible;
-                }
-
+                
                 return environment;
             }
 

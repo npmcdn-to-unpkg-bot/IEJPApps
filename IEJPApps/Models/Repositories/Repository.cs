@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using IEJPApps.Models.Infrastructure;
+using System.Security.Principal;
+using System.Web;
 
 namespace IEJPApps.Models.Repositories
 {
@@ -17,12 +19,17 @@ namespace IEJPApps.Models.Repositories
             set = context.Set<T>();
         }
 
+        protected IPrincipal CurrentUser
+        {
+            get { return HttpContext.Current.User; }
+        }
+
         protected DbSet<T> Set
         {
             get { return set; }
         }
 
-        public T GetByID(Int32 id)
+        public T GetByID(Guid id)
         {
             return Set.Find(id);
         }

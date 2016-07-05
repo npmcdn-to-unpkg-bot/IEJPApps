@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -39,10 +37,10 @@ namespace IEJPApps
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                //RequireNonLetterOrDigit = true,
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                //RequireLowercase = true,
+                //RequireUppercase = true,
             };
 
             // Configure user lockout defaults
@@ -74,27 +72,6 @@ namespace IEJPApps
             }
 
             return manager;
-        }
-
-        public Employee GetEmployee(Guid userId)
-        {
-            return _db.Employees.FirstOrDefault(x => x.AspNetUserId == userId);
-        }
-
-        public Guid? GetEmployeeId(Guid userId)
-        {
-            var employee = GetEmployee(userId);
-            if (employee != null)
-                return employee.Id;
-            return null;
-        }
-
-        public Guid? GetEmployeeId()
-        {
-            var employee = GetEmployee(new Guid(HttpContext.Current.User.Identity.GetUserId()));
-            if (employee != null)
-                return employee.Id;
-            return null;
         }
     }
 

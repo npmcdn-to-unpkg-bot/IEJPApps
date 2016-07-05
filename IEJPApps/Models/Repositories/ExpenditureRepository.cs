@@ -1,47 +1,44 @@
 ﻿using System;
-using IEJPApps.Models;
-using IEJPApps.Models.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
 using System.Data.Entity;
 using IEJPApps.Extensions;
-using IEJPApps.Models.Repositories;
 
-namespace IEJPApps.Api
+namespace IEJPApps.Models.Repositories
 {
-    [Authorize]
-    [RoutePrefix("api/expenditures")]
-    public class ExpendituresController : ApiController
+    public class ExpenditureRepository : Repository<ExpenditureTransaction>
     {
-        private readonly ApplicationDbContext _db = new ApplicationDbContext();
-        private readonly ExpenditureRepository _expenditures = new ExpenditureRepository();
-
-        [Route("")]
-        public List<ExpenditureTransaction> GetAll()
+        public new List<ExpenditureTransaction> GetAll()
         {
-            return _expenditures.GetAll();
+            var query = Set
+                .OrderByDescending(x => x.TransactionDate)
+                .Include(x => x.Project)
+                .Include(x => x.Employee);
+
+            if (!CurrentUser.IsAdmin())
+            {
+                var employeeId = new Guid(CurrentUser.GetEmployeeId());
+                query = query.Where(x => x.EmployeeId == employeeId);
+            }
+
+            return query.ToList();
         }
 
-        [Route("{id}")]
-        public ExpenditureTransaction GetById(Guid id)
+        public new ExpenditureTransaction GetByID(Guid id)
         {
-            return _expenditures.GetByID(id);
+            var transaction = Set.Find(id);
 
-            //var transaction = _db.ExpenditureTransactions.Find(id);
+            if (transaction != null && !CurrentUser.IsAdmin())
+            {
+                var employeeId = new Guid(CurrentUser.GetEmployeeId());
+                if (transaction.EmployeeId != employeeId)
+                    return null;
+            }
 
-            //if (transaction != null && !User.IsAdmin())
-            //{
-            //    var employeeId = new Guid(User.GetEmployeeId());
-            //    if (transaction.EmployeeId != employeeId)
-            //        return null;
-            //}
-
-            //return transaction;
+            return transaction;
         }
 
-        [HttpPost]
-        [Route("")]
+        /*        
         public ExpenditureTransaction Create([FromBody] ExpenditureTransaction transaction)
         {
             if (ModelState.IsValid)
@@ -58,8 +55,6 @@ namespace IEJPApps.Api
             throw new Exception("Invalid Expenditure Transaction Model");
         }
 
-        [HttpPut]
-        [Route("")]
         public ExpenditureTransaction Update([FromBody] ExpenditureTransaction transaction)
         {
             // TODO : Validate if admin vs emplyeeId ?
@@ -87,5 +82,6 @@ namespace IEJPApps.Api
             _db.ExpenditureTransactions.Remove(transaction);
             _db.SaveChanges();
         }
+        */
     }
 }

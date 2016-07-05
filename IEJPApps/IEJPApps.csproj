@@ -219,6 +219,7 @@
     <Compile Include="Models\Extensions\EmployeeExtensions.cs" />
     <Compile Include="Models\Extensions\ProjectExtensions.cs" />
     <Compile Include="Models\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Models\Repositories\ExpenditureRepository.cs" />
     <Compile Include="Models\TimeTransaction.cs" />
     <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Resources\Strings.fr.Designer.cs">
