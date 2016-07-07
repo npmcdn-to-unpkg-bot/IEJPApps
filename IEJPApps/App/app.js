@@ -31,11 +31,13 @@
     }
 
     function run($http, $rootScope, $window, environment, $cookies, $translate) {
-        $rootScope.environment = environment;
+        $rootScope.environment = environment || {};
         console.log('environment', environment);
 
-        // set current user language
-        $translate.uses(environment.language);
+        if (environment) {
+            // set current user language
+            $translate.uses(environment.language);
+        }
 
         $rootScope.toJson = function(o) {
             return angular.toJson(o, true);
@@ -48,14 +50,12 @@
         $rootScope.$on("$stateChangeSuccess", function (event, toState/*, toParams, fromState, fromParams*/) {
             $rootScope.activeTab = toState.data.activeTab || "";
         });
-
-        //console.log($cookies.get('IEJP_UserCulture'));
     }
 
     // manually bootstrap angular after the JWT token is retrieved from the server
     $(function () {
         // get JWT token from server
-        $.get("/app/token", function (token) {
+        $.get("/api/token", function (token) {
             window.jwtToken = token;
 
             angular.bootstrap(document, ['app']);

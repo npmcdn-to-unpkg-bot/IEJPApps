@@ -15,8 +15,6 @@ namespace IEJPApps
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        private readonly ApplicationDbContext _db = new ApplicationDbContext();
-
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
@@ -72,6 +70,18 @@ namespace IEJPApps
             }
 
             return manager;
+        }
+
+        public async Task<IdentityResult> RegisterUser(string userName, string passWord)
+        {
+            var user = new ApplicationUser
+            {
+                UserName = userName
+            };
+
+            var result = await CreateAsync(user, passWord);
+
+            return result;
         }
     }
 

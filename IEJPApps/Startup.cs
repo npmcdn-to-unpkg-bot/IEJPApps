@@ -14,9 +14,13 @@ namespace IEJPApps
         {
             System.Diagnostics.Trace.WriteLine("MVC Version: {0}", typeof(System.Web.Mvc.Controller).Assembly.GetName().Version.ToString());
             ConfigureAuth(app);
+
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            //app.UseWebApi(config);
+
             CreateRolesAndUsers();
         }
-        
+
         private void CreateRolesAndUsers()
         {
             var context = new ApplicationDbContext();

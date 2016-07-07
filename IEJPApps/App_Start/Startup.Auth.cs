@@ -6,6 +6,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using IEJPApps.Models;
+using IEJPApps.Providers;
+using Microsoft.Owin.Security.OAuth;
 
 namespace IEJPApps
 {
@@ -17,6 +19,8 @@ namespace IEJPApps
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationUserManager>());
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationSignInManager>());
             app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationRoleManager>());
+
+            ConfigureTokenBasedAuth(app);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -30,8 +34,8 @@ namespace IEJPApps
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                            validateInterval: TimeSpan.FromMinutes(30),
+                            regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });
 
@@ -44,29 +48,19 @@ namespace IEJPApps
             // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+        }
 
-            #region Other Authentication Methods
-
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
-
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
-
-            #endregion
+        private static void ConfigureTokenBasedAuth(IAppBuilder app)
+        {
+            // Token Generation
+            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = new SimpleAuthorizationServerProvider()
+            });
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }
