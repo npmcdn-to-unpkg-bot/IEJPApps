@@ -7,7 +7,7 @@
             $translateProvider.translations('en', getEnglishTranslations());
             $translateProvider.translations('fr', getFrenchTranslations());
             $translateProvider.preferredLanguage('fr');
-        }]);;
+        }]);
 
     function getEnglishTranslations() {
         return {

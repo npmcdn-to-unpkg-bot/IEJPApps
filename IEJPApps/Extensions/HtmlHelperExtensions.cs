@@ -23,6 +23,7 @@ namespace IEJPApps.Extensions
                     UserId = currentUser.Identity.GetUserId() ?? string.Empty,
                     EmployeeId = currentUser.GetEmployeeId(),
                     EmployeeName = currentUser.GetEmployeeName(),
+                    Language = currentUser.GetCurrentCulture().TwoLetterISOLanguageName.ToLower(),
                     IsActive = currentUser.IsActive(),
                     IsVisible = currentUser.IsVisible(),
                     IsAdmin = currentUser.IsInRole(UserRoles.Admin),

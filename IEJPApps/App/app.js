@@ -30,9 +30,12 @@
             });
     }
 
-    function run($http, $rootScope, $window, environment, $cookies) {
+    function run($http, $rootScope, $window, environment, $cookies, $translate) {
         $rootScope.environment = environment;
         console.log('environment', environment);
+
+        // set current user language
+        $translate.uses(environment.language);
 
         $rootScope.toJson = function(o) {
             return angular.toJson(o, true);
