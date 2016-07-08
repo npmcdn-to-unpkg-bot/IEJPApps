@@ -20,17 +20,17 @@ namespace IEJPApps
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                       "~/Scripts/angular.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularui").Include(
-                      "~/Scripts/angular-cookies.js",
-                      "~/Scripts/angular-ui-router.js",
-                      "~/Scripts/ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js",
-                      "~/Scripts/angular-translate/angular-translate.min.js"));
+                "~/Scripts/angular-cookies.js",
+                "~/Scripts/angular-ui-router.js",
+                "~/Scripts/ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js",
+                "~/Scripts/angular-translate/angular-translate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/App/app.js")
@@ -38,8 +38,11 @@ namespace IEJPApps
                 .IncludeDirectory("~/App/views", "*.js", true));
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                //"~/Content/bootstrap.min.css",
+                "~/Content/bootstrap-yeti.min.css",
+                //"~/Content/bootstrap-united.min.css",
+                "~/Content/font-awesome.min.css",
+                "~/Content/site.css"));
 
             BundleTable.EnableOptimizations = false;
         }

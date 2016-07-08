@@ -7,64 +7,79 @@
     </div>
 </div>
 
-<div id="content" class="container-fluid">
-    <form>
-        <div class="form-horizontal">            
-            <div class="row" ng-if="vm.project.Id !== undefined">
-                <div class="form-group dashboard-line">
-                    <div class="col-xs-6 col-sm-3 col-sm-offset-3">{{'Projects.Time'|translate}}: <strong>{{vm.project.TimeTotal}}</strong></div>
-                    <div class="col-xs-6 col-sm-3">{{'Projects.Expenditures'|translate}}: <strong>{{vm.project.ExpenditureTotal|currency}}</strong></div>
-                </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="dashboard-line" ng-if="vm.project.Id">
+            <div class="col-sm-2 hidden-xs">&nbsp;</div>
+            <div class="col-sm-5 col-xs-6">
+                <span xclass="hidden-xs">{{'Projects.Time'|translate}}:&nbsp;</span><strong>{{vm.project.TimeTotal}}</strong>
             </div>
-            <div class="row">
+            <div class="col-sm-5 col-xs-6">
+                <span xclass="hidden-xs">{{'Projects.Expenditures'|translate}}:&nbsp;</span><strong>{{vm.project.ExpenditureTotal|currency}}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <form role="form" class="form-horizontal">
+                <!--<div class="form-group dashboard-line" ng-if="vm.project.Id">
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col-sm-3">
+                        {{'Projects.Time'|translate}}: <strong>{{vm.project.TimeTotal}}</strong>
+                    </div>
+                    <div class="col-sm-3">
+                        {{'Projects.Expenditures'|translate}}: <strong>{{vm.project.ExpenditureTotal|currency}}</strong>
+                    </div>
+                </div>-->
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Visible">{{'States.Label'|translate}}</label>
-                    <div class="col-xs-12 col-sm-10">
+                    <div class="col-sm-6">
                         <label class="btn btn-default" ng-model="vm.project.Active" uib-btn-checkbox>{{'States.Active'|translate}} <i class="glyphicon glyphicon-ok"></i></label>
                         <label class="btn btn-default" ng-model="vm.project.Visible" uib-btn-checkbox>{{'States.Visible'|translate}} <i class="glyphicon glyphicon-eye-open"></i></label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="ProjectNumber">{{'Projects.Number'|translate}}</label>
-                    <div class="col-xs-12 col-sm-10">
+                    <div class="col-sm-6">
                         <input class="form-control text-box single-line" id="ProjectNumber" name="ProjectNumber" type="text" ng-model="vm.project.ProjectNumber">
                         <span class="field-validation-valid text-danger" data-valmsg-for="ProjectNumber" data-valmsg-replace="true"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Customer">{{'Projects.Customer'|translate}}</label>
-                    <div class="col-xs-12 col-sm-10">
+                    <div class="col-sm-6">
                         <input class="form-control text-box single-line" id="Customer" name="Customer" type="text" ng-model="vm.project.Customer">
                         <span class="field-validation-valid text-danger" data-valmsg-for="Customer" data-valmsg-replace="true"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Description">{{'Projects.Description'|translate}}</label>
-                    <div class="col-xs-12 col-sm-10">
+                    <div class="col-sm-6">
                         <textarea id="Description" name="Description" class="form-control" rows="3" ng-model="vm.project.Description" Xplaceholder="{{'Projects.Description'|translate}}"></textarea>
                     </div>
                 </div>
-            </div>
-            <!--<div class="row">
                 <div class="form-group">
-                    <div class="col-xs-12 col-sm-10">
-                        <p class="card-text" ng-if="vm.project.Updated">
-                            <small class="text-muted">{{'LastUpdated'|translate}} {{vm.project.Updated}}</small>
-                        </p>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-primary" ng-click="vm.save()">{{'Commands.Save'|translate}}</button>
+                        <button type="button" class="btn btn-danger" ng-if="vm.project.Id" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
                     </div>
                 </div>
-            </div>-->
+                <div class="form-group">
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col-sm-6">
+                        <a ui-sref="projects">{{'Commands.BackToList'|translate}}</a>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
-<div id="footer" class="visible-xs">
+<!--<div id="footer" class="visible-xs">
     <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
         <div class="row" id="bottomNav">
             <div class="col-xs-4 text-center">
@@ -91,4 +106,4 @@
     <div class="row top-buffer">
         <a ui-sref="projects">{{'Commands.BackToList'|translate}}</a>
     </div>
-</div>
+</div>-->
