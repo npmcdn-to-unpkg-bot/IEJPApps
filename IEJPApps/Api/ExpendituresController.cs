@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using IEJPApps.Exceptions;
 using IEJPApps.Extensions;
 using IEJPApps.Models.Repositories;
 
@@ -44,34 +45,28 @@ namespace IEJPApps.Api
         [Route("")]
         public ExpenditureTransaction Create([FromBody] ExpenditureTransaction transaction)
         {
-            if (ModelState.IsValid)
-            {
-                transaction.Id = Guid.NewGuid();
-                transaction.Created = DateTime.Now;
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid Expenditure Transaction Model");
 
-                _db.ExpenditureTransactions.Add(transaction);
-                _db.SaveChanges();
+            transaction.Id = Guid.NewGuid();
+            transaction.Created = DateTime.Now;
 
-                return transaction;
-            }
+            _db.ExpenditureTransactions.Add(transaction);
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Expenditure Transaction Model");
+            return transaction;
         }
 
         [HttpPut]
         [Route("")]
         public ExpenditureTransaction Update([FromBody] ExpenditureTransaction transaction)
         {
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid Expenditure Transaction Model");
+
             // TODO : Validate if admin vs emplyeeId ?
-            if (ModelState.IsValid)
-            {
-                _db.Entry(transaction).State = EntityState.Modified;
-                _db.SaveChanges();
+            _db.Entry(transaction).State = EntityState.Modified;
+            _db.SaveChanges();
 
-                return transaction;
-            }
-
-            throw new Exception("Invalid Expenditure Transaction Model");
+            return transaction;
         }
 
         [HttpDelete]
@@ -82,7 +77,7 @@ namespace IEJPApps.Api
             var transaction = _db.ExpenditureTransactions.Find(id);
 
             if (transaction == null)
-                throw new Exception("Expenditure Transaction Not Found");
+                throw new HttpApiException("Expenditure Transaction Not Found");
 
             _db.ExpenditureTransactions.Remove(transaction);
             _db.SaveChanges();

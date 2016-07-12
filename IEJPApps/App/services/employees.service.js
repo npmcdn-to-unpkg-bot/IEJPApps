@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .factory('EmployeesService', Service);
+        .factory('EmployeesService', ["$http", "$q", "ErrorService", service]);
 
-    function Service($http, $q, ErrorService) {
+    function service($http, $q, errorService) {
         return {
             New: New,
             GetAll: GetAll,
@@ -39,14 +39,12 @@
             return $http.delete('/api/employees/' + _id).then(handleSuccess, handleError);
         }
 
-        // private functions
-
         function handleSuccess(res) {
             return res.data;
         }
 
         function handleError(res) {
-            ErrorService.error('Errors.ErrorOccuredCancelled');
+            errorService.error('Errors.ErrorOccuredCancelled');
 
             return $q.reject(res.data);
         }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using IEJPApps.Exceptions;
 
 namespace IEJPApps.Api
 {
@@ -33,32 +34,26 @@ namespace IEJPApps.Api
         [Route("")]
         public ExpenditureType Create([FromBody] ExpenditureType entity)
         {
-            if (ModelState.IsValid)
-            {
-                entity.Id = Guid.NewGuid();
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid expenditure type model");
 
-                _db.ExpenditureTypes.Add(entity);
-                _db.SaveChanges();
+            entity.Id = Guid.NewGuid();
 
-                return entity;
-            }
+            _db.ExpenditureTypes.Add(entity);
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Expenditure Type Model");
+            return entity;
         }
 
         [HttpPut]
         [Route("")]
         public ExpenditureType Update([FromBody] ExpenditureType entity)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(entity).State = EntityState.Modified;
-                _db.SaveChanges();
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid expenditure type Model");
 
-                return entity;
-            }
+            _db.Entry(entity).State = EntityState.Modified;
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Expenditure Type Model");
+            return entity;
         }
 
         [HttpDelete]
@@ -68,7 +63,7 @@ namespace IEJPApps.Api
             var entity = _db.ExpenditureTypes.Find(id);
 
             if (entity == null)
-                throw new Exception("Expenditure Type Not Found");
+                throw new HttpApiException("Expenditure type not found");
 
             _db.ExpenditureTypes.Remove(entity);
             _db.SaveChanges();

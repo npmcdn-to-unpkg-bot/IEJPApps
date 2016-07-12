@@ -70,7 +70,7 @@
             if ($stateParams.id) {
                 timeSheetService.GetById($stateParams.id).then(function(transaction) {
                     vm.transaction = transaction;
-                    vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate);
+                    vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate || 'undefined');
                 });
             } else {
                 vm.transaction.TransactionDate = new Date();

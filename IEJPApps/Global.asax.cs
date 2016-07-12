@@ -5,6 +5,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using IEJPApps.Extensions;
 using IEJPApps.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace IEJPApps
 {
@@ -18,12 +20,16 @@ namespace IEJPApps
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = 
-                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
-            GlobalConfiguration.Configuration.Formatters
-                .Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+            var settings = GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings;
+            settings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+            settings.DateParseHandling = DateParseHandling.DateTimeOffset;
+            settings.Formatting = Formatting.Indented;
+            settings.DateTimeZoneHandling = DateTimeZoneHandling.Local; //.RoundtripKind;
+            //settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using IEJPApps.Exceptions;
 
 namespace IEJPApps.Api
 {
@@ -34,33 +35,27 @@ namespace IEJPApps.Api
         [Route("")]
         public TimeTransaction Create([FromBody] TimeTransaction transaction)
         {
-            if (ModelState.IsValid)
-            {
-                transaction.Id = Guid.NewGuid();
-                transaction.Created = DateTime.Now;
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid Time Transaction Model");
 
-                _db.TimeTransactions.Add(transaction);
-                _db.SaveChanges();
+            transaction.Id = Guid.NewGuid();
+            transaction.Created = DateTime.Now;
 
-                return transaction;
-            }
+            _db.TimeTransactions.Add(transaction);
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Time Transaction Model");
+            return transaction;
         }
 
         [HttpPut]
         [Route("")]
         public TimeTransaction Update([FromBody] TimeTransaction transaction)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(transaction).State = EntityState.Modified;
-                _db.SaveChanges();
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid Time Transaction Model");
 
-                return transaction;
-            }
+            _db.Entry(transaction).State = EntityState.Modified;
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Time Transaction Model");
+            return transaction;
         }
 
         [HttpDelete]
@@ -70,7 +65,7 @@ namespace IEJPApps.Api
             var transaction = _db.TimeTransactions.Find(id);
 
             if (transaction == null)
-                throw new Exception("Time Transaction Not Found");
+                throw new HttpApiException("Time Transaction Not Found");
 
             _db.TimeTransactions.Remove(transaction);
             _db.SaveChanges();

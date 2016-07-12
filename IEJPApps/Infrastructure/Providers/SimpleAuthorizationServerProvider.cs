@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.OAuth;
 
-namespace IEJPApps.Providers
+namespace IEJPApps.Infrastructure.Providers
 {
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {

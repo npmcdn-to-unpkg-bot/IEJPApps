@@ -22,19 +22,17 @@ namespace IEJPApps.Services
         public PayPeriodViewModel GetPayPeriod(DateTime dateTime)
         {
             var firstDateOfWeek = dateTime.StartOfWeek(GetWeekStartDay());
-            var weekNumber = dateTime.GetISOWeekOfYear(GetWeekStartDay());
             var lastDayOfWeek = firstDateOfWeek.AddDays(6);
-            var current = DateTime.Now.Date;
 
             return new PayPeriodViewModel
             {
                 StartDate = firstDateOfWeek,
                 EndDate = lastDayOfWeek,
-                WeekNumber = weekNumber,
-                IsCurrent = current >= firstDateOfWeek.Date && current <= lastDayOfWeek.Date
+                WeekNumber = firstDateOfWeek.GetISOWeekOfYear(GetWeekStartDay()),
+                IsCurrent = firstDateOfWeek.IsInCurrentPeriod(GetWeekStartDay())
             };
         }
-
+        
         public DateTime FirstDateOfWeek(int year, int weekOfYear)
         {
             var ci = CultureInfo.InvariantCulture;

@@ -15,11 +15,10 @@ namespace IEJPApps.Models.Repositories
                 .Include(x => x.Project)
                 .Include(x => x.Employee);
 
-            if (!CurrentUser.IsAdmin())
-            {
-                var employeeId = new Guid(CurrentUser.GetEmployeeId());
-                query = query.Where(x => x.EmployeeId == employeeId);
-            }
+            if (CurrentUser.IsAdmin()) return query.ToList();
+            
+            var employeeId = new Guid(CurrentUser.GetEmployeeId());
+            query = query.Where(x => x.EmployeeId == employeeId);
 
             return query.ToList();
         }

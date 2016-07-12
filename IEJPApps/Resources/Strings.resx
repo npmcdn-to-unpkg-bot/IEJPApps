@@ -156,4 +156,10 @@
   <data name="Menu_Account_Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Period_ClosedDate" xml:space="preserve">
+    <value>Closed Date</value>
+  </data>
+  <data name="Period_OpenedDate" xml:space="preserve">
+    <value>Opened Date</value>
+  </data>
 </root>

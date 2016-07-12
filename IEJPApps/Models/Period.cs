@@ -17,6 +17,12 @@ namespace IEJPApps.Models
         [Display(ResourceType = typeof (Strings), Name = "Period_EndDate", AutoGenerateFilter = false)]
         public DateTime EndDate { get; set; }
 
+        [Display(ResourceType = typeof(Strings), Name = "Period_OpenedDate", AutoGenerateFilter = false)]
+        public DateTime? OpenedDate { get; set; }
+
+        [Display(ResourceType = typeof(Strings), Name = "Period_ClosedDate", AutoGenerateFilter = false)]
+        public DateTime? ClosedDate { get; set; }
+
         [DefaultValue(true)]
         [Display(ResourceType = typeof (Strings), Name = "Period_Active", AutoGenerateFilter = false)]
         public bool Active { get; set; }

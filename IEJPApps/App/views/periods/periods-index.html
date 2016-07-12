@@ -1,0 +1,80 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="page-title">
+            <h3>{{'Periods.TitleList'|translate}}</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid command-bar">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.filter" placeholder="{{'Commands.Filter'|translate}}">
+            </div>
+        </div>
+
+        <div class="col-xs-4 col-sm-6">
+            <div class="form-group text-right">
+                <button class="btn btn-success" ui-sref="periods-create">{{'Commands.Create'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row hidden-xs">
+        <div class="periods-list">
+            <table class="table">
+                <tr>
+                    <th class="text-center">{{'States.Active'|translate}}</th>
+                    <th class="text-center">{{'States.Visible'|translate}}</th>
+                    <th>{{'Periods.StartDate'|translate}}</th>
+                    <th>{{'Periods.EndDate'|translate}}</th>
+                    <th>{{'Periods.WeekNumber'|translate}}</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in vm.periods | filter: vm.filter | orderBy: '-StartDate' as filteredItems">
+                    <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.IsActive"></i></td>
+                    <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.IsVisible"></i></td>
+                    <td>{{item.StartDate | shortdate}}</td>
+                    <td>{{item.EndDate | shortdate}}</td>
+                    <td>{{item.WeekNumber | padzero:2}}</td>
+                    <td class="text-right">
+                        <a ui-sref="periods-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row visible-xs">
+        <div class="periods-list">
+            <div class="list-group">
+                <a class="list-group-item" ui-sref="periods-edit({ id: '{{item.Id}}' })" ng-repeat="item in vm.periods | filter: vm.filter | orderBy: ['-StartDate'] as filteredItems">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="card-title">
+                                <strong>({{item.WeekNumber | padzero:2}}) {{item.StartDate|shortdate}} - {{item.EndDate|shortdate}}</strong>
+                                <small class="text-muted card-state-icons">
+                                    <i class="glyphicon glyphicon-ok" ng-if="item.IsActive"></i>
+                                    <i class="glyphicon glyphicon-eye-open" ng-if="item.IsVisible"></i>
+                                </small>
+                            </div>
+                            <div class="card-text" ng-if="item.OpenedDate">
+                                <small>{{'Periods.OpenedDate'|translate}}: {{item.OpenedDate|shortdate}}</small>
+                            </div>
+                            <div class="card-text" ng-if="item.ClosedDate">
+                                <small>{{'Periods.ClosedDate'|translate}}: {{item.ClosedDate|shortdate}}</small>
+                            </div>
+                            <div class="card-text">
+                                <small>{{'Periods.State'|translate}}: {{vm.state(item)}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

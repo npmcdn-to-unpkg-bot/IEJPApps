@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using IEJPApps.Exceptions;
 
 namespace IEJPApps.Api
 {
@@ -36,35 +37,29 @@ namespace IEJPApps.Api
         [Route("")]
         public Project Create([FromBody] Project project)
         {
-            if (ModelState.IsValid)
-            {
-                project.Id = Guid.NewGuid();
-                project.Created = DateTime.Now;
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid project model");
 
-                _db.Projects.Add(project);
-                _db.SaveChanges();
+            project.Id = Guid.NewGuid();
+            project.Created = DateTime.Now;
 
-                return project;
-            }
+            _db.Projects.Add(project);
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Project Model");
+            return project;
         }
 
         [HttpPut]
         [Route("")]
         public Project Update([FromBody] Project project)
         {
-            if (ModelState.IsValid)
-            {
-                project.Updated = DateTime.Now;
+            if (!ModelState.IsValid) throw new HttpApiException("Invalid project model");
 
-                _db.Entry(project).State = EntityState.Modified;
-                _db.SaveChanges();
+            project.Updated = DateTime.Now;
 
-                return project;
-            }
+            _db.Entry(project).State = EntityState.Modified;
+            _db.SaveChanges();
 
-            throw new Exception("Invalid Project Model");
+            return project;
         }
 
         [HttpDelete]
@@ -74,7 +69,7 @@ namespace IEJPApps.Api
             var project = _db.Projects.Find(id);
 
             if (project == null)
-                throw new Exception("Project Not Found");
+                throw new HttpApiException("Project not found");
 
             _db.Projects.Remove(project);
             _db.SaveChanges();

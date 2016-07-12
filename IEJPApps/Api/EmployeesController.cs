@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using IEJPApps.Exceptions;
 
 namespace IEJPApps.Api
 {
@@ -46,7 +47,7 @@ namespace IEJPApps.Api
                 return employee;
             }
 
-            throw new Exception("Invalid Employee Model");
+            throw new HttpApiException("Invalid Employee Model");
         }
 
         [HttpPut]
@@ -61,7 +62,7 @@ namespace IEJPApps.Api
                 return employee;
             }
 
-            throw new Exception("Invalid Employee Model");
+            throw new HttpApiException("Invalid Employee Model");
         }
 
         [HttpDelete]
@@ -71,7 +72,7 @@ namespace IEJPApps.Api
             var employee = _db.Employees.Find(id);
 
             if (employee == null)
-                throw new Exception("Employee Not Found");
+                throw new HttpApiException("Employee Not Found");
 
             _db.Employees.Remove(employee);
             _db.SaveChanges();

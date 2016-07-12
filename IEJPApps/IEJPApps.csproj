@@ -212,16 +212,20 @@
     <Compile Include="Api\ExpenditureTypesController.cs" />
     <Compile Include="Api\ExpendituresController.cs" />
     <Compile Include="Api\LookupController.cs" />
+    <Compile Include="Api\PayPeriodsController.cs" />
     <Compile Include="Api\TimeSheetController.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Api\EmployeesController.cs" />
     <Compile Include="Api\ProjectsController.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Exceptions\HttpApiException.cs" />
+    <Compile Include="Extensions\ApiControllerExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Infrastructure\UnityPerSessionLifetimeManager.cs" />
     <Compile Include="Models\ExpenditureType.cs" />
+    <Compile Include="Models\Extensions\PeriodExtensions.cs" />
     <Compile Include="Models\Interfaces\IEntityVisibility.cs" />
     <Compile Include="Models\Period.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -232,7 +236,7 @@
     <Compile Include="Models\Repositories\ExpenditureRepository.cs" />
     <Compile Include="Models\TimeTransaction.cs" />
     <Compile Include="Models\UserRoles.cs" />
-    <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Infrastructure\Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Resources\Strings.fr.Designer.cs">
       <DependentUpon>Strings.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -276,6 +280,7 @@
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\services\periods.service.js" />
     <Content Include="App\services\errors.service.js" />
     <Content Include="App\services\employees.service.js" />
     <Content Include="App\services\expenditureTypes.service.js" />
@@ -294,6 +299,10 @@
     <Content Include="App\views\expenditures\expenditureTypes-edit.js" />
     <Content Include="App\views\expenditures\expenditures-edit.js" />
     <Content Include="App\views\expenditures\expenditures-index.js" />
+    <Content Include="App\views\periods\periods-edit.html" />
+    <Content Include="App\views\periods\periods-edit.js" />
+    <Content Include="App\views\periods\periods-index.html" />
+    <Content Include="App\views\periods\periods-index.js" />
     <Content Include="App\views\projects\projects-edit.html" />
     <Content Include="App\views\projects\projects-edit.js" />
     <Content Include="App\views\projects\projects-index.js" />

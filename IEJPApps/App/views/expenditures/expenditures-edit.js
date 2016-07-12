@@ -35,14 +35,11 @@
             TransactionDate: new Date()
         };
 
-        //vm.dateFormat = "yyyy-MM-dd";
-
         vm.save = function () {
             if (vm.transaction.Id) {
                 expendituresService.Update(vm.transaction);
             }
             else {
-                console.log('create', vm.transaction);
                 expendituresService.Create(vm.transaction).then(function (data) {
                     vm.transaction = data; // set new values
                 });
@@ -75,7 +72,7 @@
             if ($stateParams.id) {
                 expendituresService.GetById($stateParams.id).then(function (data) {
                     vm.transaction = data;
-                    vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate);
+                    vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate || 'undefined');
                 });
             }
         }

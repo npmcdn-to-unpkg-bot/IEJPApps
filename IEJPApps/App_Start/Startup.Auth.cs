@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
+using IEJPApps.Infrastructure.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using IEJPApps.Models;
-using IEJPApps.Providers;
 using Microsoft.Owin.Security.OAuth;
 
 namespace IEJPApps

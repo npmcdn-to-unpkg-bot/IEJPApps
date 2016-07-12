@@ -115,11 +115,29 @@ namespace IEJPApps.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed Date.
+        /// </summary>
+        public static string Period_ClosedDate {
+            get {
+                return ResourceManager.GetString("Period_ClosedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Date.
         /// </summary>
         public static string Period_EndDate {
             get {
                 return ResourceManager.GetString("Period_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opened Date.
+        /// </summary>
+        public static string Period_OpenedDate {
+            get {
+                return ResourceManager.GetString("Period_OpenedDate", resourceCulture);
             }
         }
         

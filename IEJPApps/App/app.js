@@ -15,6 +15,12 @@
             return function(a,b){
                 return(1e4+""+a).slice(-b);
             };
+        })
+
+        .filter('shortdate', function ($filter) {
+            return function (date) {
+                return $filter('date')(date, "yyyy-MM-dd");
+            };
         });
 
     function config($stateProvider, $urlRouterProvider) {
@@ -32,7 +38,7 @@
 
     function run($http, $rootScope, $window, environment, $cookies, $translate) {
         $rootScope.environment = environment || {};
-        console.log('environment', environment);
+        //console.log('environment', environment);
 
         if (environment) {
             // set current user language
@@ -44,7 +50,9 @@
         }
 
         // Add JWT token as default auth header
-        $http.defaults.headers.common["Authorization"] = "Bearer " + $window.jwtToken;
+        if ($window.jwtToken) {
+            $http.defaults.headers.common["Authorization"] = "Bearer " + $window.jwtToken;
+        }
 
         // update active tab on state change
         $rootScope.$on("$stateChangeSuccess", function (event, toState/*, toParams, fromState, fromParams*/) {
@@ -55,11 +63,11 @@
     // manually bootstrap angular after the JWT token is retrieved from the server
     $(function () {
         // get JWT token from server
-        $.get("/api/token", function (token) {
-            window.jwtToken = token;
+        //$.get("/api/token", function (token) {
+        //    window.jwtToken = token;
 
-            angular.bootstrap(document, ['app']);
-        });
+        //    angular.bootstrap(document, ['app']);
+        //});
 
         // Quick fix for when we click a link in menu... was not closing menu bar
         $(document).on('click', '.navbar-collapse.in', function (e) {

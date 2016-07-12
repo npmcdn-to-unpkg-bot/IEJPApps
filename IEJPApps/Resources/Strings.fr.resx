@@ -132,10 +132,34 @@
   <data name="Menu_Account_Settings" xml:space="preserve">
     <value>Configuration</value>
   </data>
+  <data name="Period_Active" xml:space="preserve">
+    <value>Actif</value>
+  </data>
+  <data name="Period_ClosedDate" xml:space="preserve">
+    <value>Date de fermeture</value>
+  </data>
+  <data name="Period_EndDate" xml:space="preserve">
+    <value>Date de fin</value>
+  </data>
+  <data name="Period_OpenedDate" xml:space="preserve">
+    <value>Date d'ouverture</value>
+  </data>
+  <data name="Period_StartDate" xml:space="preserve">
+    <value>Date de début</value>
+  </data>
+  <data name="Period_Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
   <data name="ProjectList" xml:space="preserve">
     <value>Liste de projets</value>
   </data>
   <data name="RegisterAsNewUser" xml:space="preserve">
     <value>S'enregistrer en tant que nouvel utilisateur</value>
+  </data>
+  <data name="VerifyPhoneNumberViewModel_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="VerifyPhoneNumberViewModel_PhoneNumber" xml:space="preserve">
+    <value>Numéro de téléphone</value>
   </data>
 </root>

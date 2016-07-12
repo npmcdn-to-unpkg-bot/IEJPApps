@@ -29,6 +29,7 @@
                 Administration: "Administration",
                 Projects: "Projects",
                 Employees: "Employees",
+                Periods: "Pay Periods",
                 TimeSheet: "Time Sheet",
                 Expenditures: "Expenditures",
                 ExpenditureTypes: "Expenditure Types"
@@ -45,9 +46,12 @@
                 ErrorOccuredCancelled: "An error as occured. Operation was cancelled."
             },
             States: {
-                Label: "States",
+                Label: "State(s)",
                 Active: "Active",
-                Visible: "Visible"
+                Visible: "Visible",
+                Current: "Current",
+                Opened: "Opened",
+                Closed: "Closed"
             },
             Edit: {
                 Title: "Edit"
@@ -61,7 +65,7 @@
                 Customer: "Customer",
                 Description: "Description",
                 Time: "Time (hr)",
-                Expenditures: "Expenditures",
+                Expenditures: "Expenditures"
             },
             Employees: {
                 TitleList: "Employee list",
@@ -74,7 +78,19 @@
                 LastName: "Last Name",
                 Rate: "Rate",
                 Mobile: "Mobile",
-                Email: "Email",
+                Email: "Email"
+            },
+            Periods: {
+                TitleList: "Periods",
+                TitleCreate: "Add a Period",
+                TitleEdit: "Modify a Period",
+                Period: "Period",
+                StartDate: "Start Day",
+                EndDate: "End Day",
+                OpenedDate: "Opened Date",
+                ClosedDate: "Closed Date",
+                WeekNumber: "Week Number",
+                State: "Period State"
             },
             TimeSheet: {
                 TitleList: "Time sheet",
@@ -129,6 +145,7 @@
                 Administration: "Administration",
                 Projects: "Projets",
                 Employees: "Employés",
+                Periods: "Périodes de paie",
                 TimeSheet: "Feuille de temps",
                 Expenditures: "Dépenses",
                 ExpenditureTypes: "Types de dépense"
@@ -145,9 +162,12 @@
                 ErrorOccuredCancelled: "Une erreur est survenue. L'opération a été annullée."
             },
             States: {
-                Label: "États",
+                Label: "État(s)",
                 Active: "Actif",
-                Visible: "Visible"
+                Visible: "Visible",
+                Current: "Courant(e)",
+                Opened: "Ouvert(e)",
+                Closed: "Fermé(e)"
             },
             Edit: {
                 Title: "Modifier"
@@ -175,6 +195,18 @@
                 Rate: "Taux",
                 Mobile: "Mobile",
                 Email: "Courriel"
+            },
+            Periods: {
+                TitleList: "Périodes de paie",
+                TitleCreate: "Ajouter une période",
+                TitleEdit: "Modifier une période",
+                Period: "Période",
+                StartDate: "Date de début",
+                EndDate: "Date de fin",
+                OpenedDate: "Date d'ouverture",
+                ClosedDate: "Date de fermeture",
+                WeekNumber: "Semaine",
+                State: "État de la période"
             },
             TimeSheet: {
                 TitleList: "Feuille de temps",
