@@ -29,6 +29,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     @Html.ActionLink("IEJP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @*<a href="@Url.Action("Index", "Home")" class="navbar-brand"><i class="glyphicon glyphicon-time"></i></a>*@
                 </div>
                 <div class="navbar-collapse collapse">
                     @Html.Partial("_Navigation")

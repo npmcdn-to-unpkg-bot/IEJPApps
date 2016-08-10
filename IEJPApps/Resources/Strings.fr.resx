@@ -132,6 +132,9 @@
   <data name="Menu_Account_Settings" xml:space="preserve">
     <value>Configuration</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
   <data name="Period_Active" xml:space="preserve">
     <value>Actif</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="RegisterAsNewUser" xml:space="preserve">
     <value>S'enregistrer en tant que nouvel utilisateur</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Nom d'usager</value>
   </data>
   <data name="VerifyPhoneNumberViewModel_Code" xml:space="preserve">
     <value>Code</value>

@@ -1,9 +1,6 @@
-﻿@using IEJPApps.Models
-@using IEJPApps.Resources
+﻿@model IEJPApps.Models.LoginViewModel
 
-@model LoginViewModel
-
-<div class="row" style="margin-bottom: 30px; margin-top: 20px">
+@*<div class="row" style="margin-bottom: 30px; margin-top: 20px">
     <div class="col-md-6">
         <section>
             @if (!Environment.MachineName.Contains("CIRX"))
@@ -12,19 +9,37 @@
             }
         </section>
     </div>
-</div>
+</div>*@
 
-<h2>@Strings.Login</h2>
+@*<h2>@Strings.Login</h2>*@
+
 <div class="row">
     <div class="col-md-6">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-login form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="form-group">
+                <form class="form-login" role="form">
+                    @if (!Environment.MachineName.Contains("CIRX"))
+                    {
+                        <div class="text-center">
+                            <img src="~/Content/Images/iejp-logo.jpg" style="width: 40%; height: 40%" />
+                        </div>
+                    }
+                    <h2 class="form-login-heading">@Strings.Login</h2>
+
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control", placeholder = @Strings.UserName, required = "required", autofocus = "autofocus"})
+                    @Html.PasswordFor(m => m.Password, new {@class = "form-control", placeholder = @Strings.Password, required = "required"})
+                    @Html.CheckBoxFor(m => m.RememberMe) @Html.LabelFor(m => m.RememberMe)
+
+                    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="login()">@Strings.Login</button>
+                    @*<div data-ng-show="message" class="alert alert-danger">{{message}}</div>*@
+                </form>
+                
+                @*<div class="form-group">
                     @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
@@ -53,22 +68,8 @@
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
-                </div>
-
-                <p>
-                    @Html.ActionLink(Strings.RegisterAsNewUser, "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink(Strings.ForgotYourPassword, "ForgotPassword")
-                    </p>*@
+                </div>*@
             }
-        </section>
-    </div>
-
-    <div class="col-md-4" style="visibility:hidden">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

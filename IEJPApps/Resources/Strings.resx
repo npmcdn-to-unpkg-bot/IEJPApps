@@ -162,4 +162,10 @@
   <data name="Period_OpenedDate" xml:space="preserve">
     <value>Opened Date</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
 </root>
