@@ -90,7 +90,7 @@
                 OpenedDate: "Opened Date",
                 ClosedDate: "Closed Date",
                 WeekNumber: "Week Number",
-                State: "Period State"
+                Status: "Status"
             },
             TimeSheet: {
                 TitleList: "Time sheet",
@@ -206,7 +206,7 @@
                 OpenedDate: "Date d'ouverture",
                 ClosedDate: "Date de fermeture",
                 WeekNumber: "Semaine",
-                State: "État de la période"
+                Status: "Statut"
             },
             TimeSheet: {
                 TitleList: "Feuille de temps",

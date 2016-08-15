@@ -11,6 +11,7 @@
             getAll: getAll,
             getById: getById,
             create: create,
+            defaults: defaults,
             update: update,
             remove: remove
         };
@@ -34,7 +35,21 @@
         function create(period) {
             if (period)
                 return $http.post('/api/payperiods', period).then(handleSuccess, handleError);
-            return $q.when({});
+            return $q.when(defaults());
+        }
+
+        function defaults() {
+            return {
+                Id: null,
+                StartDate: "",
+                EndDate: "",
+                OpenedDate: null,
+                ClosedDate: null,
+                WeekNumber: null,
+                IsCurrent: false,
+                IsActive: false,
+                IsVisible: false
+            };
         }
 
         function update(period) {

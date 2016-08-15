@@ -29,17 +29,23 @@
                 <tr>
                     <th class="text-center">{{'States.Active'|translate}}</th>
                     <th class="text-center">{{'States.Visible'|translate}}</th>
+                    <th>{{'Periods.WeekNumber'|translate}}</th>
                     <th>{{'Periods.StartDate'|translate}}</th>
                     <th>{{'Periods.EndDate'|translate}}</th>
-                    <th>{{'Periods.WeekNumber'|translate}}</th>
+                    <th>{{'Periods.OpenedDate'|translate}}</th>
+                    <th>{{'Periods.ClosedDate'|translate}}</th>
+                    <th>{{'Periods.Status'|translate}}</th>
                     <th></th>
                 </tr>
                 <tr ng-repeat="item in vm.periods | filter: vm.filter | orderBy: '-StartDate' as filteredItems">
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-ok" ng-if="item.IsActive"></i></td>
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.IsVisible"></i></td>
+                    <td>{{item.WeekNumber | padzero:2}}</td>
                     <td>{{item.StartDate | shortdate}}</td>
                     <td>{{item.EndDate | shortdate}}</td>
-                    <td>{{item.WeekNumber | padzero:2}}</td>
+                    <td>{{item.OpenedDate | shortdate}}</td>
+                    <td>{{item.ClosedDate | shortdate}}</td>
+                    <td>{{vm.state(item)}}</td>
                     <td class="text-right">
                         <a ui-sref="periods-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
@@ -69,7 +75,7 @@
                                 <small>{{'Periods.ClosedDate'|translate}}: {{item.ClosedDate|shortdate}}</small>
                             </div>
                             <div class="card-text">
-                                <small>{{'Periods.State'|translate}}: {{vm.state(item)}}</small>
+                                <small>{{'Periods.Status'|translate}}: {{vm.state(item)}}</small>
                             </div>
                         </div>
                     </div>

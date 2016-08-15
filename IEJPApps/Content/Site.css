@@ -13,7 +13,7 @@
     font-size: smaller;
     color: lightgrey;
     padding-top: 2px;
-    border-top: 1px solid lightgrey;
+    /*border-top: 1px solid lightgrey;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

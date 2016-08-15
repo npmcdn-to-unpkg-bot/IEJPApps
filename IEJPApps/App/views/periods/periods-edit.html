@@ -9,15 +9,28 @@
 <div id="content" class="container-fluid">
     <div class="row">
         <div class="col">
+
+            <!--<pre>
+                {{toJson(vm.period)}}
+            </pre>-->
+
             <form role="form" class="form-horizontal">
                 <div class="form-group" ng-if="!vm.period.Id">
                     <label class="control-label col-sm-2" for="Period">{{'Periods.Period'|translate}}</label>
                     <div class="col-sm-6">
-                        <!--<input class="form-control text-box single-line" id="Period" name="Period" type="text" ng-model="vm.period.StartDate">-->
-                        <select class="form-control" id="Period" name="Period" ng-model="vm.period.StartDate">
-                            <option ng-repeat="option in vm.periods" ng-class="{ 'current-period': option.IsCurrent === true }" value="{{option.StartDate}}">
+                        <select class="form-control" id="Period" name="Period"
+                                ng-options="name as ('[' + option.WeekNumber|padzero:2 + ']' + option.StartDate|shortdate + ' - ' + option.EndDate|shortdate) for option in vm.periods"
+                                ng-model="vm.selectedPeriod" 
+                                ng-change="vm.selectedPeriodChanged()">
+
+                            <!--<option ng-repeat="option in vm.periods" ng-class="{ 'current-period': option.IsCurrent === true }" value="{{option}}">
                                 [{{option.WeekNumber|padzero:2}}] {{option.StartDate|shortdate}} - {{option.EndDate|shortdate}}
-                            </option>
+                            </option>-->
+
+
+                            <!--<option ng-repeat="option in vm.periods" ng-class="{ 'current-period': option.IsCurrent === true }" value="{{option}}">
+                                [{{option.WeekNumber|padzero:2}}] {{option.StartDate|shortdate}} - {{option.EndDate|shortdate}}
+                            </option>-->
                         </select>
                     </div>
                 </div>
@@ -28,22 +41,22 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">{{'Periods.State'|translate}}</label>
+                    <label class="control-label col-sm-2">{{'States.Label'|translate}}</label>
                     <div class="col-sm-6">
                         <label class="btn btn-default" ng-model="vm.period.IsActive" uib-btn-checkbox>{{'States.Active'|translate}} <i class="glyphicon glyphicon-ok"></i></label>
-                        <label class="btn btn-default" ng-model="vm.Period.IsVisible" uib-btn-checkbox>{{'States.Visible'|translate}} <i class="glyphicon glyphicon-eye-open"></i></label>
+                        <label class="btn btn-default" ng-model="vm.period.IsVisible" uib-btn-checkbox>{{'States.Visible'|translate}} <i class="glyphicon glyphicon-eye-open"></i></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="OpenedDate">{{'Periods.OpenedDate'|translate}}</label>
                     <div class="col-sm-6">
-                        <input type="date" class="form-control text-box single-line" id="OpenedDate" name="OpenedDate" ng-model="vm.period.OpenedDate" placeholder="yyyy-MM-dd" />
+                        <input type="date" class="form-control text-box single-line" id="OpenedDate" name="OpenedDate" ng-model="vm.period.OpenedDate" placeholder="yyyy-MM-dd"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="ClosedDate">{{'Periods.ClosedDate'|translate}}</label>
                     <div class="col-sm-6">
-                        <input type="date" class="form-control text-box single-line" id="ClosedDate" name="ClosedDate" ng-model="vm.period.ClosedDate" placeholder="yyyy-MM-dd" />
+                        <input type="date" class="form-control text-box single-line" id="ClosedDate" name="ClosedDate" ng-model="vm.period.ClosedDate" placeholder="yyyy-MM-dd"/>
                     </div>
                 </div>
                 <div class="form-group">

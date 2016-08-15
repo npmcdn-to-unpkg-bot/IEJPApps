@@ -28,7 +28,19 @@
         var vm = this;
 
         vm.periods = [];
-        vm.period = periodsService.create();
+        vm.selectedPeriod = {};
+        vm.period = periodsService.defaults();
+
+        vm.selectedPeriodChanged = function () {
+            console.log('vm.selectedPeriodChanged', vm.selectedPeriod);
+
+            if (vm.selectedPeriod) {
+                vm.period.StartDate = vm.selectedPeriod.StartDate;
+                vm.period.EndDate = vm.selectedPeriod.EndDate;
+            }
+
+            console.log(vm.period);
+        }
 
         vm.save = function () {
             if (vm.period.Id) {

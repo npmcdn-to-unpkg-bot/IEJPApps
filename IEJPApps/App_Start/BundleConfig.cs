@@ -38,8 +38,9 @@ namespace IEJPApps
                 .IncludeDirectory("~/App/views", "*.js", true));
             
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                //"~/Content/bootstrap.min.css",
-                "~/Content/bootstrap-yeti.min.css",
+                "~/Content/bootstrap.min.css",
+                //"~/Content/bootstrap-yeti.min.css",
+                "~/Content/bootstrap-cerulean.min.css",
                 //"~/Content/bootstrap-united.min.css",
                 "~/Content/font-awesome.min.css",
                 "~/Content/site.css"));
