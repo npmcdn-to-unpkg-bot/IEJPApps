@@ -32,10 +32,6 @@
             }
         }
 
-        vm.state = function(period) {
-            return periodsService.getState(period);
-        }
-
         function init() {
             periodsService.getAll().then(function (periods) {
                 vm.periods = periods;

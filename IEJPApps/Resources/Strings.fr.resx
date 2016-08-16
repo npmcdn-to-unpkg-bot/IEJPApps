@@ -150,6 +150,18 @@
   <data name="Period_StartDate" xml:space="preserve">
     <value>Date de début</value>
   </data>
+  <data name="Period_Status_Closed" xml:space="preserve">
+    <value>Fermé(e)</value>
+  </data>
+  <data name="Period_Status_Created" xml:space="preserve">
+    <value>Créé(e)</value>
+  </data>
+  <data name="Period_Status_Opened" xml:space="preserve">
+    <value>Ouvert(e)</value>
+  </data>
+  <data name="Period_Status_UnInitialized" xml:space="preserve">
+    <value>Non-initialisé(e)</value>
+  </data>
   <data name="Period_Visible" xml:space="preserve">
     <value>Visible</value>
   </data>

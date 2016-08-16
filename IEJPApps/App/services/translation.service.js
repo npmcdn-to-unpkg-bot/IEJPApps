@@ -51,8 +51,10 @@
                 Visible: "Visible",
                 Current: "Current",
                 Opened: "Opened",
-                Closed: "Closed"
-            },
+                Closed: "Closed",
+                Created: "Created",
+                UnInitialized: "Un-Initialized"
+        },
             Edit: {
                 Title: "Edit"
             },
@@ -167,7 +169,9 @@
                 Visible: "Visible",
                 Current: "Courant(e)",
                 Opened: "Ouvert(e)",
-                Closed: "Fermé(e)"
+                Closed: "Fermé(e)",
+                Created: "Créé(e)",
+                UnInitialized: "Non-initialisé(e)"
             },
             Edit: {
                 Title: "Modifier"

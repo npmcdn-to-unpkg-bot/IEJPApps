@@ -33,7 +33,8 @@ namespace IEJPApps
                 "~/Scripts/angular-translate/angular-translate.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
-                .Include("~/App/app.js")
+                .Include("~/App/app.js", "~/App/filters.js")
+                .IncludeDirectory("~/App/directives", "*.js", true)
                 .IncludeDirectory("~/App/services", "*.js", true)
                 .IncludeDirectory("~/App/views", "*.js", true));
             

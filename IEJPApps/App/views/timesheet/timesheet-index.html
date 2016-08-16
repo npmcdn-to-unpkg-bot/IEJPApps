@@ -7,20 +7,17 @@
 </div>
 
 <div class="container-fluid command-bar">
-    <div class="row">
+    <div class="row" ng-if="environment.isAdmin">
         <div class="col-xs-12 col-sm-6">
             <div class="form-group">
-                <select class="form-control" ng-model="vm.currentPeriod.StartDate">
-                    <option ng-repeat="option in vm.periods"
-                            ng-class="{ 'current-period': option.IsCurrent === true }"
-                            value="{{option.StartDate}}">
-                        [{{option.WeekNumber|padzero:2}}] {{option.StartDate|date:'yyyy-MM-dd'}} - {{option.EndDate|date:'yyyy-MM-dd'}}
-                    </option>
+                <select class="form-control" id="Period" name="Period"
+                        ng-model="vm.selectedPeriod"
+                        ng-options="option as (option | perioddescr) for option in vm.periods"
+                        options-class="{ 'current-period': IsCurrent === true }">
                 </select>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-xs-8 col-sm-6">
             <div class="form-group">
@@ -42,13 +39,15 @@
             <table class="table">
                 <tr>
                     <th>{{'TimeSheet.Day' | translate}}</th>
+                    <th ng-if="environment.isAdmin">{{'Expenditures.Employee'|translate}}</th>
                     <th class="wide-column">{{'TimeSheet.Project' | translate}}</th>
                     <th>{{'TimeSheet.Time' | translate}}</th>
                     <th class="wide-column">{{'TimeSheet.Comment' | translate}}</th>
                     <th class="text-right"></th>
                 </tr>
                 <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate' as filteredTransactions">
-                    <td>{{item.TransactionDate|date: "EEEE, dd"}}</td>                    
+                    <td>{{item.TransactionDate|date: "EEEE, dd"}}</td>
+                    <td ng-if="environment.isAdmin">{{item.Employee.FullName}}</td>
                     <td class="wide-column">{{item.Project.Customer}} - {{item.Project.Description}}</td>
                     <td>{{item.Time}}</td>
                     <td class="wide-column">{{item.Comment}}</td>
@@ -59,7 +58,7 @@
                 </tr>
                 <tfoot class="table-totals">
                     <tr>
-                        <td colspan="2">{{filteredTransactions.length}} {{'Totals.Of'|translate}} {{vm.transactions.length}} {{'Totals.Transaction'|translate}}</td>
+                        <td colspan="{{environment.isAdmin ? 3 : 2}}">{{filteredTransactions.length}} {{'Totals.Of'|translate}} {{vm.transactions.length}} {{'Totals.Transaction'|translate}}</td>
                         <td>{{vm.timeTotal(filteredTransactions)}}</td>
                         <td colspan="2"></td>
                     </tr>

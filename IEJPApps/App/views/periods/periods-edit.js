@@ -28,19 +28,7 @@
         var vm = this;
 
         vm.periods = [];
-        vm.selectedPeriod = {};
-        vm.period = periodsService.defaults();
-
-        vm.selectedPeriodChanged = function () {
-            console.log('vm.selectedPeriodChanged', vm.selectedPeriod);
-
-            if (vm.selectedPeriod) {
-                vm.period.StartDate = vm.selectedPeriod.StartDate;
-                vm.period.EndDate = vm.selectedPeriod.EndDate;
-            }
-
-            console.log(vm.period);
-        }
+        vm.period = {};
 
         vm.save = function () {
             if (vm.period.Id) {
@@ -63,22 +51,40 @@
             }
         }
 
-        vm.state = function (period) {
-            return periodsService.getState(period);
+        function initPeriods() {
+            lookupService.getPeriodsList(5, 5).then(function (periods) {
+                vm.periods = periods || [];
+
+                if (vm.periods.length) {
+                    vm.period = vm.periods[0]; // defaults to first item
+                    // voir si on a la periode courante, sinon, on garde la premiere periode...
+                    for (var index = 0; index < vm.periods.length; index++) {
+                        if (vm.periods[index].IsCurrent) {
+                            vm.period = vm.periods[index];
+                            break;
+                        }
+                    }
+                    // set the start date to today for user friendlyness
+                    if (!vm.period.OpenedDate) {
+                        vm.period.OpenedDate = new Date();
+                    }
+                }
+            });
+        }
+
+        function initPeriod(id) {
+            periodsService.getById(id).then(function (period) {
+                vm.period = period;
+                vm.period.OpenedDate = new Date(vm.period.OpenedDate || undefined);
+                vm.period.ClosedDate = new Date(vm.period.ClosedDate || undefined);
+            });
         }
 
         function init() {
-            lookupService.getPeriodsList(5, 2).then(function (periods) {
-                vm.periods = periods || [];
-            });
-
             if ($stateParams.id) {
-                periodsService.getById($stateParams.id).then(function(period) {
-                    vm.period = period;
-                    vm.period.OpenedDate = new Date(vm.period.OpenedDate || 'undefined');
-                    vm.period.ClosedDate = new Date(vm.period.ClosedDate || 'undefined');
-                    console.log(vm.period);
-                });
+                initPeriod($stateParams.id);
+            } else {
+                initPeriods();
             }
         }
 

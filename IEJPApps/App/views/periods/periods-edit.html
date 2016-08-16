@@ -9,28 +9,14 @@
 <div id="content" class="container-fluid">
     <div class="row">
         <div class="col">
-
-            <!--<pre>
-                {{toJson(vm.period)}}
-            </pre>-->
-
             <form role="form" class="form-horizontal">
                 <div class="form-group" ng-if="!vm.period.Id">
                     <label class="control-label col-sm-2" for="Period">{{'Periods.Period'|translate}}</label>
                     <div class="col-sm-6">
                         <select class="form-control" id="Period" name="Period"
-                                ng-options="name as ('[' + option.WeekNumber|padzero:2 + ']' + option.StartDate|shortdate + ' - ' + option.EndDate|shortdate) for option in vm.periods"
-                                ng-model="vm.selectedPeriod" 
-                                ng-change="vm.selectedPeriodChanged()">
-
-                            <!--<option ng-repeat="option in vm.periods" ng-class="{ 'current-period': option.IsCurrent === true }" value="{{option}}">
-                                [{{option.WeekNumber|padzero:2}}] {{option.StartDate|shortdate}} - {{option.EndDate|shortdate}}
-                            </option>-->
-
-
-                            <!--<option ng-repeat="option in vm.periods" ng-class="{ 'current-period': option.IsCurrent === true }" value="{{option}}">
-                                [{{option.WeekNumber|padzero:2}}] {{option.StartDate|shortdate}} - {{option.EndDate|shortdate}}
-                            </option>-->
+                                ng-model="vm.period"
+                                ng-options="option as (option | perioddescr) for option in vm.periods"
+                                options-class="{ 'current-period': IsCurrent === true }">
                         </select>
                     </div>
                 </div>

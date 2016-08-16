@@ -7,27 +7,33 @@
 
     function service($http, $q, $translate, errorService) {
         return {
-            getState: getState,
             getAll: getAll,
+            getOpened: getOpened,
+            getCurrentFromList: getCurrentFromList,
             getById: getById,
             create: create,
             defaults: defaults,
             update: update,
             remove: remove
         };
-
-        function getState(period) {
-            if (period.OpenedDate && period.ClosedDate == null)
-                return $translate("States.Opened");
-            if (period.ClosedDate)
-                return $translate("States.Closed");
-            return "-";
-        }
-
+        
         function getAll() {
             return $http.get('/api/payperiods').then(handleSuccess, handleError);
         }
+
+        function getOpened() {
+            return $http.get('/api/payperiods/opened').then(handleSuccess, handleError);
+        }
         
+        function getCurrentFromList(periods) {
+            for (var index = 0; index < periods.length; index++) {
+                if (periods[index].IsCurrent) {
+                    return periods[index];
+                }
+            }
+            return undefined;
+        }
+
         function getById(id) {
             return $http.get('/api/payperiods/' + id).then(handleSuccess, handleError);
         }

@@ -13,5 +13,9 @@ namespace IEJPApps.ViewModels
         public bool IsCurrent { get; set; }
         public bool IsActive { get; set; }
         public bool IsVisible { get; set; }
+        public bool IsOpened { get; set; }
+        public bool IsClosed { get; set; }
+        public bool IsUninitialized { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -3,7 +3,7 @@
 
     angular
         .module("app")
-        .controller("TimeSheet.IndexController", ["$state", "$translate", "TimeSheetService", "LookupService", "ProjectsService", controller])
+        .controller("TimeSheet.IndexController", ["$state", "$translate", "TimeSheetService", "PeriodsService", "LookupService", "ProjectsService", controller])
         .config(config);
 
     function config($stateProvider) {
@@ -17,12 +17,12 @@
             });
     }
 
-    function controller($state, $translate, timeSheetService, lookupService, projectsService) {
+    function controller($state, $translate, timeSheetService, periodsService, lookupService, projectsService) {
         var vm = this;
 
         vm.transactions = [];
         vm.periods = [];
-        vm.currentPeriod = {};
+        vm.selectedPeriod = {};
         vm.projects = [];
         
         vm.delete = function(id) {
@@ -54,12 +54,10 @@
                 vm.transactions = transactions || [];
             });
 
-            lookupService.getPeriodsList(5, 2).then(function (periods) {
-                vm.periods = periods || [];
-            });
+            periodsService.getOpened().then(function (periods) {
+                vm.periods = periods;
 
-            lookupService.getCurrentPeriod().then(function (currentPeriod) {
-                vm.currentPeriod = currentPeriod || {};
+                vm.selectedPeriod = periodsService.getCurrentFromList(vm.periods) || vm.periods[0]; // defaults to first item
             });
         }
 

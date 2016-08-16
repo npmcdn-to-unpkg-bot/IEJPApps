@@ -160,6 +160,42 @@ namespace IEJPApps.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed.
+        /// </summary>
+        public static string Period_Status_Closed {
+            get {
+                return ResourceManager.GetString("Period_Status_Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created.
+        /// </summary>
+        public static string Period_Status_Created {
+            get {
+                return ResourceManager.GetString("Period_Status_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opened.
+        /// </summary>
+        public static string Period_Status_Opened {
+            get {
+                return ResourceManager.GetString("Period_Status_Opened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Un-Initialized.
+        /// </summary>
+        public static string Period_Status_UnInitialized {
+            get {
+                return ResourceManager.GetString("Period_Status_UnInitialized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visible.
         /// </summary>
         public static string Period_Visible {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using IEJPApps.Models.Interfaces;
 using IEJPApps.Resources;
 
@@ -29,6 +30,39 @@ namespace IEJPApps.Models
 
         [DefaultValue(true)]
         [Display(ResourceType = typeof (Strings), Name = "Period_Visible", AutoGenerateFilter = false)]
-        public bool Visible { get; set; }        
+        public bool Visible { get; set; }
+
+        [NotMapped]
+        public bool IsOpened
+        {
+            get
+            {
+                return OpenedDate.HasValue && (!ClosedDate.HasValue || ClosedDate.Value.Date >= DateTime.Now.Date);
+            }
+        }
+        
+        [NotMapped]
+        public bool IsUninitialized
+        {
+            get { return !OpenedDate.HasValue && !ClosedDate.HasValue; }
+        }
+
+        [NotMapped]
+        public string Status
+        {
+            get
+            {
+                if (IsUninitialized)
+                    return Strings.Period_Status_UnInitialized;
+
+                if (!IsOpened)
+                    return Strings.Period_Status_Closed;
+
+                if (IsOpened)
+                    return Strings.Period_Status_Opened;
+
+                return Strings.Period_Status_UnInitialized;
+            }
+        }
     }
 }

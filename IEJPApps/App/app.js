@@ -9,19 +9,7 @@
             "ngCookies",
             "pascalprecht.translate"])
         .config(config)
-        .run(run)
-
-        .filter('padzero', function () {
-            return function(a,b){
-                return(1e4+""+a).slice(-b);
-            };
-        })
-
-        .filter('shortdate', function ($filter) {
-            return function (date) {
-                return $filter('date')(date, "yyyy-MM-dd");
-            };
-        });
+        .run(run);
 
     function config($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
@@ -48,6 +36,8 @@
         $rootScope.toJson = function(o) {
             return angular.toJson(o, true);
         }
+
+        //$rootScope
 
         // Add JWT token as default auth header
         if ($window.jwtToken) {

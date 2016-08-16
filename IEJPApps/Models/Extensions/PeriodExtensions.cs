@@ -20,7 +20,10 @@ namespace IEJPApps.Models.Extensions
                 WeekNumber = period.StartDate.GetISOWeekOfYear(dayOfWeek),
                 IsCurrent = period.StartDate.IsInCurrentPeriod(dayOfWeek),
                 IsActive = period.Active,
-                IsVisible = period.Visible
+                IsVisible = period.Visible,
+                IsOpened = period.IsOpened,
+                IsUninitialized = period.IsUninitialized,
+                Status = period.Status
             };
         }
 
@@ -37,6 +40,7 @@ namespace IEJPApps.Models.Extensions
                 ClosedDate = viewModel.ClosedDate,
                 Active = viewModel.IsActive,
                 Visible = viewModel.IsVisible
+                // IsOpened, IsUninitialized & Status are read-only calculated fields
             };
         }
     }

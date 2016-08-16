@@ -45,7 +45,7 @@
                     <td>{{item.EndDate | shortdate}}</td>
                     <td>{{item.OpenedDate | shortdate}}</td>
                     <td>{{item.ClosedDate | shortdate}}</td>
-                    <td>{{vm.state(item)}}</td>
+                    <td><span ng-class="{ 'text-danger': item.IsUninitialized, 'text-success': item.IsOpened }">{{item.Status}}</span></td>
                     <td class="text-right">
                         <a ui-sref="periods-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a ng-click="vm.delete(item.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
@@ -68,14 +68,14 @@
                                     <i class="glyphicon glyphicon-eye-open" ng-if="item.IsVisible"></i>
                                 </small>
                             </div>
-                            <div class="card-text" ng-if="item.OpenedDate">
+                            <div class="card-text" ng-if="!item.IsUninitialized">
                                 <small>{{'Periods.OpenedDate'|translate}}: {{item.OpenedDate|shortdate}}</small>
                             </div>
-                            <div class="card-text" ng-if="item.ClosedDate">
+                            <div class="card-text" ng-if="!item.IsUninitialized">
                                 <small>{{'Periods.ClosedDate'|translate}}: {{item.ClosedDate|shortdate}}</small>
                             </div>
                             <div class="card-text">
-                                <small>{{'Periods.Status'|translate}}: {{vm.state(item)}}</small>
+                                <small>{{'Periods.Status'|translate}}: <span ng-class="{ 'text-danger': item.IsUninitialized, 'text-success': item.IsOpened }">{{item.Status}}</span></small>
                             </div>
                         </div>
                     </div>

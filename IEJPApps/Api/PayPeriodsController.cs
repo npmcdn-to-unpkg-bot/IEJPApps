@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Data.Entity;
 using IEJPApps.Exceptions;
 using IEJPApps.Extensions;
+using IEJPApps.Models;
 using IEJPApps.Models.Extensions;
 using IEJPApps.ViewModels;
 
@@ -18,6 +19,7 @@ namespace IEJPApps.Api
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
         
         [Route("")]
+        [Authorize(Roles = UserRoles.Admin)]
         public List<PayPeriodViewModel> GetAll()
         {
             var viewModel = _db.Periods
@@ -26,6 +28,18 @@ namespace IEJPApps.Api
                 .Select(x => x.ToViewModel());
 
             return viewModel.ToList();
+        }
+
+        [Route("opened")]
+        public List<PayPeriodViewModel> GetAllOpened()
+        {
+            var viewModel = _db.Periods
+                .Where(x => x.Active && x.Visible)
+                .OrderByDescending(x => x.StartDate)
+                .ToList()
+                .Select(x => x.ToViewModel());
+
+            return viewModel.Where(x => x.IsOpened).ToList();
         }
 
         [Route("{id}")]
@@ -38,6 +52,7 @@ namespace IEJPApps.Api
 
         [HttpPost]
         [Route("")]
+        [Authorize(Roles = UserRoles.Admin)]
         public PayPeriodViewModel Create([FromBody] PayPeriodViewModel viewModel)
         {
             if (!ModelState.IsValid) throw new HttpApiException("Invalid period model");
@@ -58,6 +73,7 @@ namespace IEJPApps.Api
 
         [HttpPut]
         [Route("")]
+        [Authorize(Roles = UserRoles.Admin)]
         public PayPeriodViewModel Update([FromBody] PayPeriodViewModel viewModel)
         {
             if (!ModelState.IsValid) throw new HttpApiException("Invalid period model");
@@ -72,6 +88,7 @@ namespace IEJPApps.Api
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = UserRoles.Admin)]
         public void Delete(Guid id)
         {
             var period = _db.Periods.Find(id);

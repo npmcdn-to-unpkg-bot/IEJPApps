@@ -280,6 +280,8 @@
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\directives\options-class.js" />
+    <Content Include="App\filters.js" />
     <Content Include="App\services\periods.service.js" />
     <Content Include="App\services\errors.service.js" />
     <Content Include="App\services\employees.service.js" />

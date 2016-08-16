@@ -168,4 +168,16 @@
   <data name="UserName" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="Period_Status_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Period_Status_Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Period_Status_Opened" xml:space="preserve">
+    <value>Opened</value>
+  </data>
+  <data name="Period_Status_UnInitialized" xml:space="preserve">
+    <value>Un-Initialized</value>
+  </data>
 </root>
