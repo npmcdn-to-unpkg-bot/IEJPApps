@@ -18,5 +18,17 @@
             return function (period) {
                 return '[' + $filter('padzero')(period.WeekNumber, 2) + '] ' + $filter('shortdate')(period.StartDate) + ' - ' + $filter('shortdate')(period.EndDate);
             };
+        })
+
+        .filter('projectfull', function ($filter) {
+            return function (project) {
+                return project.Customer + " - " + project.Description;
+            };
+        })
+
+        .filter('employeefull', function ($filter) {
+            return function (employee) {
+                return employee.FirstName + ", " + employee.LastName;;
+            };
         });
 })();

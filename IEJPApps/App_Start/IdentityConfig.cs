@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IEJPApps.Infrastructure;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using IEJPApps.Models;
-using IEJPApps.Models.Infrastructure;
 using IEJPApps.Services;
 
 namespace IEJPApps

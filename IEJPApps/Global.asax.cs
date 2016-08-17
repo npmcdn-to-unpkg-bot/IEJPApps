@@ -6,7 +6,7 @@ using System.Web.Routing;
 using IEJPApps.Extensions;
 using IEJPApps.Services;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+//using Newtonsoft.Json.Serialization;
 
 namespace IEJPApps
 {
@@ -14,6 +14,7 @@ namespace IEJPApps
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.Register();
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);

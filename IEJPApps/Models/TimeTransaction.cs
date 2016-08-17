@@ -1,12 +1,22 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using IEJPApps.Models.Interfaces;
 
 namespace IEJPApps.Models
 {
-    public class TimeTransaction
+    public class TimeTransaction : IEntityVisibility
     {
         [Key]
         public Guid Id { get; set; }
+
+        [DefaultValue(true)]
+        [Display(Name = "Active", AutoGenerateFilter = false)]
+        public bool Active { get; set; }
+
+        [DefaultValue(true)]
+        [Display(Name = "Visible", AutoGenerateFilter = false)]
+        public bool Visible { get; set; }
         
         [Display(Name = "TransactionDate", AutoGenerateFilter = false)]
         public DateTime TransactionDate { get; set; }

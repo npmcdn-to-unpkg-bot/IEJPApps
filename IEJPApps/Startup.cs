@@ -1,5 +1,5 @@
-﻿using IEJPApps.Models;
-using IEJPApps.Models.Infrastructure;
+﻿using IEJPApps.Infrastructure;
+using IEJPApps.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;

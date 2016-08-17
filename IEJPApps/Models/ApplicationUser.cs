@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IEJPApps.Models.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using IEJPApps.Repositories;
 
 namespace IEJPApps.Models
 {

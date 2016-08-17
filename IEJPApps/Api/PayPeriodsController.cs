@@ -1,11 +1,11 @@
 ﻿using System;
-using IEJPApps.Models.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
 using IEJPApps.Exceptions;
 using IEJPApps.Extensions;
+using IEJPApps.Infrastructure;
 using IEJPApps.Models;
 using IEJPApps.Models.Extensions;
 using IEJPApps.ViewModels;

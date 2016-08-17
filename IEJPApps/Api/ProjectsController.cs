@@ -1,11 +1,11 @@
 ﻿using System;
 using IEJPApps.Models;
-using IEJPApps.Models.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
 using IEJPApps.Exceptions;
+using IEJPApps.Infrastructure;
 
 namespace IEJPApps.Api
 {
