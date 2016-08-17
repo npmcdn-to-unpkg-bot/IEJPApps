@@ -1,74 +1,73 @@
 ﻿using System;
-using IEJPApps.Models;
-using IEJPApps.Models.Infrastructure;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
 using IEJPApps.Exceptions;
+using IEJPApps.Models;
+using IEJPApps.Repositories;
+using IEJPApps.ViewModels;
 
 namespace IEJPApps.Api
 {
     [Authorize]
     [RoutePrefix("api/timesheet")]
     public class TimeSheetController : ApiController
-    {
-        private readonly ApplicationDbContext _db = new ApplicationDbContext();
+    { 
+        private readonly TimeSheetRepository _timesheets = new TimeSheetRepository();
 
         [Route("")]
         public List<TimeTransaction> GetAll()
         {
-            return _db.TimeTransactions
-                .OrderByDescending(x => x.TransactionDate)
-                .Include(x => x.Project)
-                .Include(x => x.Employee)
-                .ToList();
+            return _timesheets.GetAll();
         }
 
         [Route("{id}")]
-        public TimeTransaction GetById(Guid id)
+        public TimeTransactionViewModel GetById(Guid id)
         {
-            return _db.TimeTransactions.Find(id);
+            var entity = _timesheets.GetByID(id);
+            
+            return AutoMapper.Mapper.Map<TimeTransactionViewModel>(entity);
         }
-
+        
         [HttpPost]
         [Route("")]
         public TimeTransaction Create([FromBody] TimeTransaction transaction)
         {
-            if (!ModelState.IsValid) throw new HttpApiException("Invalid Time Transaction Model");
+            if (!ModelState.IsValid)
+                throw new HttpApiException("Invalid Time Transaction Model");
 
-            transaction.Id = Guid.NewGuid();
-            transaction.Created = DateTime.Now;
-
-            _db.TimeTransactions.Add(transaction);
-            _db.SaveChanges();
-
-            return transaction;
+            return _timesheets.Create(transaction);
         }
 
         [HttpPut]
         [Route("")]
-        public TimeTransaction Update([FromBody] TimeTransaction transaction)
+        public TimeTransactionViewModel Update([FromBody] TimeTransactionViewModel transaction)
         {
-            if (!ModelState.IsValid) throw new HttpApiException("Invalid Time Transaction Model");
+            if (!ModelState.IsValid)
+                throw new HttpApiException("Invalid Time Transaction Model");
+            
+            var entity = _timesheets.GetByID(transaction.Id);
 
-            _db.Entry(transaction).State = EntityState.Modified;
-            _db.SaveChanges();
+            //// prevent these from beeing changed
+            //entity.Employee = null;
+            //entity.Project = null;
 
-            return transaction;
+            AutoMapper.Mapper.Map<TimeTransactionViewModel, TimeTransaction>(transaction, entity);
+
+            var updated = _timesheets.Update(entity);
+
+            return AutoMapper.Mapper.Map<TimeTransactionViewModel>(updated);
         }
 
         [HttpDelete]
         [Route("{id}")]
         public void Delete(Guid id)
         {
-            var transaction = _db.TimeTransactions.Find(id);
+            var transaction = _timesheets.GetByID(id);
 
             if (transaction == null)
                 throw new HttpApiException("Time Transaction Not Found");
 
-            _db.TimeTransactions.Remove(transaction);
-            _db.SaveChanges();
+            _timesheets.Delete(transaction);
         }
     }
 }
