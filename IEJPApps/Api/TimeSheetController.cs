@@ -5,6 +5,7 @@ using IEJPApps.Exceptions;
 using IEJPApps.Models;
 using IEJPApps.Repositories;
 using IEJPApps.ViewModels;
+using Microsoft.Ajax.Utilities;
 
 namespace IEJPApps.Api
 {
@@ -30,12 +31,24 @@ namespace IEJPApps.Api
         
         [HttpPost]
         [Route("")]
-        public TimeTransaction Create([FromBody] TimeTransaction transaction)
+        public TimeTransactionViewModel Create([FromBody] TimeTransactionViewModel transaction)
         {
             if (!ModelState.IsValid)
                 throw new HttpApiException("Invalid Time Transaction Model");
 
-            return _timesheets.Create(transaction);
+            var entity = _timesheets.Create(new TimeTransaction
+            {
+                Active = transaction.Active,
+                Visible = transaction.Visible,
+                TransactionDate = transaction.TransactionDate,
+                ProjectId = transaction.Project.IfNotNull(x => x.Id),
+                EmployeeId = transaction.Employee.IfNotNull(x => x.Id),
+                Time = transaction.Time,
+                Comment = transaction.Comment
+            });
+
+            //return AutoMapper.Mapper.Map<TimeTransactionViewModel>(entity);
+            return GetById(entity.Id); // reload newly updated transaction to get all values
         }
 
         [HttpPut]
@@ -46,16 +59,20 @@ namespace IEJPApps.Api
                 throw new HttpApiException("Invalid Time Transaction Model");
             
             var entity = _timesheets.GetByID(transaction.Id);
+            if (entity != null)
+            {
+                entity.Active = transaction.Active;
+                entity.Visible = transaction.Visible;
+                entity.TransactionDate = transaction.TransactionDate;
+                entity.ProjectId = transaction.Project.IfNotNull(x => x.Id);
+                entity.EmployeeId = transaction.Employee.IfNotNull(x => x.Id);
+                entity.Time = transaction.Time;
+                entity.Comment = transaction.Comment;
 
-            //// prevent these from beeing changed
-            //entity.Employee = null;
-            //entity.Project = null;
-
-            AutoMapper.Mapper.Map<TimeTransactionViewModel, TimeTransaction>(transaction, entity);
-
-            var updated = _timesheets.Update(entity);
-
-            return AutoMapper.Mapper.Map<TimeTransactionViewModel>(updated);
+                entity = _timesheets.Update(entity); // entity => updated value
+            }
+            
+            return GetById(transaction.Id); // reload newly updated transaction to get all values
         }
 
         [HttpDelete]

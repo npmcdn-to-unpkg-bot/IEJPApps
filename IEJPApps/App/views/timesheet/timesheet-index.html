@@ -45,7 +45,7 @@
                     <th class="wide-column">{{'TimeSheet.Comment' | translate}}</th>
                     <th class="text-right"></th>
                 </tr>
-                <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate' as filteredTransactions">
+                <tr ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: '-TransactionDate' as filteredTransactions">
                     <td>{{item.TransactionDate|date: "EEEE, dd"}}</td>
                     <td ng-if="environment.isAdmin">{{item.Employee.FullName}}</td>
                     <td class="wide-column">{{item.Project.Customer}} - {{item.Project.Description}}</td>
@@ -71,7 +71,7 @@
         <div class="timesheet-list">
             <div class="list-group">
                 <a class="list-group-item" ui-sref="timesheet-edit({ id: '{{item.Id}}' })" 
-                   ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: 'TransactionDate' as filteredTransactions">
+                   ng-repeat="item in vm.transactions | filter: vm.filter | orderBy: '-TransactionDate' as filteredTransactions">
                     <div class="card">
                         <div class="card-block">                            
                             <p class="card-title time">
