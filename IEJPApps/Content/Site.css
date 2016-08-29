@@ -56,7 +56,8 @@ input, select, textarea {
 }
 
 .page-title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted #eee;
 }
 
 .action-bar {

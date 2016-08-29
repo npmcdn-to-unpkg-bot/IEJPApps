@@ -5,26 +5,26 @@
             <h4 ng-switch-default>{{'Projects.TitleEdit'|translate}}</h4>
         </div>
     </div>
-</div>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="dashboard-line" ng-if="vm.project.Id">
+    <!-- project dashboard -->
+    <!--<div class="row" ng-if="vm.project.Id">
+        <div class="dashboard-line">
             <div class="col-sm-2 hidden-xs">&nbsp;</div>
-            <div class="col-sm-5 col-xs-6">
-                <span xclass="hidden-xs">{{'Projects.Time'|translate}}:&nbsp;</span><strong>{{vm.project.TimeTotal}}</strong>
+            <div class="col-sm-4 col-xs-6">
+                <span>{{'Projects.Time'|translate}}:&nbsp;</span><strong>{{vm.project.TimeTotal}}</strong>
             </div>
-            <div class="col-sm-5 col-xs-6">
-                <span xclass="hidden-xs">{{'Projects.Expenditures'|translate}}:&nbsp;</span><strong>{{vm.project.ExpenditureTotal|currency}}</strong>
+            <div class="col-sm-4 col-xs-6">
+                <span>{{'Projects.Expenditures'|translate}}:&nbsp;</span><strong>{{vm.project.ExpenditureTotal|currency}}</strong>
             </div>
+            <div class="col-sm-2 hidden-xs">&nbsp;</div>
         </div>
-    </div>
+    </div>-->
 </div>
 
 <div id="content" class="container-fluid">
     <div class="row">
         <div class="col">
             <form role="form" class="form-horizontal">
+
                 <!--<div class="form-group dashboard-line" ng-if="vm.project.Id">
                     <div class="col-sm-2">&nbsp;</div>
                     <div class="col-sm-3">
@@ -34,6 +34,7 @@
                         {{'Projects.Expenditures'|translate}}: <strong>{{vm.project.ExpenditureTotal|currency}}</strong>
                     </div>
                 </div>-->
+
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Visible">{{'States.Label'|translate}}</label>
                     <div class="col-sm-6">
@@ -54,6 +55,18 @@
                         <input class="form-control text-box single-line" id="Customer" name="Customer" type="text" ng-model="vm.project.Customer">
                         <span class="field-validation-valid text-danger" data-valmsg-for="Customer" data-valmsg-replace="true"></span>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="TimeTotal">{{'Projects.Time'|translate}}</label>
+                    <div class="col-sm-6">
+                        <input class="form-control text-box single-line" id="TimeTotal" name="TimeTotal" type="text" ng-readonly="true" ng-model="vm.project.TimeTotal">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="ExpenditureTotal">{{'Projects.Expenditures'|translate}}</label>
+                    <div class="col-sm-6">
+                        <input class="form-control text-box single-line" id="ExpenditureTotal" name="ExpenditureTotal" type="text" ng-readonly="true" ng-model="vm.project.ExpenditureTotal">
+                    </div>                    
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="Description">{{'Projects.Description'|translate}}</label>
@@ -78,32 +91,3 @@
         </div>
     </div>
 </div>
-
-<!--<div id="footer" class="visible-xs">
-    <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
-        <div class="row" id="bottomNav">
-            <div class="col-xs-4 text-center">
-                <button class="btn btn-primary" ng-click="vm.save()"><i class="glyphicon glyphicon-save"></i></button>
-            </div>
-            <div class="col-xs-4 text-center">
-                <button class="btn btn-default" ui-sref="projects"><i class="glyphicon glyphicon-list"></i></button>
-            </div>
-            <div class="col-xs-4 text-center">
-                <button class="btn btn-danger" ng-if="vm.project.Id" ng-click="vm.delete()"><i class="glyphicon glyphicon-trash"></i></button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid hidden-xs">
-    <div class="row top-buffer">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-            <button class="btn btn-primary" ng-click="vm.save()">{{'Commands.Save'|translate}}</button>
-            <button class="btn btn-danger" ng-disabled="vm.project.Id === undefined" ng-click="vm.delete()">{{'Commands.Delete'|translate}}</button>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <a ui-sref="projects">{{'Commands.BackToList'|translate}}</a>
-    </div>
-</div>-->

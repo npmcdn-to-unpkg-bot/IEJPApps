@@ -42,7 +42,7 @@
                     <td class="text-center text-muted small"><i class="glyphicon glyphicon-eye-open" ng-if="item.Visible"></i></td>
                     <td>{{item.Customer}}</td>
                     <td>{{item.Description}}</td>
-                    <td class="text-right">{{item.TimeTotal}}</td>
+                    <td class="text-right">{{item.TimeTotal|number:2}}</td>
                     <td class="text-right">{{item.ExpenditureTotal|currency}}</td>
                     <td class="text-right">
                         <a ui-sref="projects-edit({ id: '{{item.Id}}' })" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -53,7 +53,7 @@
                     <tr>
                         <td colspan="2">{{filteredItems.length}} {{'Totals.Of'|translate}} {{vm.projects.length}} {{'Totals.Items'|translate}}</td>
                         <td colspan="3"></td>
-                        <td class="text-right">{{vm.timeTotal(filteredItems)}}</td>
+                        <td class="text-right">{{vm.timeTotal(filteredItems)|number:2}}</td>
                         <td class="text-right">{{vm.expenditureTotal(filteredItems)|currency}}</td>
                         <td></td>
                     </tr>

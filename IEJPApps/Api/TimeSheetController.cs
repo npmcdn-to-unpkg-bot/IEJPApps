@@ -47,8 +47,8 @@ namespace IEJPApps.Api
                 Comment = transaction.Comment
             });
 
-            //return AutoMapper.Mapper.Map<TimeTransactionViewModel>(entity);
-            return GetById(entity.Id); // reload newly updated transaction to get all values
+            return AutoMapper.Mapper.Map<TimeTransactionViewModel>(entity);
+            //return GetById(entity.Id); // reload newly updated transaction to get all values
         }
 
         [HttpPut]
